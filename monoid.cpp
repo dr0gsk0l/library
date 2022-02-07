@@ -4,8 +4,8 @@ struct AsMonoid {
   AsMonoid():v(){}
   AsMonoid(T x):v(std::move(x)){}
   friend AsMonoid operator+(AsMonoid l, AsMonoid r){
-    if(!l)return r;
-    if(!r)return l;
+    if(!l.v)return r;
+    if(!r.v)return l;
     return AsMonoid(op(*l.v,*r.v));
   }
 };
