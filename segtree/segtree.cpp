@@ -2,12 +2,12 @@ template <typename Monoid>
 struct SegmentTree{
   int n;
   vector<Monoid> dat;
-  SegmentTree(int n_):{
+  SegmentTree(int n_){
     n=1;
     while(n<n_)n<<=1;
     dat.assign(n<<1,{});
   }
-  SegmentTree(const vector<Monoid> &v):{
+  SegmentTree(const vector<Monoid> &v){
     int n_=v.size();
     n=1;
     while(n<n_) n<<=1;
