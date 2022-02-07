@@ -69,23 +69,4 @@ struct Dinic{
   T flow(int s,int t){
     return flow(s,t,numeric_limits<T>::max()/2);
   }
-  
-  T cut(int s,int t,int x,int a){
-    static_assert(directed,"must be directed");
-    auto &e=G[x][a];
-    int y=e.to;
-    T cr=G[y][e.rev].cap;
-    if(cr==0) return e.cap=0;
-    e.cap=G[y][e.rev].cap=0;
-    T cap=cr-flow(x,y,cr);
-    if(x!=s&&cap!=0)flow(x,s,cap);
-    if(t!=y&&cap!=0)flow(t,y,cap);
-    return cap;
-  }
-  
-  T link(int s,int t,int x,int a,T f){
-    auto &e=G[x][a];
-    e.cap+=f;
-    return flow(s,t,f);
-  }
 };
