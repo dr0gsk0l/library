@@ -13,6 +13,6 @@ struct WeightedGraph{
   WeightedGraph(int n):n(n),g(n){}
     
   void add_edge(int from, int to, T cost){
-    g[from].emplace_back(to,cost);
+    g[from].push_back({to,cost});
   }
 };
