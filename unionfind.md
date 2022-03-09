@@ -1,6 +1,3 @@
-title:UnionFind
-documentation_of: ./unionfind.cpp
-
 ## UnionFind
 
 - `UnionFind uf(int n)`
