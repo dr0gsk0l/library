@@ -1,3 +1,8 @@
+---
+title: UnionFind
+documentation_of: ./unionfind.hpp
+---
+
 ## UnionFind
 
 - `UnionFind uf(int n)`
