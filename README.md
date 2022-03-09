@@ -1,4 +1,3 @@
-[drogskolの競プロ用Libraryです。  
+drogskolの競プロ用Libraryです。  
 自由に使ってOKです。  
 でも他人のライブラリほぼコピペとかも載りそうだから俺一人の許可じゃダメかな
-](https://www.youtube.com/watch?v=yUFmawQsG0s)
