@@ -23,9 +23,10 @@ data:
     \    if(x==y)return false;\n    if(r[x]<r[y])swap(x,y);\n    r[x]+=r[y];\n   \
     \ p[y]=x;\n    num--;\n    return true;\n  }\n  \n  int size(const int x){\n \
     \   return r[find(x)];\n  }\n  \n  int count() const{\n    return num;\n  }\n\
-    };\n#line 6 \"test/unionfind.test.cpp\"\n\n\nint main() {\n  int n,q;cin>>n>>q;\n\
-    \  UnionFind uf(n);\n  while(q--){\n    int t,u,v;cin>>t>>u>>v;\n    if(t)cout<<uf.same(u,v)<<\"\
-    \\n\";\n    else uf.merge(u,v);\n  }\n}\n"
+    };\n\n/**\n* @docs unionfind.md\n*/\n#line 6 \"test/unionfind.test.cpp\"\n\n\n\
+    int main() {\n  int n,q;cin>>n>>q;\n  UnionFind uf(n);\n  while(q--){\n    int\
+    \ t,u,v;cin>>t>>u>>v;\n    if(t)cout<<uf.same(u,v)<<\"\\n\";\n    else uf.merge(u,v);\n\
+    \  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n#include \"../unionfind.cpp\"\n\n\nint main() {\n  int\
     \ n,q;cin>>n>>q;\n  UnionFind uf(n);\n  while(q--){\n    int t,u,v;cin>>t>>u>>v;\n\
@@ -35,7 +36,7 @@ data:
   isVerificationFile: true
   path: test/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-03-09 14:07:07+09:00'
+  timestamp: '2022-03-09 14:28:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/unionfind.test.cpp
