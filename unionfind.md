@@ -1,7 +1,5 @@
----
 title: UnionFind
-documentation_of: ./unionfind.hpp
----
+documentation_of: ./unionfind.cpp
 
 ## UnionFind
 
