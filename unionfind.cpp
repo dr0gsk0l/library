@@ -30,7 +30,3 @@ struct UnionFind{
     return num;
   }
 };
-
-/**
-* @docs unionfind.md
-*/
