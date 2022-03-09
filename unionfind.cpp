@@ -4,16 +4,16 @@ struct UnionFind{
   UnionFind(){}
   UnionFind(int n):num(n),r(n,1),p(n,0){iota(p.begin(),p.end(),0);}
   
-  int find(int x){
-    return (x==p[x]?x:p[x]=find(p[x]));
+  int leader(int x){
+    return (x==p[x]?x:p[x]=leader(p[x]));
   }
   
   bool same(int x,int y){
-    return find(x)==find(y);
+    return leader(x)==leader(y);
   }
   
   bool merge(int x,int y){
-    x=find(x);y=find(y);
+    x=leader(x);y=leader(y);
     if(x==y)return false;
     if(r[x]<r[y])swap(x,y);
     r[x]+=r[y];
@@ -23,7 +23,7 @@ struct UnionFind{
   }
   
   int size(const int x){
-    return r[find(x)];
+    return r[leader(x)];
   }
   
   int count() const{
@@ -32,5 +32,5 @@ struct UnionFind{
 };
 
 /**
-* @docs unionfind.md
+* @docs UnionFind.md
 */
