@@ -1,13 +1,11 @@
 ---
 data:
   libraryCategories:
-  - name: flow
-    pages:
-    - icon: ':warning:'
-      path: flow/dinic.cpp
-      title: flow/dinic.cpp
   - name: .
     pages:
+    - icon: ':warning:'
+      path: convexhulltrick.cpp
+      title: convexhulltrick.cpp
     - icon: ':warning:'
       path: gittest.cpp
       title: gittest.cpp
@@ -23,6 +21,11 @@ data:
     - icon: ':warning:'
       path: unionfind.cpp
       title: unionfind.cpp
+  - name: flow
+    pages:
+    - icon: ':warning:'
+      path: flow/dinic.cpp
+      title: flow/dinic.cpp
   - name: graph
     pages:
     - icon: ':warning:'
