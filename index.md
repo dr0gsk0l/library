@@ -18,7 +18,7 @@ data:
     - icon: ':warning:'
       path: swag.cpp
       title: swag.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: unionfind.cpp
       title: unionfind.cpp
   - name: flow
@@ -47,7 +47,7 @@ data:
   verificationCategories:
   - name: test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
 layout: toppage
