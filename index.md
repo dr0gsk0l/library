@@ -18,7 +18,7 @@ data:
     - icon: ':warning:'
       path: swag.cpp
       title: swag.cpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: unionfind.cpp
       title: unionfind.cpp
   - name: flow
@@ -44,6 +44,11 @@ data:
     - icon: ':warning:'
       path: tree/ReRooting.cpp
       title: tree/ReRooting.cpp
-  verificationCategories: []
+  verificationCategories:
+  - name: test
+    pages:
+    - icon: ':x:'
+      path: test/unionfind.test.cpp
+      title: test/unionfind.test.cpp
 layout: toppage
 ---
