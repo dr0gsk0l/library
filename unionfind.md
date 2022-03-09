@@ -1,2 +1,5 @@
+title:UnionFind
+documentation_of: ./unionfind.cpp
+
 ### あいうえお
 $x^2+2x = \sum_{i=0}^n a_i$

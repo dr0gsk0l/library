@@ -1,5 +1,5 @@
 struct UnionFind{
-  int n;
+  int n,num;
   vector<int> r,p;
   UnionFind(){}
   UnionFind(int n):num(n),r(n,1),p(n,0){iota(p.begin(),p.end(),0);}
@@ -12,7 +12,7 @@ struct UnionFind{
     return find(x)==find(y);
   }
   
-  bool unite(int x,int y){
+  bool merge(int x,int y){
     x=find(x);y=find(y);
     if(x==y)return false;
     if(r[x]<r[y])swap(x,y);
