@@ -20,7 +20,7 @@ data:
       title: swag.cpp
     - icon: ':heavy_check_mark:'
       path: unionfind.cpp
-      title: unionfind.cpp
+      title: UnionFind
   - name: flow
     pages:
     - icon: ':warning:'

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: unionfind.cpp
-    title: unionfind.cpp
+    title: UnionFind
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
