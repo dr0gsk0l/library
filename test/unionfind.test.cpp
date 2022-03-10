@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "../unionfind.cpp"
+#include "../data-structure/unionfind.cpp"
 
 
 int main() {
