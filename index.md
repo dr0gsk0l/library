@@ -1,11 +1,21 @@
 ---
 data:
   libraryCategories:
-  - name: .
+  - name: data-structure
     pages:
     - icon: ':warning:'
-      path: convexhulltrick.cpp
-      title: convexhulltrick.cpp
+      path: data-structure/convexhulltrick.cpp
+      title: data-structure/convexhulltrick.cpp
+    - icon: ':warning:'
+      path: data-structure/unionfind.cpp
+      title: data-structure/unionfind.cpp
+  - name: flow
+    pages:
+    - icon: ':warning:'
+      path: flow/dinic.cpp
+      title: flow/dinic.cpp
+  - name: .
+    pages:
     - icon: ':warning:'
       path: gittest.cpp
       title: gittest.cpp
@@ -18,14 +28,6 @@ data:
     - icon: ':warning:'
       path: swag.cpp
       title: swag.cpp
-    - icon: ':heavy_check_mark:'
-      path: unionfind.cpp
-      title: UnionFind
-  - name: flow
-    pages:
-    - icon: ':warning:'
-      path: flow/dinic.cpp
-      title: flow/dinic.cpp
   - name: graph
     pages:
     - icon: ':warning:'
@@ -47,7 +49,7 @@ data:
   verificationCategories:
   - name: test
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
 layout: toppage
