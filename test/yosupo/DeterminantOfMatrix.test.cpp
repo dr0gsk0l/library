@@ -14,13 +14,11 @@ using M=Matrix<mint>;
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-
-  int n,m,k;cin>>n>>m>>k;
-  M A(n,m),B(m,k);
-  REP(i,n)REP(j,m)cin>>A[i][j];
-  REP(j,m)REP(l,k)cin>>B[j][l];
-  M C=A*B;
-  REP(i,n)REP(l,k)cout<<C[i][l]<<"\n "[l+1<k];
+  
+  int n;cin>>n;
+  M A(n,n);
+  REP(i,n)REP(j,n)cin>>A[i][j];
+  cout<<A.det()<<endl;
 }
   
 
