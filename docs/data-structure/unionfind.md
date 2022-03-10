@@ -10,7 +10,6 @@ documentation_of: ./unionfind.cpp
   - $O(n)$
 - `void merge(int u,int v)`
   - 辺$(u,v)$を足す
-  - $0\leq u,v \lt n$
   - ならし $O(\alpha(n))$
 - `int leader(int v)`
   - 頂点$v$の属する連結成分の代表元を返す

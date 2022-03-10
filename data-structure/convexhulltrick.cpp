@@ -3,23 +3,24 @@ enum Objective{
   MAXIMIZE = -1,
 };
 
-template<typename T> struct Line {
-  T k,m;
-  T operator()(const T x)const{return k*x+m;}
+template<typename T>
+struct Line{
+  T a,b;
+  T operator()(const T x)const{return a*x+b;}
 };
 
-template <typename T, Objective objective>
-struct ConvexHullTrick : deque<Line<T>>{
-  inline int sgn(T x){return x==0?0:(x<0?-1:1);}
+template<typename T,Objective objective>
+struct ConvexHullTrick:deque<Line<T>>{
+  inline int sgn(T x){return x==0?0:(x<0?-1:1);}//符号
 
-  using D = long double;
-  inline bool check(const Line<T> &a,const Line<T> &b,const Line<T> &c){
-    if(b.m==a.m or c.m==b.m)
-      return sgn(b.k-a.k)*sgn(c.m-b.m) >= sgn(c.k-b.k)*sgn(b.m-a.m);
-    // return (b.k-a.k)*(c.m-b.m) >= (b.m-a.m)*(c.k-b.k);
+  using D=long double;
+  inline bool check(const Line<T>&l1,const Line<T>&l2,const Line<T>&l3){
+    if(l1.b==l2.b or l2.b==l3.b)
+      return sgn(l2.a-l1.a)*sgn(l3.b-l2.b) >= sgn(l3.a-l2.a)*sgn(l2.b-l1.b);
+    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);
     return
-      D(b.k-a.k)*sgn(c.m-b.m)/D(abs(b.m-a.m)) >=
-      D(c.k-b.k)*sgn(b.m-a.m)/D(abs(c.m-b.m));
+      D(b.a-a.a)*sgn(c.b-b.b)/D(abs(b.b-a.b)) >=
+      D(c.a-b.a)*sgn(b.b-a.b)/D(abs(c.b-b.b));
   }
 
   using super = deque<Line<T>>;
@@ -28,23 +29,23 @@ struct ConvexHullTrick : deque<Line<T>>{
   using super::pop_front,super::pop_back;
   const Line<T> at(int i) const{return (*this)[i];}
 
-  void add(T k_,T m_){
-    Line<T> l({k_*objective,m_*objective});
+  void add(T a,T b){
+    Line<T> l({a*objective,b*objective});
     if(empty()){
       emplace_front(l);
       return;
     }
-    if(front().k<=l.k){
-      if(front().k==l.k){
-        if(front().m<=l.m) return;
+    if(front().a<=l.a){
+      if(front().a==l.a){
+        if(front().b<=l.b) return;
         pop_front();
       }
       while(size()>=2 and check(l,at(0),at(1))) pop_front();
       emplace_front(l);
     }else{
-      assert(l.k<=back().k);
-      if(back().k==l.k){
-        if(back().m<=l.m) return;
+      assert(l.a<=back().a);
+      if(back().a==l.a){
+        if(back().b<=l.b) return;
         pop_back();
       }
       while(size()>=2 and check(at(size()-2),at(size()-1),l)) pop_back();
@@ -79,8 +80,8 @@ struct ConvexHullTrick : deque<Line<T>>{
     vector<pair<T, T>> res;
     for(int i=0;i+1<(int)size();i++){
       auto l0=at(i+0),l1=at(i+1);
-      assert(l0.k!=l1.k);
-      T x=(l1.m-l0.m)/(l0.k-l1.k);
+      assert(l0.a!=l1.a);
+      T x=(l1.b-l0.b)/(l0.a-l1.a);
       res.emplace_back(x,at(i)(x)*objective);
     }
     return res;
