@@ -7,6 +7,7 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: //docs/matrix.md
     links: []
   bundledCode: "#line 1 \"matrix.cpp\"\n#define REP_(i,n) for(int i=0;i<(n);i++)\n\
     #define REP2_(i,s,n) for(int i=(s);i<(n);i++)\ntemplate<typename K>\nstruct Matrix{\n\
@@ -32,7 +33,8 @@ data:
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
     \        if(A[j][i]!=0)swap(A[i],A[j]),res*=-1;\n      res*=A[i][i];\n      if(A[i][i]==0)return\
     \ res;\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
-    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n"
+    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
+    */\n"
   code: "#define REP_(i,n) for(int i=0;i<(n);i++)\n#define REP2_(i,s,n) for(int i=(s);i<(n);i++)\n\
     template<typename K>\nstruct Matrix{\n  typedef vector<K> vec;\n  typedef vector<vec>\
     \ mat;\n  size_t r,c;\n  mat M;\n\n  Matrix(size_t r,size_t c):r(r),c(c),M(r,vec(c,K())){}\n\
@@ -57,18 +59,34 @@ data:
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
     \        if(A[j][i]!=0)swap(A[i],A[j]),res*=-1;\n      res*=A[i][i];\n      if(A[i][i]==0)return\
     \ res;\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
-    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_"
+    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
+    */"
   dependsOn: []
   isVerificationFile: false
   path: matrix.cpp
   requiredBy: []
-  timestamp: '2022-02-07 17:19:52+09:00'
+  timestamp: '2022-03-10 13:30:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matrix.cpp
 layout: document
-redirect_from:
-- /library/matrix.cpp
-- /library/matrix.cpp.html
-title: matrix.cpp
+title: Matrix
 ---
+
+- `Matrix<K> M(size_t r,size_t c)`
+  - 体$K$上の$r\times c$行列を生成
+- `Matrix<K> M(vector<vector<K>> A)`
+  - 二次元ベクトルAから行列を生成
+- `+,+=,*,*=`
+  - 行列同士の各種演算
+- `Matrix I(size_t n)`
+  - サイズ$n$の単位行列を返す
+- `Matrix pow(long long n)`
+  - $M$が正方行列のとき$M^n$を返す
+  - サイズ$r\times r$として$O(r^3 log(n))$
+- `int rank()`
+  - 行列のランクを返す`
+  - $O(rc^2)$
+- `K det()`
+  - $M$が正方行列のとき行列式を返す
+  - $O(r^3)$

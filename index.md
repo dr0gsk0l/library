@@ -8,7 +8,7 @@ data:
       title: data-structure/convexhulltrick.cpp
     - icon: ':warning:'
       path: data-structure/unionfind.cpp
-      title: data-structure/unionfind.cpp
+      title: UnionFind
   - name: flow
     pages:
     - icon: ':warning:'
@@ -21,7 +21,7 @@ data:
       title: gittest.cpp
     - icon: ':warning:'
       path: matrix.cpp
-      title: matrix.cpp
+      title: Matrix
     - icon: ':warning:'
       path: monoid.cpp
       title: monoid.cpp
