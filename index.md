@@ -19,7 +19,7 @@ data:
     - icon: ':warning:'
       path: gittest.cpp
       title: gittest.cpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: matrix.cpp
       title: Matrix
     - icon: ':warning:'
@@ -36,6 +36,11 @@ data:
     - icon: ':warning:'
       path: graph/dijkstra.cpp
       title: graph/dijkstra.cpp
+  - name: mod
+    pages:
+    - icon: ':question:'
+      path: mod/modint.cpp
+      title: mod/modint.cpp
   - name: segtree
     pages:
     - icon: ':warning:'
@@ -52,5 +57,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/DeterminantOfMatrix.test.cpp
+      title: test/yosupo/DeterminantOfMatrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/MatrixProduct.test.cpp
+      title: test/yosupo/MatrixProduct.test.cpp
 layout: toppage
 ---
