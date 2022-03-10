@@ -1,3 +1,8 @@
+---
+title: Matrix
+documentation_of: //matrix.cpp
+---
+
 - `Matrix<K> M(size_t r,size_t c)`
   - 体$K$上の$r\times c$行列を生成
 - `Matrix<K> M(vector<vector<K>> A)`

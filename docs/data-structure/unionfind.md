@@ -1,6 +1,6 @@
 ---
 title: UnionFind
-documentation_of: ./unionfind.cpp
+documentation_of: //data-structure/unionfind.cpp
 ---
 
 ## UnionFind

@@ -86,3 +86,7 @@ struct Matrix{
 };
 #undef REP_
 #undef REP2_
+
+/**
+* @docs //docs/matrix.md
+*/

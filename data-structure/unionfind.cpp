@@ -32,5 +32,5 @@ struct UnionFind{
 };
 
 /**
-* @docs UnionFind.md
+* @docs //docs/data-structure/unionfind.md
 */
