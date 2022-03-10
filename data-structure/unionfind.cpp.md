@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/unionfind.test.cpp
+    title: test/unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: //docs/data-structure/unionfind.md
     links: []
@@ -31,8 +34,9 @@ data:
   path: data-structure/unionfind.cpp
   requiredBy: []
   timestamp: '2022-03-10 13:30:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/unionfind.test.cpp
 documentation_of: data-structure/unionfind.cpp
 layout: document
 title: UnionFind
