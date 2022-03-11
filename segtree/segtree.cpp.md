@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/PointSetRangeComposite.test.cpp
+    title: test/yosupo/PointSetRangeComposite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/segtree.cpp\"\ntemplate <typename Monoid>\nstruct\
@@ -41,8 +44,9 @@ data:
   path: segtree/segtree.cpp
   requiredBy: []
   timestamp: '2022-02-07 17:45:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/PointSetRangeComposite.test.cpp
 documentation_of: segtree/segtree.cpp
 layout: document
 redirect_from:

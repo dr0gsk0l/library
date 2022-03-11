@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/MatrixProduct.test.cpp
     title: test/yosupo/MatrixProduct.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/PointSetRangeComposite.test.cpp
+    title: test/yosupo/PointSetRangeComposite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':question:'
@@ -60,6 +63,7 @@ data:
   timestamp: '2022-03-10 14:02:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/PointSetRangeComposite.test.cpp
   - test/yosupo/DeterminantOfMatrix.test.cpp
   - test/yosupo/MatrixProduct.test.cpp
 documentation_of: mod/modint.cpp

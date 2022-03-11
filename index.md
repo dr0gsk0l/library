@@ -43,7 +43,7 @@ data:
       title: mod/modint.cpp
   - name: segtree
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: segtree/segtree.cpp
       title: segtree/segtree.cpp
   - name: tree
@@ -65,5 +65,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/MatrixProduct.test.cpp
       title: test/yosupo/MatrixProduct.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/PointSetRangeComposite.test.cpp
+      title: test/yosupo/PointSetRangeComposite.test.cpp
 layout: toppage
 ---
