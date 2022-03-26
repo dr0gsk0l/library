@@ -37,8 +37,8 @@ data:
     \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
     \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res*=-1;\n      res*=A[i][i];\n      if(A[i][i]==0)return\
-    \ res;\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
+    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return res;\n\
+    \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
     \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
     */\n"
   code: "#define REP_(i,n) for(int i=0;i<(n);i++)\n#define REP2_(i,s,n) for(int i=(s);i<(n);i++)\n\
@@ -63,15 +63,15 @@ data:
     \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
     \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res*=-1;\n      res*=A[i][i];\n      if(A[i][i]==0)return\
-    \ res;\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
+    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return res;\n\
+    \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
     \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
     */"
   dependsOn: []
   isVerificationFile: false
   path: matrix.cpp
   requiredBy: []
-  timestamp: '2022-03-10 13:30:32+09:00'
+  timestamp: '2022-03-26 14:25:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/DeterminantOfMatrix.test.cpp

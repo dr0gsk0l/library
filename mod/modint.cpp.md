@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/MatrixProduct.test.cpp
     title: test/yosupo/MatrixProduct.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/PointSetRangeComposite.test.cpp
     title: test/yosupo/PointSetRangeComposite.test.cpp
   _isVerificationFailed: true
