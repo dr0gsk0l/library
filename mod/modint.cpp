@@ -45,9 +45,8 @@ struct Mint{
     }
     return num/dom;
   }
+
+  friend ostream& operator<<(ostream&os,const Mint &m){os<<m.v;return os;}
+  friend istream& operator>>(istream&is,Mint &m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return is;}
 };
-template<typename T,T MOD>
-ostream& operator<<(ostream&os,Mint<T,MOD> m){os<<m.v;return os;}
-template<typename T,T MOD>
-istream& operator>>(istream&is,Mint<T,MOD>&m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return is;}
-//END CUT HERE
+

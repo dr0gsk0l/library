@@ -17,7 +17,7 @@ struct Dinic{
     return G[to].back().rev;
   }
 
-  inline void bfs(int s){
+  void bfs(int s){
     //level[v]を（容量正の辺による）sからの最短距離にする 到達出来なければ-1
     fill(level.begin(),level.end(),-1);
     queue<int> que;
@@ -34,7 +34,7 @@ struct Dinic{
     }
   }
   
-  inline T dfs(int v,int t,T f){
+  T dfs(int v,int t,T f){
     //vからtに最短路で水を流す fがvまで持ってこれた水量 流せた量が返り値
     if(v==t)return f;
     for(int &i=iter[v];i<(int)G[v].size();i++){//このdfsで使わなかった辺は次のBFSまで使われることはない
