@@ -33,10 +33,9 @@ data:
     \n  bool operator==(const Mint a)const{return v==a.v;}\n  bool operator!=(const\
     \ Mint a)const{return v!=a.v;}\n\n  static Mint comb(long long n,int k){\n   \
     \ Mint num(1),dom(1);\n    for(int i=0;i<k;i++){\n      num*=Mint(n-i);\n    \
-    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n};\ntemplate<typename T,T\
-    \ MOD>\nostream& operator<<(ostream&os,Mint<T,MOD> m){os<<m.v;return os;}\ntemplate<typename\
-    \ T,T MOD>\nistream& operator>>(istream&is,Mint<T,MOD>&m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
-    \ is;}\n//END CUT HERE\n"
+    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n\n  friend ostream& operator<<(ostream&os,const\
+    \ Mint &m){os<<m.v;return os;}\n  friend istream& operator>>(istream&is,Mint &m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
+    \ is;}\n};\n\n"
   code: "template<typename T,T MOD=998244353>\nstruct Mint{\n  inline static constexpr\
     \ T mod = MOD;\n  T v;\n  Mint():v(0){}\n  Mint(signed v):v(v){}\n  Mint(long\
     \ long t){v=t%MOD;if(v<0)v+=MOD;}\n\n  Mint pow(long long k){\n    Mint res(1),tmp(v);\n\
@@ -53,14 +52,14 @@ data:
     \ Mint a)const{return v==a.v;}\n  bool operator!=(const Mint a)const{return v!=a.v;}\n\
     \n  static Mint comb(long long n,int k){\n    Mint num(1),dom(1);\n    for(int\
     \ i=0;i<k;i++){\n      num*=Mint(n-i);\n      dom*=Mint(i+1);\n    }\n    return\
-    \ num/dom;\n  }\n};\ntemplate<typename T,T MOD>\nostream& operator<<(ostream&os,Mint<T,MOD>\
-    \ m){os<<m.v;return os;}\ntemplate<typename T,T MOD>\nistream& operator>>(istream&is,Mint<T,MOD>&m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
-    \ is;}\n//END CUT HERE"
+    \ num/dom;\n  }\n\n  friend ostream& operator<<(ostream&os,const Mint &m){os<<m.v;return\
+    \ os;}\n  friend istream& operator>>(istream&is,Mint &m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
+    \ is;}\n};\n\n"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint.cpp
   requiredBy: []
-  timestamp: '2022-03-10 14:02:05+09:00'
+  timestamp: '2022-03-29 14:51:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/PointSetRangeComposite.test.cpp

@@ -14,16 +14,16 @@ data:
     \  vector<int> level,iter;\n\n  Dinic(){}\n  Dinic(int n):G(n),level(n),iter(n){}\n\
     \n  int add_edge(int from,int to,T cap){\n    G[from].emplace_back(to,cap,G[to].size());\n\
     \    G[to].emplace_back(from,directed?0:cap,G[from].size()-1);\n    return G[to].back().rev;\n\
-    \  }\n\n  inline void bfs(int s){\n    //level[v]\u3092\uFF08\u5BB9\u91CF\u6B63\
-    \u306E\u8FBA\u306B\u3088\u308B\uFF09s\u304B\u3089\u306E\u6700\u77ED\u8DDD\u96E2\
-    \u306B\u3059\u308B \u5230\u9054\u51FA\u6765\u306A\u3051\u308C\u3070-1\n    fill(level.begin(),level.end(),-1);\n\
+    \  }\n\n  void bfs(int s){\n    //level[v]\u3092\uFF08\u5BB9\u91CF\u6B63\u306E\
+    \u8FBA\u306B\u3088\u308B\uFF09s\u304B\u3089\u306E\u6700\u77ED\u8DDD\u96E2\u306B\
+    \u3059\u308B \u5230\u9054\u51FA\u6765\u306A\u3051\u308C\u3070-1\n    fill(level.begin(),level.end(),-1);\n\
     \    queue<int> que;\n    level[s]=0;\n    que.emplace(s);\n    while(que.size()){\n\
     \      int v=que.front();que.pop();\n      for(int i=0;i<(int)G[v].size();i++){\n\
     \        edge &e=G[v][i];\n        if(e.cap==0||~level[e.to])continue;\n     \
     \   level[e.to]=level[v]+1;\n        que.emplace(e.to);\n      }\n    }\n  }\n\
-    \  \n  inline T dfs(int v,int t,T f){\n    //v\u304B\u3089t\u306B\u6700\u77ED\u8DEF\
-    \u3067\u6C34\u3092\u6D41\u3059 f\u304Cv\u307E\u3067\u6301\u3063\u3066\u3053\u308C\
-    \u305F\u6C34\u91CF \u6D41\u305B\u305F\u91CF\u304C\u8FD4\u308A\u5024\n    if(v==t)return\
+    \  \n  T dfs(int v,int t,T f){\n    //v\u304B\u3089t\u306B\u6700\u77ED\u8DEF\u3067\
+    \u6C34\u3092\u6D41\u3059 f\u304Cv\u307E\u3067\u6301\u3063\u3066\u3053\u308C\u305F\
+    \u6C34\u91CF \u6D41\u305B\u305F\u91CF\u304C\u8FD4\u308A\u5024\n    if(v==t)return\
     \ f;\n    for(int &i=iter[v];i<(int)G[v].size();i++){//\u3053\u306Edfs\u3067\u4F7F\
     \u308F\u306A\u304B\u3063\u305F\u8FBA\u306F\u6B21\u306EBFS\u307E\u3067\u4F7F\u308F\
     \u308C\u308B\u3053\u3068\u306F\u306A\u3044\n      edge &e=G[v][i];\n      if(e.cap>0&&level[v]<level[e.to]){//bfs\u3092\
@@ -41,17 +41,17 @@ data:
     \ \n  };\n  vector<vector<edge>> G;\n  vector<int> level,iter;\n\n  Dinic(){}\n\
     \  Dinic(int n):G(n),level(n),iter(n){}\n\n  int add_edge(int from,int to,T cap){\n\
     \    G[from].emplace_back(to,cap,G[to].size());\n    G[to].emplace_back(from,directed?0:cap,G[from].size()-1);\n\
-    \    return G[to].back().rev;\n  }\n\n  inline void bfs(int s){\n    //level[v]\u3092\
+    \    return G[to].back().rev;\n  }\n\n  void bfs(int s){\n    //level[v]\u3092\
     \uFF08\u5BB9\u91CF\u6B63\u306E\u8FBA\u306B\u3088\u308B\uFF09s\u304B\u3089\u306E\
     \u6700\u77ED\u8DDD\u96E2\u306B\u3059\u308B \u5230\u9054\u51FA\u6765\u306A\u3051\
     \u308C\u3070-1\n    fill(level.begin(),level.end(),-1);\n    queue<int> que;\n\
     \    level[s]=0;\n    que.emplace(s);\n    while(que.size()){\n      int v=que.front();que.pop();\n\
     \      for(int i=0;i<(int)G[v].size();i++){\n        edge &e=G[v][i];\n      \
     \  if(e.cap==0||~level[e.to])continue;\n        level[e.to]=level[v]+1;\n    \
-    \    que.emplace(e.to);\n      }\n    }\n  }\n  \n  inline T dfs(int v,int t,T\
-    \ f){\n    //v\u304B\u3089t\u306B\u6700\u77ED\u8DEF\u3067\u6C34\u3092\u6D41\u3059\
-    \ f\u304Cv\u307E\u3067\u6301\u3063\u3066\u3053\u308C\u305F\u6C34\u91CF \u6D41\u305B\
-    \u305F\u91CF\u304C\u8FD4\u308A\u5024\n    if(v==t)return f;\n    for(int &i=iter[v];i<(int)G[v].size();i++){//\u3053\
+    \    que.emplace(e.to);\n      }\n    }\n  }\n  \n  T dfs(int v,int t,T f){\n\
+    \    //v\u304B\u3089t\u306B\u6700\u77ED\u8DEF\u3067\u6C34\u3092\u6D41\u3059 f\u304C\
+    v\u307E\u3067\u6301\u3063\u3066\u3053\u308C\u305F\u6C34\u91CF \u6D41\u305B\u305F\
+    \u91CF\u304C\u8FD4\u308A\u5024\n    if(v==t)return f;\n    for(int &i=iter[v];i<(int)G[v].size();i++){//\u3053\
     \u306Edfs\u3067\u4F7F\u308F\u306A\u304B\u3063\u305F\u8FBA\u306F\u6B21\u306EBFS\u307E\
     \u3067\u4F7F\u308F\u308C\u308B\u3053\u3068\u306F\u306A\u3044\n      edge &e=G[v][i];\n\
     \      if(e.cap>0&&level[v]<level[e.to]){//bfs\u3092\u3057\u3066\u3044\u308B\u306E\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: flow/dinic.cpp
   requiredBy: []
-  timestamp: '2022-02-07 21:02:19+09:00'
+  timestamp: '2022-03-29 14:51:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/dinic.cpp

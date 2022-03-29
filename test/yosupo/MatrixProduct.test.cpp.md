@@ -60,12 +60,11 @@ data:
     \n  bool operator==(const Mint a)const{return v==a.v;}\n  bool operator!=(const\
     \ Mint a)const{return v!=a.v;}\n\n  static Mint comb(long long n,int k){\n   \
     \ Mint num(1),dom(1);\n    for(int i=0;i<k;i++){\n      num*=Mint(n-i);\n    \
-    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n};\ntemplate<typename T,T\
-    \ MOD>\nostream& operator<<(ostream&os,Mint<T,MOD> m){os<<m.v;return os;}\ntemplate<typename\
-    \ T,T MOD>\nistream& operator>>(istream&is,Mint<T,MOD>&m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
-    \ is;}\n//END CUT HERE\n#line 8 \"test/yosupo/MatrixProduct.test.cpp\"\n\nusing\
-    \ mint=Mint<long long>;\nusing M=Matrix<mint>;\n\n#define REP(i,n) for(int i=0;i<(n);i++)\n\
-    \nint main(){\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n,m,k;cin>>n>>m>>k;\n\
+    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n\n  friend ostream& operator<<(ostream&os,const\
+    \ Mint &m){os<<m.v;return os;}\n  friend istream& operator>>(istream&is,Mint &m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
+    \ is;}\n};\n\n#line 8 \"test/yosupo/MatrixProduct.test.cpp\"\n\nusing mint=Mint<long\
+    \ long>;\nusing M=Matrix<mint>;\n\n#define REP(i,n) for(int i=0;i<(n);i++)\n\n\
+    int main(){\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n,m,k;cin>>n>>m>>k;\n\
     \  M A(n,m),B(m,k);\n  REP(i,n)REP(j,m)cin>>A[i][j];\n  REP(j,m)REP(l,k)cin>>B[j][l];\n\
     \  M C=A*B;\n  REP(i,n)REP(l,k)cout<<C[i][l]<<\"\\n \"[l+1<k];\n}\n  \n\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
@@ -81,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/MatrixProduct.test.cpp
   requiredBy: []
-  timestamp: '2022-03-26 14:25:49+09:00'
+  timestamp: '2022-03-29 14:51:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/MatrixProduct.test.cpp

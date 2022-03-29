@@ -49,15 +49,14 @@ data:
     \n  bool operator==(const Mint a)const{return v==a.v;}\n  bool operator!=(const\
     \ Mint a)const{return v!=a.v;}\n\n  static Mint comb(long long n,int k){\n   \
     \ Mint num(1),dom(1);\n    for(int i=0;i<k;i++){\n      num*=Mint(n-i);\n    \
-    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n};\ntemplate<typename T,T\
-    \ MOD>\nostream& operator<<(ostream&os,Mint<T,MOD> m){os<<m.v;return os;}\ntemplate<typename\
-    \ T,T MOD>\nistream& operator>>(istream&is,Mint<T,MOD>&m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
-    \ is;}\n//END CUT HERE\n#line 9 \"test/yosupo/PointSetRangeComposite.test.cpp\"\
-    \n\nusing mint=Mint<long long>;\nstruct Linear{\n  mint a,b;\n};\n\nint main(){\n\
-    \  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n\n  int n,q;cin>>n>>q;\n\
-    \n  vector<Linear> v(n);\n  for(int i=0;i<n;i++)cin>>v[i].a>>v[i].b;\n  SegmentTree<Linear>\
-    \ seg([](Linear f,Linear g){\n    return Linear{f.a*g.a,g.a*f.b+g.b};\n  },{1,0},v);\n\
-    \n  while(q--){\n    int t,l,r,x;cin>>t>>l>>r>>x;\n    if(t){\n      auto [a,b]=seg.query(l,r);\n\
+    \  dom*=Mint(i+1);\n    }\n    return num/dom;\n  }\n\n  friend ostream& operator<<(ostream&os,const\
+    \ Mint &m){os<<m.v;return os;}\n  friend istream& operator>>(istream&is,Mint &m){is>>m.v;m.v%=MOD;if(m.v<0)m.v+=MOD;return\
+    \ is;}\n};\n\n#line 9 \"test/yosupo/PointSetRangeComposite.test.cpp\"\n\nusing\
+    \ mint=Mint<long long>;\nstruct Linear{\n  mint a,b;\n};\n\nint main(){\n  ios::sync_with_stdio(false);\n\
+    \  cin.tie(nullptr);\n\n  int n,q;cin>>n>>q;\n\n  vector<Linear> v(n);\n  for(int\
+    \ i=0;i<n;i++)cin>>v[i].a>>v[i].b;\n  SegmentTree<Linear> seg([](Linear f,Linear\
+    \ g){\n    return Linear{f.a*g.a,g.a*f.b+g.b};\n  },{1,0},v);\n\n  while(q--){\n\
+    \    int t,l,r,x;cin>>t>>l>>r>>x;\n    if(t){\n      auto [a,b]=seg.query(l,r);\n\
     \      cout<<a*x+b<<\"\\n\";\n    }\n    else seg.set_val(l,Linear{r,x});\n  }\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
@@ -76,7 +75,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/PointSetRangeComposite.test.cpp
   requiredBy: []
-  timestamp: '2022-03-26 14:25:49+09:00'
+  timestamp: '2022-03-29 14:51:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/PointSetRangeComposite.test.cpp

@@ -58,6 +58,9 @@ data:
       path: tree/ReRooting.cpp
       title: tree/ReRooting.cpp
     - icon: ':warning:'
+      path: tree/lca.cpp
+      title: tree/lca.cpp
+    - icon: ':warning:'
       path: tree/tree.cpp
       title: tree/tree.cpp
   verificationCategories:
