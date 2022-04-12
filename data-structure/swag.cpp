@@ -1,14 +1,16 @@
-template <class Monoid>
-struct SWAG{
+template<class Monoid>
+class SWAG{
   stack<Monoid> back_stack;
   Monoid back_value;
   stack<pair<Monoid,Monoid>> front_stack;
 
-  inline Monoid front_value(){
+private:
+  Monoid front_value(){
     if(front_stack.empty())return Monoid();
     return get<1>(front_stack.top());
   }
 
+public:
   void push_back(Monoid a){
     back_stack.push(a);
     back_value=back_value+a;

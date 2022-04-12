@@ -1,10 +1,8 @@
-struct LCA{
+class LCA{
   Tree T;
   int n,root;
   vector<vector<int>> ancestor;
   vector<int> depth;
-
-  LCA(const Tree&T,int root=0):T(T),root(root){}
 
   void dfs(int idx,int pre){
     for(const int&p:T[idx])if(p!=pre){
@@ -15,6 +13,8 @@ struct LCA{
     }
     dfs(p,idx);
   }
+public:
+  LCA(const Tree&T,int root=0):T(T),root(root){}
 
   void build(){
     n=T.size();
