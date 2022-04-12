@@ -62,9 +62,9 @@ data:
   timestamp: '2022-03-29 14:51:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/PointSetRangeComposite.test.cpp
   - test/yosupo/DeterminantOfMatrix.test.cpp
   - test/yosupo/MatrixProduct.test.cpp
+  - test/yosupo/PointSetRangeComposite.test.cpp
 documentation_of: mod/modint.cpp
 layout: document
 redirect_from:

@@ -21,6 +21,12 @@ data:
       path: data-structure/convexhulltrick.cpp
       title: data-structure/convexhulltrick.cpp
     - icon: ':warning:'
+      path: data-structure/fenwicktree.cpp
+      title: data-structure/fenwicktree.cpp
+    - icon: ':warning:'
+      path: data-structure/rangetree.cpp
+      title: data-structure/rangetree.cpp
+    - icon: ':warning:'
       path: data-structure/swag.cpp
       title: data-structure/swag.cpp
     - icon: ':heavy_check_mark:'
