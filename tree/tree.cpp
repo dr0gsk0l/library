@@ -1,6 +1,6 @@
 struct Tree : vector<vector<int>>{
   Tree(int n){
-    (*tree).resize(n);
+    (*this).resize(n);
   }
 
   void add_edge(int u,int v){
