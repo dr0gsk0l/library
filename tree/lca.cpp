@@ -19,7 +19,6 @@ public:
     ancestor.resize(n,vector<int>(30,root));
     depth.resize(n,0);
     dfs(root,-1);
-    debug(ancestor);
   }
 
   int lca(int u,int v){
