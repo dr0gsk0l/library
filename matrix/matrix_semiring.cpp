@@ -1,13 +1,13 @@
 #define REP_(i,n) for(int i=0;i<(n);i++)
 #define REP2_(i,s,n) for(int i=(s);i<(n);i++)
-template<typename K>
+template<typename R>
 struct Matrix{
-  typedef vector<K> vec;
+  typedef vector<R> vec;
   typedef vector<vec> mat;
   size_t r,c;
   mat M;
 
-  Matrix(size_t r,size_t c):r(r),c(c),M(r,vec(c,K())){}
+  Matrix(size_t r,size_t c):r(r),c(c),M(r,vec(c,R())){}
   Matrix(mat A):M(A),r(A.size()),c(A[0].size()){}
 
   vec& operator[](size_t k){return M[k];}
@@ -40,7 +40,7 @@ struct Matrix{
 
   static Matrix I(size_t n){
     Matrix res(n,n);
-    REP_(i,n)res[i][i]=K(1);
+    REP_(i,n)res[i][i]=R(1);
     return res;
   }
 
@@ -54,39 +54,6 @@ struct Matrix{
     }
     return res;
   }
-
-  int rank() const{
-    Matrix A(M);
-    int res=0;
-    REP_(k,c){
-      for(int i=res+1;i<r&&A[res][k]==0;i++)
-        if(A[i][k]!=0)swap(A[i],A[res]);
-      if(A[res][k]==0)continue;
-      REP2_(l,k+1,c)A[res][l]/=A[res][k];
-      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];
-      res++;
-    }
-    return res;
-  }
-
-  K det() const{
-    assert(r==c);
-    Matrix A=M;
-    K res(1);
-    REP_(i,r){
-      for(int j=i+1;j<c&&A[i][i]==0;j++)
-        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;
-      if(A[i][i]==0)return 0;
-      res*=A[i][i];
-      REP2_(k,i+1,c)A[i][k]/=A[i][i];
-      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];
-    }
-    return res;
-  }
 };
 #undef REP_
 #undef REP2_
-
-/**
-* @docs //docs/matrix.md
-*/

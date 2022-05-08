@@ -55,18 +55,21 @@ struct Matrix{
     return res;
   }
 
-  int rank() const{
+  Matrix base() const{
     Matrix A(M);
-    int res=0;
+    int now=0;
     REP_(k,c){
-      for(int i=res+1;i<r&&A[res][k]==0;i++)
-        if(A[i][k]!=0)swap(A[i],A[res]);
-      if(A[res][k]==0)continue;
-      REP2_(l,k+1,c)A[res][l]/=A[res][k];
-      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];
-      res++;
+      for(int i=now+1;i<r&&A[res][k]==0;i++)
+        if(A[i][k]!=0)swap(A[i],A[now]);
+      if(A[now][k]==0)continue;
+      REP2_(l,k+1,c)A[now][l]/=A[now][k];
+      A[now][l]=K(1);
+      REP_(j,r)if(j!=now)
+        REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[now][l];
+      now++;
     }
-    return res;
+    A.resize(now);
+    return A;
   }
 
   K det() const{
@@ -76,7 +79,7 @@ struct Matrix{
     REP_(i,r){
       for(int j=i+1;j<c&&A[i][i]==0;j++)
         if(A[j][i]!=0)swap(A[i],A[j]),res=-res;
-      if(A[i][i]==0)return 0;
+      if(A[i][i]==0)return res;
       res*=A[i][i];
       REP2_(k,i+1,c)A[i][k]/=A[i][i];
       REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];
@@ -85,8 +88,4 @@ struct Matrix{
   }
 };
 #undef REP_
-#undef REP2_
-
-/**
-* @docs //docs/matrix.md
-*/
+#undef REP2_ 

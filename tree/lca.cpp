@@ -6,19 +6,18 @@ class LCA{
 
   void dfs(int idx,int pre){
     for(const int&p:T[idx])if(p!=pre){
-      depth[p]=depth[pre]+1;
-      ancestor[p][0]=pre;
+      depth[p]=depth[idx]+1;
+      ancestor[p][0]=idx;
       for(int i=1;i<30;i++)
-        ancestor[idx][i]=ancestor[ancestor[idx][i-1]][i-1];
+        ancestor[p][i]=ancestor[ancestor[p][i-1]][i-1];
+      dfs(p,idx);
     }
-    dfs(p,idx);
   }
 public:
-  LCA(const Tree&T,int root=0):T(T),root(root){}
-
-  void build(){
+  LCA(const Tree&T,int root=0):T(T),root(root){
     n=T.size();
-    ancestor.resize(n,vector<int>(30));
+    ancestor.resize(n,vector<int>(30,root));
+    depth.resize(n,0);
     dfs(root,-1);
   }
 
