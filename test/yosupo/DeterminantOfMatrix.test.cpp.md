@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix.cpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.cpp
     title: mod/modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
     links:
-    - https://judge.yosupo.jp/problem/matrix_product
+    - https://judge.yosupo.jp/problem/matrix_det
   bundledCode: "#line 1 \"test/yosupo/DeterminantOfMatrix.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include <bits/stdc++.h>\n\
+    \ \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include <bits/stdc++.h>\n\
     using namespace std;\n\n#line 1 \"matrix.cpp\"\n#define REP_(i,n) for(int i=0;i<(n);i++)\n\
     #define REP2_(i,s,n) for(int i=(s);i<(n);i++)\ntemplate<typename K>\nstruct Matrix{\n\
     \  typedef vector<K> vec;\n  typedef vector<vec> mat;\n  size_t r,c;\n  mat M;\n\
@@ -41,7 +41,7 @@ data:
     \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
     \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return res;\n\
+    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return 0;\n\
     \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
     \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
     */\n#line 1 \"mod/modint.cpp\"\ntemplate<typename T,T MOD=998244353>\nstruct Mint{\n\
@@ -67,7 +67,7 @@ data:
     int main(){\n  ios::sync_with_stdio(false);\n  cin.tie(nullptr);\n  \n  int n;cin>>n;\n\
     \  M A(n,n);\n  REP(i,n)REP(j,n)cin>>A[i][j];\n  cout<<A.det()<<endl;\n}\n  \n\
     \n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\
     \ <bits/stdc++.h>\nusing namespace std;\n\n#include \"../../matrix.cpp\"\n#include\
     \ \"../../mod/modint.cpp\"\n\nusing mint=Mint<long long>;\nusing M=Matrix<mint>;\n\
     \n#define REP(i,n) for(int i=0;i<(n);i++)\n\nint main(){\n  ios::sync_with_stdio(false);\n\
@@ -79,8 +79,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/DeterminantOfMatrix.test.cpp
   requiredBy: []
-  timestamp: '2022-03-29 14:51:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-08 10:53:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/DeterminantOfMatrix.test.cpp
 layout: document

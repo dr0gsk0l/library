@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.cpp
     title: mod/modint.cpp
   - icon: ':heavy_check_mark:'

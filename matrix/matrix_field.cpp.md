@@ -2,20 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/DeterminantOfMatrix.test.cpp
-    title: test/yosupo/DeterminantOfMatrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/MatrixProduct.test.cpp
-    title: test/yosupo/MatrixProduct.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: //docs/matrix.md
     links: []
-  bundledCode: "#line 1 \"matrix.cpp\"\n#define REP_(i,n) for(int i=0;i<(n);i++)\n\
+  bundledCode: "#line 1 \"matrix/matrix_field.cpp\"\n#define REP_(i,n) for(int i=0;i<(n);i++)\n\
     #define REP2_(i,s,n) for(int i=(s);i<(n);i++)\ntemplate<typename K>\nstruct Matrix{\n\
     \  typedef vector<K> vec;\n  typedef vector<vec> mat;\n  size_t r,c;\n  mat M;\n\
     \n  Matrix(size_t r,size_t c):r(r),c(c),M(r,vec(c,K())){}\n  Matrix(mat A):M(A),r(A.size()),c(A[0].size()){}\n\
@@ -31,16 +24,16 @@ data:
     \    REP_(i,n)res[i][i]=K(1);\n    return res;\n  }\n\n  Matrix pow(long long\
     \ n)const{\n    assert(n>=0&&r==c);\n    Matrix A(M),res=I(r);\n    while(n){\n\
     \      if(n&1)res*=A;\n      A*=A;\n      n>>=1;\n    }\n    return res;\n  }\n\
-    \n  int rank() const{\n    Matrix A(M);\n    int res=0;\n    REP_(k,c){\n    \
-    \  for(int i=res+1;i<r&&A[res][k]==0;i++)\n        if(A[i][k]!=0)swap(A[i],A[res]);\n\
-    \      if(A[res][k]==0)continue;\n      REP2_(l,k+1,c)A[res][l]/=A[res][k];\n\
-    \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
-    \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
-    \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return 0;\n\
-    \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
-    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
-    */\n"
+    \n  Matrix base() const{\n    Matrix A(M);\n    int now=0;\n    REP_(k,c){\n \
+    \     for(int i=now+1;i<r&&A[res][k]==0;i++)\n        if(A[i][k]!=0)swap(A[i],A[now]);\n\
+    \      if(A[now][k]==0)continue;\n      REP2_(l,k+1,c)A[now][l]/=A[now][k];\n\
+    \      A[now][l]=K(1);\n      REP_(j,r)if(j!=now)\n        REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[now][l];\n\
+    \      now++;\n    }\n    A.resize(now);\n    return A;\n  }\n\n  K det() const{\n\
+    \    assert(r==c);\n    Matrix A=M;\n    K res(1);\n    REP_(i,r){\n      for(int\
+    \ j=i+1;j<c&&A[i][i]==0;j++)\n        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n\
+    \      if(A[i][i]==0)return res;\n      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n\
+    \      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n    }\n    return\
+    \ res;\n  }\n};\n#undef REP_\n#undef REP2_ \n"
   code: "#define REP_(i,n) for(int i=0;i<(n);i++)\n#define REP2_(i,s,n) for(int i=(s);i<(n);i++)\n\
     template<typename K>\nstruct Matrix{\n  typedef vector<K> vec;\n  typedef vector<vec>\
     \ mat;\n  size_t r,c;\n  mat M;\n\n  Matrix(size_t r,size_t c):r(r),c(c),M(r,vec(c,K())){}\n\
@@ -57,44 +50,27 @@ data:
     \    REP_(i,n)res[i][i]=K(1);\n    return res;\n  }\n\n  Matrix pow(long long\
     \ n)const{\n    assert(n>=0&&r==c);\n    Matrix A(M),res=I(r);\n    while(n){\n\
     \      if(n&1)res*=A;\n      A*=A;\n      n>>=1;\n    }\n    return res;\n  }\n\
-    \n  int rank() const{\n    Matrix A(M);\n    int res=0;\n    REP_(k,c){\n    \
-    \  for(int i=res+1;i<r&&A[res][k]==0;i++)\n        if(A[i][k]!=0)swap(A[i],A[res]);\n\
-    \      if(A[res][k]==0)continue;\n      REP2_(l,k+1,c)A[res][l]/=A[res][k];\n\
-    \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
-    \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
-    \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return 0;\n\
-    \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
-    \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
-    */"
+    \n  Matrix base() const{\n    Matrix A(M);\n    int now=0;\n    REP_(k,c){\n \
+    \     for(int i=now+1;i<r&&A[res][k]==0;i++)\n        if(A[i][k]!=0)swap(A[i],A[now]);\n\
+    \      if(A[now][k]==0)continue;\n      REP2_(l,k+1,c)A[now][l]/=A[now][k];\n\
+    \      A[now][l]=K(1);\n      REP_(j,r)if(j!=now)\n        REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[now][l];\n\
+    \      now++;\n    }\n    A.resize(now);\n    return A;\n  }\n\n  K det() const{\n\
+    \    assert(r==c);\n    Matrix A=M;\n    K res(1);\n    REP_(i,r){\n      for(int\
+    \ j=i+1;j<c&&A[i][i]==0;j++)\n        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n\
+    \      if(A[i][i]==0)return res;\n      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n\
+    \      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n    }\n    return\
+    \ res;\n  }\n};\n#undef REP_\n#undef REP2_ "
   dependsOn: []
   isVerificationFile: false
-  path: matrix.cpp
+  path: matrix/matrix_field.cpp
   requiredBy: []
-  timestamp: '2022-05-08 10:53:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/MatrixProduct.test.cpp
-  - test/yosupo/DeterminantOfMatrix.test.cpp
-documentation_of: matrix.cpp
+  timestamp: '2022-05-07 20:31:48+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: matrix/matrix_field.cpp
 layout: document
-title: Matrix
+redirect_from:
+- /library/matrix/matrix_field.cpp
+- /library/matrix/matrix_field.cpp.html
+title: matrix/matrix_field.cpp
 ---
-
-- `Matrix<K> M(size_t r,size_t c)`
-  - 体$K$上の$r\times c$行列を生成
-- `Matrix<K> M(vector<vector<K>> A)`
-  - 二次元ベクトルAから行列を生成
-- `+,+=,*,*=`
-  - 行列同士の各種演算
-- `Matrix I(size_t n)`
-  - サイズ$n$の単位行列を返す
-- `Matrix pow(long long n)`
-  - $M$が正方行列のとき$M^n$を返す
-  - サイズ$r\times r$として$O(r^3 log(n))$
-- `int rank()`
-  - 行列のランクを返す`
-  - $O(rc^2)$
-- `K det()`
-  - $M$が正方行列のとき行列式を返す
-  - $O(r^3)$

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: matrix.cpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.cpp
     title: mod/modint.cpp
   _extendedRequiredBy: []
@@ -41,7 +41,7 @@ data:
     \      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];\n      res++;\n\
     \    }\n    return res;\n  }\n\n  K det() const{\n    assert(r==c);\n    Matrix\
     \ A=M;\n    K res(1);\n    REP_(i,r){\n      for(int j=i+1;j<c&&A[i][i]==0;j++)\n\
-    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return res;\n\
+    \        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;\n      if(A[i][i]==0)return 0;\n\
     \      res*=A[i][i];\n      REP2_(k,i+1,c)A[i][k]/=A[i][i];\n      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];\n\
     \    }\n    return res;\n  }\n};\n#undef REP_\n#undef REP2_\n\n/**\n* @docs //docs/matrix.md\n\
     */\n#line 1 \"mod/modint.cpp\"\ntemplate<typename T,T MOD=998244353>\nstruct Mint{\n\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/MatrixProduct.test.cpp
   requiredBy: []
-  timestamp: '2022-03-29 14:51:46+09:00'
+  timestamp: '2022-05-08 10:53:27+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/MatrixProduct.test.cpp

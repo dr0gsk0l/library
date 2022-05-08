@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: grid.cpp
       title: grid.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: matrix.cpp
       title: Matrix
     - icon: ':warning:'
@@ -45,9 +45,17 @@ data:
     - icon: ':warning:'
       path: graph/dijkstra.cpp
       title: graph/dijkstra.cpp
+  - name: matrix
+    pages:
+    - icon: ':warning:'
+      path: matrix/matrix_field.cpp
+      title: matrix/matrix_field.cpp
+    - icon: ':warning:'
+      path: matrix/matrix_semiring.cpp
+      title: matrix/matrix_semiring.cpp
   - name: mod
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.cpp
       title: mod/modint.cpp
   - name: segtree
@@ -63,10 +71,10 @@ data:
     - icon: ':warning:'
       path: tree/ReRooting.cpp
       title: tree/ReRooting.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/lca.cpp
       title: tree/lca.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
   verificationCategories:
@@ -77,7 +85,7 @@ data:
       title: test/unionfind.test.cpp
   - name: test/yosupo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/DeterminantOfMatrix.test.cpp
       title: test/yosupo/DeterminantOfMatrix.test.cpp
     - icon: ':heavy_check_mark:'
@@ -86,5 +94,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/PointSetRangeComposite.test.cpp
       title: test/yosupo/PointSetRangeComposite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/lca.test.cpp
+      title: test/yosupo/lca.test.cpp
 layout: toppage
 ---

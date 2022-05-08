@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/DeterminantOfMatrix.test.cpp
     title: test/yosupo/DeterminantOfMatrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/PointSetRangeComposite.test.cpp
     title: test/yosupo/PointSetRangeComposite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/modint.cpp\"\ntemplate<typename T,T MOD=998244353>\n\
@@ -60,10 +60,10 @@ data:
   path: mod/modint.cpp
   requiredBy: []
   timestamp: '2022-03-29 14:51:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/DeterminantOfMatrix.test.cpp
   - test/yosupo/MatrixProduct.test.cpp
+  - test/yosupo/DeterminantOfMatrix.test.cpp
   - test/yosupo/PointSetRangeComposite.test.cpp
 documentation_of: mod/modint.cpp
 layout: document
