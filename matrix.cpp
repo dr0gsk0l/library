@@ -76,7 +76,7 @@ struct Matrix{
     REP_(i,r){
       for(int j=i+1;j<c&&A[i][i]==0;j++)
         if(A[j][i]!=0)swap(A[i],A[j]),res=-res;
-      if(A[i][i]==0)return res;
+      if(A[i][i]==0)return 0;
       res*=A[i][i];
       REP2_(k,i+1,c)A[i][k]/=A[i][i];
       REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];

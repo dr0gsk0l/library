@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_product"
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 
 #include <bits/stdc++.h>
 using namespace std;
