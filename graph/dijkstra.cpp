@@ -8,7 +8,7 @@ bool chmin(T &a,T b){
 
 template<typename T>
 vector<T> dijkstra(const WeightedGraph<T> &g,int s=0){
-  vector<T> d(n,numeric_limits<T>::max()/2);
+  vector<T> d(g.size(),numeric_limits<T>::max()/2);
   pque<pair<T,unsigned int>,greater<>> que;
   d[s]=0;
   que.emplace(0,s);

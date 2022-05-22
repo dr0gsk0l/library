@@ -7,11 +7,11 @@ struct Edge{
 template<typename T>
 struct WeightedGraph:vector<vector<Edge<T>>>{
   WeightedGraph(){}
-  WeightedGraph(int n):{
+  WeightedGraph(int n){
     (*this).resize(n);
   }
     
   void add_edge(int from, int to, T cost){
-    (*this).push_back({to,cost});
+    (*this)[from].push_back({to,cost});
   }
 };
