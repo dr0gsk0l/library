@@ -39,10 +39,10 @@ data:
       title: flow/dinic.cpp
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/WeightedGraph.cpp
       title: graph/WeightedGraph.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/dijkstra.cpp
       title: graph/dijkstra.cpp
   - name: matrix
@@ -94,6 +94,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/PointSetRangeComposite.test.cpp
       title: test/yosupo/PointSetRangeComposite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/ShortestPath.test.cpp
+      title: test/yosupo/ShortestPath.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca.test.cpp
       title: test/yosupo/lca.test.cpp
