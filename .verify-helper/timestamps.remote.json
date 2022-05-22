@@ -3,5 +3,6 @@
 "test/yosupo/DeterminantOfMatrix.test.cpp": "2022-05-08 10:53:27 +0900",
 "test/yosupo/MatrixProduct.test.cpp": "2022-05-08 10:53:27 +0900",
 "test/yosupo/PointSetRangeComposite.test.cpp": "2022-03-29 14:51:46 +0900",
+"test/yosupo/ShortestPath.test.cpp": "2022-05-23 06:42:07 +0900",
 "test/yosupo/lca.test.cpp": "2022-05-07 20:45:18 +0900"
 }
