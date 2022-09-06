@@ -26,6 +26,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: datastructure/dsu.cpp
       title: datastructure/dsu.cpp
+  - name: graph
+    pages:
+    - icon: ':warning:'
+      path: graph/Graph.cpp
+      title: graph/Graph.cpp
   - name: mod
     pages:
     - icon: ':warning:'
