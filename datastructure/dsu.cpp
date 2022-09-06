@@ -2,7 +2,7 @@ struct dsu{
   int n,num;
   vector<int> sz,parent;
   dsu()=default;
-  dsu(int n):num(n),sz(n,1),parent(n,0){iota(parent.begin(),parent.end(),0);}
+  dsu(int n):n(n),num(n),sz(n,1),parent(n,0){iota(parent.begin(),parent.end(),0);}
   
   int leader(int x){ 
     assert( 0<=x and x<n );
@@ -25,12 +25,12 @@ struct dsu{
     return true;
   }
   
-  int size(const int x)const{
-    assert( 0<=x and x<n and 0<=y and y<n);
+  int size(const int x){
+    assert( 0<=x and x<n);
     return sz[leader(x)];
   }
   
-  int count() const{
+  int count()const{
     return num;
   }
 };
