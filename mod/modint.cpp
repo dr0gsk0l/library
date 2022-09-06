@@ -5,6 +5,12 @@ struct Mint{
   Mint():v(0){}
   Mint(signed v):v(v){}
   Mint(long long t){v=t%MOD;if(v<0)v+=MOD;}
+  
+  static Mint raw(int v){
+    Mint x;
+    x.v=v;
+    return x;
+  }
 
   Mint pow(long long k){
     Mint res(1),tmp(v);
