@@ -1,32 +1,42 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: datastructure/cumulativesum.cpp
+    title: datastructure/cumulativesum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
-    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
-    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 401, in update\n    self.update(self._resolve(pathlib.Path(included), included_from=path))\n\
-    \  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
-    , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: datastructure/cumulaitvesum.cpp:\
-    \ line -1: no such header\n"
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
+    links:
+    - https://judge.yosupo.jp/problem/static_range_sum
+  bundledCode: "#line 1 \"test/library-checker/DataStructure/StaticRangeSum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n\n#line 1 \"datastructure/cumulativesum.cpp\"\
+    \ntemplate<typename T>\nstruct CumulativeSum{\n  using U=conditional_t< is_same_v<T,int>,long\
+    \ long,T >;\n  vector<U> A;\n  CumulativeSum(const vector<T>&v){\n    A.resize(v.size()+1,0);\n\
+    \    for(int i=0;i<v.size();i++)A[i+1]=A[i]+v[i];\n  }\n  void add(const T& a){\n\
+    \    A.push_back(A.back()+a);\n  }\n  U sum(int l,int r){\n    return A[r]-A[l];\n\
+    \  }\n};\n#line 6 \"test/library-checker/DataStructure/StaticRangeSum.test.cpp\"\
+    \n\nint main() {\n  int n,q;cin>>n>>q;\n  vector<int> v(n);\n  for(int i=0;i<n;i++)cin>>v[i];\n\
+    \  auto wa=CumulativeSum(v);\n  while(q--){\n    int l,r;cin>>l>>r;\n    cout<<wa.sum(l,r)<<'\\\
+    n';\n  }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ <bits/stdc++.h>\nusing namespace std;\n\n#include \"datastructure/cumulaitvesum.cpp\"\
+    \ <bits/stdc++.h>\nusing namespace std;\n\n#include \"datastructure/cumulativesum.cpp\"\
     \n\nint main() {\n  int n,q;cin>>n>>q;\n  vector<int> v(n);\n  for(int i=0;i<n;i++)cin>>v[i];\n\
     \  auto wa=CumulativeSum(v);\n  while(q--){\n    int l,r;cin>>l>>r;\n    cout<<wa.sum(l,r)<<'\\\
     n';\n  }\n}"
-  dependsOn: []
+  dependsOn:
+  - datastructure/cumulativesum.cpp
   isVerificationFile: true
   path: test/library-checker/DataStructure/StaticRangeSum.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-07 12:14:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library-checker/DataStructure/StaticRangeSum.test.cpp
 layout: document

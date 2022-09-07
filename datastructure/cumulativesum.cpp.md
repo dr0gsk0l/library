@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library-checker/DataStructure/StaticRangeSum.test.cpp
+    title: test/library-checker/DataStructure/StaticRangeSum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datastructure/cumulativesum.cpp\"\ntemplate<typename T>\n\
@@ -24,8 +27,9 @@ data:
   path: datastructure/cumulativesum.cpp
   requiredBy: []
   timestamp: '2022-09-07 11:58:33+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library-checker/DataStructure/StaticRangeSum.test.cpp
 documentation_of: datastructure/cumulativesum.cpp
 layout: document
 redirect_from:
