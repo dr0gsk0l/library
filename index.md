@@ -10,6 +10,9 @@ data:
       path: algebra/group_linear.cpp
       title: algebra/group_linear.cpp
     - icon: ':warning:'
+      path: algebra/group_mul.cpp
+      title: algebra/group_mul.cpp
+    - icon: ':warning:'
       path: algebra/monoid_gcd.cpp
       title: algebra/monoid_gcd.cpp
     - icon: ':warning:'
