@@ -26,6 +26,9 @@ data:
       title: algebra/monoid_min.cpp
   - name: datastructure
     pages:
+    - icon: ':warning:'
+      path: datastructure/cumulativesum.cpp
+      title: datastructure/cumulativesum.cpp
     - icon: ':heavy_check_mark:'
       path: datastructure/dsu.cpp
       title: datastructure/dsu.cpp
@@ -50,6 +53,9 @@ data:
   verificationCategories:
   - name: test/library-checker/DataStructure
     pages:
+    - icon: ':x:'
+      path: test/library-checker/DataStructure/StaticRangeSum.test.cpp
+      title: test/library-checker/DataStructure/StaticRangeSum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library-checker/DataStructure/unionfind.test.cpp
       title: test/library-checker/DataStructure/unionfind.test.cpp
