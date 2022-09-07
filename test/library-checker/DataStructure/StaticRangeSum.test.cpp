@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "datastructure/cumulaitvesum.cpp"
+#include "datastructure/cumulativesum.cpp"
 
 int main() {
   int n,q;cin>>n>>q;
