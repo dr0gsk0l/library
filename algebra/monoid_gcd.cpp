@@ -1,5 +1,3 @@
-#pragma once
-
 template<typename X>
 struct Monoid_Gcd{
   using value_type = X;
