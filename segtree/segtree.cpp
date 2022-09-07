@@ -1,5 +1,3 @@
-#pragma once
-
 template<class Monoid>
 struct SegmentTree{
   using X = typename Monoid::value_type;
@@ -29,7 +27,7 @@ struct SegmentTree{
   }
 
   void multiply(int i, const X& x) {
-    set(i, Monoid::op(dat[i],x));
+    set(i, Monoid::op(dat[i+size],x));
   }
 
   X prod(int L, int R) {

@@ -10,7 +10,7 @@ using G=Group_Add<ll>;
 
 int main(){
   int n,q;cin>>n>>q;
-  vector<int> v(n);
+  vector<ll> v(n);
   for(int i=0;i<n;i++)cin>>v[i];
   SegmentTree<G> seg(v);
   while(q--){
