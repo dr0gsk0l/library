@@ -140,7 +140,7 @@ struct FormalPowerSeries:vector<T>{
 
   static FPS exp(const FPS f){
     FPS res(1,1);
-    for(int i=0;(1<<i)<MX;i++)res*=f+mint(1)-log(res);
+    for(int i=0;(1<<i)<MX;i++)res*=f+T(1)-log(res);
     return res;
   }
 };
