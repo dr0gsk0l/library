@@ -107,7 +107,14 @@ struct FormalPowerSeries:vector<T>{
     assert(n>=0);
     if(n==0)return FPS(1,1);
     if(n==1)return *this;
-    return exp(n*log(*this));
+    if(at(0)==1)return exp(n*log(*this));
+    FPS res(vector<T>{1}),now=*this;
+    while(n){
+      if(n&1)res*=now;
+      now*=now;
+      res>>=1;
+    }
+    return res;
   }
 
   FPS operator()(FPS f)const{
@@ -135,10 +142,12 @@ struct FormalPowerSeries:vector<T>{
   }
 
   static FPS log(const FPS f){
+    assert(f[0]==1);
     return integral(differential(f)/f);
   }
 
   static FPS exp(const FPS f){
+    assert(f[0]==0);
     FPS res(1,1);
     for(int i=0;(1<<i)<MX;i++)res*=f+T(1)-log(res);
     return res;
