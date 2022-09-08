@@ -4,5 +4,8 @@
 "test/library-checker/DataStructure/StaticRangeSum.test.cpp": "2022-09-07 12:14:14 +0900",
 "test/library-checker/DataStructure/unionfind.test.cpp": "2022-09-06 17:50:02 +0900",
 "test/library-checker/Math/2Sat.test.cpp": "2022-09-08 17:20:23 +0900",
-"test/library-checker/Polynomial/Exp.test.cpp": "2022-09-08 17:20:23 +0900"
+"test/library-checker/Polynomial/Exp.test.cpp": "2022-09-08 17:20:23 +0900",
+"test/library-checker/Polynomial/Inv.test.cpp": "2022-09-08 17:20:23 +0900",
+"test/library-checker/Polynomial/Log.test.cpp": "2022-09-08 17:20:23 +0900",
+"test/library-checker/String/RunEnumerate.test.cpp": "2022-09-08 17:20:23 +0900"
 }
