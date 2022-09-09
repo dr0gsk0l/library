@@ -33,7 +33,7 @@ public:
   }
  
   static MINT nCk(const int n,const int k){
-    if(k<0||n<k)return T::raw(0);
+    if(k<0||n<k)return MINT::raw(0);
     extend(n);
     return fact_[n] * inv_fact_[k] * inv_fact_[n - k];
   }
