@@ -67,5 +67,5 @@ public:
   T flow(){ return flow(numeric_limits<T>::max()/2); }
   
   T st_flow(int s_,int t_,T lim){ s=s_;t=t_; return flow(lim);}
-  T st_flow(int s_,int _t){ s=s_;t=t_; return flow(); }
+  T st_flow(int s_,int t_){ s=s_;t=t_; return flow(); }
 };
