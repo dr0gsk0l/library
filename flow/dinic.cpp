@@ -1,6 +1,6 @@
 // https://misawa.github.io/others/flow/dinic_time_complexity.html
 template<typename T>
-struct Dinic{
+class Dinic{
   struct edge{
     const int to,rev;
     T cap;
@@ -9,15 +9,7 @@ struct Dinic{
   };
   vector<vector<edge>> G;
   vector<int> lavel,current_edge;
-  const int s,t;
-
-  Dinic()=default;
-  Dinic(int n,int s,int t):G(n),lavel(n),current_edge(n),s(s),t(t){}
-
-  void add_edge(int from,int to,T cap){
-    G[from].emplace_back(to,cap,G[to].size());
-    G[to].emplace_back(from,0,G[from].size()-1);
-  }
+  int s,t;
 
   void bfs(){
     //lavel[v]を（容量正の辺による）sからの最短距離にする 到達出来なければ-1
@@ -34,7 +26,6 @@ struct Dinic{
       }
     }
   }
-  
   T dfs(int v,T f){
     //vからtに最短路で水を流す fがvまで持ってこれた水量 流せた量が返り値
     if(v==t)return f;
@@ -50,7 +41,14 @@ struct Dinic{
     }
     return 0;
   }
-  
+public:
+  Dinic()=default;
+  Dinic(int n,int s,int t):G(n),lavel(n),current_edge(n),s(s),t(t){}
+
+  void add_edge(int from,int to,T cap){
+    G[from].emplace_back(to,cap,G[to].size());
+    G[to].emplace_back(from,0,G[from].size()-1);
+  }
   T flow(T lim){
     T fl=0;
     while(lim>0){
@@ -66,8 +64,8 @@ struct Dinic{
     }
     return fl;
   }
+  T flow(){ return flow(numeric_limits<T>::max()/2); }
   
-  T flow(){
-    return flow(numeric_limits<T>::max()/2);
-  }
+  T st_flow(int s_,int t_,T lim){ s=s_;t=t_; return flow(lim);}
+  T st_flow(int s_,int _t){ s=s_;t=t_; return flow(); }
 };
