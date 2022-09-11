@@ -1,6 +1,6 @@
 ---
-title:AhoCorasick
-documentation_of://string/ahocorasick.cpp
+title: AhoCorasick
+documentation_of: //string/ahocorasick.cpp
 ---
 * ```add(const string&s,int num=1)```  
 文字列 $s$ を $num$ 個追加
