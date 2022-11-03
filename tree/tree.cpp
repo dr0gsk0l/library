@@ -1,9 +1,9 @@
 struct Tree:vector<vector<int>>{
   int n;
   vector<vector<int>> son;
-  vector<int> DFS,BFS,parent;
+  vector<int> DFS,BFS,parent,depth;
   
-  Tree(int n):n(n),son(n),parent(n,-1){
+  Tree(int n):n(n),son(n),parent(n,-1),depth(n){
     DFS.reserve(n);
     BFS.reserve(n);
     resize(n);
@@ -32,13 +32,15 @@ private:
   void dfs(int idx,int pre=-1){
     parent[idx]=pre;
     for(int p:at(idx))if(p!=pre){
+      depth[p]=depth[idx]+1;
       dfs(p,idx);
       son[idx].push_back(p);
     }
     DFS.push_back(idx);
   }
 public:
-  void build(int root=0){ 
+  void build(int root=0){
+    depth[root]=0;
     dfs(root);
     queue<int> que;
     que.push(root);
