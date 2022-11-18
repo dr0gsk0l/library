@@ -1,5 +1,6 @@
 template<typename WG,typename T=typename WG::cost_type>
 pair<vector<T>,vector<int>> dijkstra(const WG&g,int s=0){
+  assert(g.is_prepared());
   vector<T> d(g.n,-1);
   vector<int> pre(g.n,-1);
   priority_queue< pair<T,int>,vector<pair<T,int>>,greater<pair<T,int>>>;
