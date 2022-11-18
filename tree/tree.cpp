@@ -1,45 +1,42 @@
-struct Tree:vector<vector<int>>{
-  int n;
+#include "graph/Graph.cpp"
+struct Tree:Graph{
+  using Graph::Graph;
+  int root=-1;
   vector<vector<int>> son;
   vector<int> DFS,BFS,parent,depth;
-  
-  Tree(int n):n(n),son(n),parent(n,-1),depth(n){
-    DFS.reserve(n);
-    BFS.reserve(n);
-    resize(n);
-  }
 
-  void scan(int index=1){
-    for(int i=0;i<n-1;i++){
-      int u,v;cin>>u>>v;
-      add_edge(u-index,v-index);
-    }
-  }
-  void scan_root(int index=1){
+  void scan_root(int indexed=1){
     for(int i=1;i<n;i++){
       int p;cin>>p;
-      add_edge(p-index,i);
+      add_edge(p-indexed,i);
     }
+    build();
+  }
+  void scan(int indexed=1){
+    Graph::scan(n-1,false,indexed);
+    build();
   }
 
-  void add_edge(int u,int v){
-    at(u).push_back(v);
-    at(v).push_back(u);
-  }
-
-  vector<int>& operator[](int k){return at(k);}
 private:
   void dfs(int idx,int pre=-1){
     parent[idx]=pre;
-    for(int p:at(idx))if(p!=pre){
-      depth[p]=depth[idx]+1;
-      dfs(p,idx);
-      son[idx].push_back(p);
+    for(const auto&e:(*this)[idx])if(e.to!=pre){
+      depth[e.to]=depth[idx]+1;
+      dfs(e.to,idx);
+      son[idx].push_back(e.to);
     }
     DFS.push_back(idx);
   }
 public:
-  void build(int root=0){
+  void build(int r=0){
+    if(!is_prepared())Graph::build();
+    if(~root){
+      assert(r==root);
+      return;
+    }
+    root=r;
+    son.resize(n);parent.resize(n);depth.resize(n);
+    DFS.reserve(n);BFS.reserve(n);
     depth[root]=0;
     dfs(root);
     queue<int> que;

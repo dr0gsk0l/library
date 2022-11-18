@@ -1,22 +1,18 @@
-template<typename T>
-using pqg=priority_queue<T,vector<T>,greater<T>>;
-
-template<typename T>
-pair<vector<T>,vector<int>> dijkstra(const WeightedGraph<T> &g,int s=0){
-  int n=g.size();
-  vector<T> d(n,-1);
-  vector<int> pre(n,-1);
-  pqg< pair<T,int> > que;
+template<typename WG,typename T=typename WG::cost_type>
+pair<vector<T>,vector<int>> dijkstra(const WG&g,int s=0){
+  vector<T> d(g.n,-1);
+  vector<int> pre(g.n,-1);
+  priority_queue< pair<T,int>,vector<pair<T,int>>,greater<pair<T,int>>>;
   d[s]=0;
   que.emplace(0,s);
   while(que.size()){
     auto [now,id]=que.top();que.pop();
     if(d[id]<now)continue;
-    for(const auto&[to,co]:g[id])
-      if(d[to]==-1 || d[to]>now+co){
-        d[to]=now+co;
-        pre[to]=id;
-        que.emplace(d[to],to);
+    for(const auto&e:g[id])
+      if(d[e.to]==-1 || d[e.to]>now+e.cost){
+        d[e.to]=now+e.cost;
+        pre[e.to]=id;
+        que.emplace(d[e.to],e.to);
       }
   }
   return {d,pre};
