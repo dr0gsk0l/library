@@ -1,5 +1,6 @@
 template<typename T>
 struct Multiset:map<T,int>{
+  using map<T,int>::at;
   using map<T,int>::size;
   using map<T,int>::begin;
   using map<T,int>::rbegin;
@@ -7,8 +8,14 @@ struct Multiset:map<T,int>{
   using map<T,int>::lower_bound;
   using map<T,int>::upper_bound;
 
+  int count(const T&a)const{ return (map<T,int>::count(a)?at(a):0); }
   void insert(const T&a){ (*this)[a]++; }
-  void erase1(const T&a){ if((*this)[a] and !--(*this)[a])erase(a); }
+  void erase1(const T&a){ if(map<T,int>::count(a) and !--at(a))erase(a); }
+  void erase_k(const T&a,int k){
+    if(map<T,int>::count(a))return;
+    at(a)-=k;
+    if(at(a)<=0)erase(a);
+  }
  
   T mn()const{ assert(size()); return begin()->first; }
   T mx()const{ assert(size()); return rbegin()->first; }
@@ -37,7 +44,7 @@ struct Multiset:map<T,int>{
     assert(mx()>a);
     return upper_bound(a)->first;
   }
-  T geq(const T&a){
+  T geq(const T&a)const{
     assert(mx()>=a);
     return lower_bound(a)->first;
   }
