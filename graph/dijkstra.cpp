@@ -1,3 +1,4 @@
+#include "graph/WeightedGraph.cpp"
 template<typename WG,typename T=typename WG::cost_type>
 pair<vector<T>,vector<int>> dijkstra(const WG&g,int s=0){
   assert(g.is_prepared());

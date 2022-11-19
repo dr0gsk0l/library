@@ -1,3 +1,6 @@
+#include "segtree/segtree.cpp"
+#include "algebra/algebra_reverse.cpp"
+#include "tree/hld.cpp"
 template<typename TREE,typename Monoid>
 struct TreeMonoid{
   using X=typename Monoid::value_type;
