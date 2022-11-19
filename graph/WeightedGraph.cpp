@@ -32,7 +32,7 @@ public:
     return { this,in_deg[v],in_deg[v+1] };
   }
 
-  bool is_prepared() { return prepared; }
+  bool is_prepared()const{ return prepared; }
 
   WeightedGraph():n(0),in_deg(1,0),prepared(false){}
   WeightedGraph(int n):n(n),in_deg(n+1,0),prepared(false){}
@@ -72,7 +72,7 @@ public:
     edges=new_edges;
   }
 
-  void graph_debug(){
+  void graph_debug()const{
   #ifndef __LOCAL
     return;
   #endif
