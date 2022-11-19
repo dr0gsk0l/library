@@ -1,3 +1,4 @@
+#pragma once
 template<typename TREE>
 struct HLD{
   int n;
