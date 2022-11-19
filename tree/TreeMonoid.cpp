@@ -1,3 +1,4 @@
+#pragma once
 #include "segtree/segtree.cpp"
 #include "algebra/algebra_reverse.cpp"
 #include "tree/hld.cpp"
