@@ -1,3 +1,4 @@
+#pragma once
 template<typename Algebra>
 struct Algebra_Reverse:Algebra{
   using X=typename Algebra::value_type;

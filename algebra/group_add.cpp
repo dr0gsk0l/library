@@ -1,3 +1,4 @@
+#pragma once
 template<typename X>
 struct Group_Add {
   using value_type = X;

@@ -10,6 +10,7 @@ int main(){
   Tree t(n);
   t.scan_root(0);
   HLD hld(t);
+  hld.build();
   while(q--){
     int u,v;cin>>u>>v;
     cout<<hld.lca(u,v)<<"\n";
