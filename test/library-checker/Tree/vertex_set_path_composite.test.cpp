@@ -1,4 +1,3 @@
-#define IGNORE
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 #include <bits/stdc++.h>
 using namespace std;
