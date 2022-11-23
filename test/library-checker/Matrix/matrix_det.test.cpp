@@ -1,4 +1,4 @@
-#define PROBLEM "matrix_det"
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,8 +9,8 @@ using mint=Mint<long long,998244353>;
 using M=Matrix<mint>;
 
 int main(){
-	int n;cin>>n;
-	M A(n,n);
-	cin>>A;
-	cout<<A.det()<<endl;
+  int n;cin>>n;
+  M A(n,n);
+  cin>>A;
+  cout<<A.det()<<endl;
 }
