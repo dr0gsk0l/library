@@ -12,6 +12,7 @@
 "test/library-checker/Math/2Sat.test.cpp": "2022-09-08 17:20:23 +0900",
 "test/library-checker/Matrix/InverseMatrix.test.cpp": "2022-11-23 17:46:48 +0900",
 "test/library-checker/Matrix/MatrixProduct.test.cpp": "2022-11-23 17:46:48 +0900",
+"test/library-checker/Matrix/matrix_det.test.cpp": "2022-11-23 17:51:39 +0900",
 "test/library-checker/Polynomial/Exp.test.cpp": "2022-09-08 17:20:23 +0900",
 "test/library-checker/Polynomial/Inv.test.cpp": "2022-09-08 17:20:23 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2022-09-08 17:20:23 +0900",
