@@ -2,6 +2,7 @@
 #define REP2_(i,s,n) for(int i=(s);i<(n);i++)
 template<typename K>
 struct Matrix{
+  using value_type=K;
   using vec=vector<K>;
   using mat=vector<vec>;
   size_t r,c;
@@ -13,6 +14,7 @@ struct Matrix{
   vec& operator[](size_t k){return M[k];}
   const vec& operator[](size_t k)const{return M[k];}
 
+  
   Matrix& operator+=(const Matrix &A){
     assert(r==A.r&&c==A.c);
     REP_(i,r)REP_(j,c)M[i][j]+=A[i][j];
@@ -43,13 +45,13 @@ struct Matrix{
     return true;
   }
   bool operator!=(const Matrix &A){ return !((*this)==A); }
-
+  
   static Matrix I(size_t n){
     Matrix res(n,n);
     REP_(i,n)res[i][i]=K(1);
     return res;
   }
-
+  
   Matrix pow(long long n)const{
     assert(n>=0&&r==c);
     Matrix A(M),res=I(r);
@@ -61,35 +63,48 @@ struct Matrix{
     return res;
   }
 
-  int rank() const{
-    Matrix A(M);
-    int res=0;
+  pair<int,int> GaussJordan(){
+    int rnk=0,cnt=0;
     REP_(k,c){
-      for(int i=res+1;i<r&&A[res][k]==0;i++)
-        if(A[i][k]!=0)swap(A[i],A[res]);
-      if(A[res][k]==0)continue;
-      REP2_(l,k+1,c)A[res][l]/=A[res][k];
-      REP2_(j,res+1,r)REP2_(l,k+1,c)A[j][l]-=A[j][k]*A[res][l];
-      res++;
+      if(M[rnk][k]==0)
+        REP2_(i,rnk+1,r)
+          if(M[i][k]!=0){
+            swap(M[i],M[rnk]);
+            cnt^=1;
+            break;
+          }
+      if(M[rnk][k]==0)continue;
+      REP_(i,r)if(i!=rnk){
+        K x=M[i][k]/M[rnk][k];
+        REP_(j,c)M[i][j]-=M[rnk][j]*x;
+      }
+      if(++rnk==r)break;
     }
-    return res;
+    return {rnk,cnt};
   }
 
-  K det() const{
+  K det()const{
     assert(r==c);
-    Matrix A=M;
-    K res(1);
-    REP_(i,r){
-      for(int j=i+1;j<c&&A[i][i]==0;j++)
-        if(A[j][i]!=0)swap(A[i],A[j]),res=-res;
-      if(A[i][i]==0)return 0;
-      res*=A[i][i];
-      REP2_(k,i+1,c)A[i][k]/=A[i][i];
-      REP2_(j,i+1,r)REP2_(k,i+1,c)A[j][k]-=A[j][i]*A[i][k];
-    }
-    return res;
+    Matrix A(M);
+    const auto&[rnk,cnt]=A.GaussJordan();
+    if(rnk!=r)return 0;
+    K res=1;
+    REP_(i,r)res*=A[i][i];
+    return (cnt?-res:res);
   }
 
+  optional<Matrix> inv()const{
+    assert(r==c);
+    Matrix A(r,c+c);
+    REP_(i,r)REP_(j,c)A[i][j]=M[i][j];
+    REP_(i,r)REP_(j,c)A[i][c+j]=K(i==j);
+    A.GaussJordan();
+    REP_(i,r)if(A[i][i]==0)return nullopt;
+    Matrix res(r,c);
+    REP_(i,r)REP_(j,c)res[i][j]=A[i][c+j]/A[i][i];
+    return res;
+  }
+  
   friend ostream& operator<<(ostream&os,const Matrix &M){ os<<M.M; return os; }
   friend istream& operator>>(istream&is,Matrix &M){ REP_(i,M.r)REP_(j,M.c)is>>M.M[i][j]; return is; }
 };
