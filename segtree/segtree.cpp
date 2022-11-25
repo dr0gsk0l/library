@@ -1,55 +1,48 @@
 #pragma once
 template<class Monoid>
-struct SegmentTree{
-  using X = typename Monoid::value_type;
-  using value_type = X;
+class SegmentTree{
+  using X=typename Monoid::value_type;
   vector<X> dat;
-  int n, log, size;
+  int n,log,size;
 
-  SegmentTree() : SegmentTree(0) {}
-  SegmentTree(int n) : SegmentTree(vector<X>(n, Monoid::unit())) {}
-  SegmentTree(vector<X> v) : n(v.size()) {
-    log = 1;
-    while ((1 << log) < n) ++log;
-    size = 1 << log;
-    dat.assign(size << 1, Monoid::unit());
-    for (int i = 0; i < n; ++i) dat[size + i] = v[i];
-    for (int i = size - 1; i >= 1; --i) update(i);
+  void update(int i){ dat[i]=Monoid::op(dat[2*i],dat[2*i+1]); }
+public:
+  SegmentTree():SegmentTree(0){}
+  SegmentTree(int n):SegmentTree(vector<X>(n, Monoid::unit())){}
+  SegmentTree(vector<X> v):n(v.size()){
+    for(log=1;(1<<log)<n;log++){}
+    size=1<<log;
+    dat.assign(size<<1,Monoid::unit());
+    for (int i=0;i<n;++i)dat[size+i]=v[i];
+    for (int i=size-1;i>=1;--i) update(i);
   }
 
-  X operator[](int i) { return dat[size + i]; }
+  X operator[](int i)const{ return dat[size+i]; }
 
-  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }
-
-  void set(int i, const X& x) {
-    assert(i < n);
-    dat[i += size] = x;
-    while (i >>= 1) update(i);
+  void set(int i,const X&x){
+    assert(0<=i and i<n);
+    dat[i+=size]=x;
+    while(i>>=1)update(i);
   }
+  void multiply(int i,const X&x){ set(i,Monoid::op(dat[i+size],x));}
 
-  void multiply(int i, const X& x) {
-    set(i, Monoid::op(dat[i+size],x));
-  }
-
-  X prod(int L, int R) {
-    assert(L <= R);
-    assert(R <= n);
-    X vl = Monoid::unit(), vr = Monoid::unit();
-    L += size, R += size;
-    while (L < R) {
-      if (L & 1) vl = Monoid::op(vl, dat[L++]);
-      if (R & 1) vr = Monoid::op(dat[--R], vr);
-      L >>= 1, R >>= 1;
+  X prod(int L,int R)const{
+    assert(0<=L and L<=R and R<=n);
+    X vl=Monoid::unit(),vr=Monoid::unit();
+    L+=size, R+=size;
+    while(L<R){
+      if(L&1)vl=Monoid::op(vl,dat[L++]);
+      if(R&1)vr=Monoid::op(dat[--R],vr);
+      L>>=1,R>>=1;
     }
-    return Monoid::op(vl, vr);
+    return Monoid::op(vl,vr);
   }
-
-  X prod_all() { return dat[1]; }
+  X prod_all()const{ return dat[1]; }
 
   template <class F>
-  int max_right(F& check, int L) {
-    assert(0 <= L && L <= n && check(Monoid::unit()));
-    if (L == n) return n;
+  int max_right(F& check,int L){
+    assert(0<=L && L<=n && check(Monoid::unit()));
+    if(L == n) return n;
     L += size;
     X sm = Monoid::unit();
     do {
