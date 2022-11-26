@@ -31,6 +31,10 @@ public:
     assert(prepared);
     return { this,in_deg[v],in_deg[v+1] };
   }
+  edge_type* mutable_edge(int from,int edge_id){
+    assert(prepared);
+    return &edges[in_deg[from]+edge_id];
+  }
 
   bool is_prepared()const{ return prepared; }
 
@@ -81,7 +85,7 @@ public:
       cerr<<from<<";";
       for(int i=in_deg[from];i<in_deg[from+1];i++)
         cerr<<"("<<edges[i].to<<","<<edges[i].cost<<")";
-      cerr<<"\n";
+      cerr<<endl;
     }
   }
 };
