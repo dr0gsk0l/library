@@ -27,9 +27,9 @@ public:
     assert(prepared);
     return { this,in_deg[v],in_deg[v+1] };
   }
-  edge_type& mutable_edge(int v,int edge_id){
+  edge_type* mutable_edge(int v,int edge_id){
     assert(prepared);
-    return edges[v][in_deg[v]+edge_id];
+    return &edges[in_deg[v]+edge_id];
   }
 
   bool is_prepared()const{ return prepared; }
