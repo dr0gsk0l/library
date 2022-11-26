@@ -1,10 +1,10 @@
 以下の階層で作る  
 同じ問題を使いたい場合は ABC001A(2).test.cpp のように書く  
 ### AtCoder
-ABC001A のように書く  
+ABC001A.test.cpp のように書く  
 通常コンテスト以外もなるべく似せる
 ### AOJ
-ALDS1_14_B のように書く
+ALDS1_14_B.test.cpp のように書く
 ### library-checker
 LC の分け方に従って Polynomial や Matrix などのディレクトリを作る  
 ファイル名はアッパーキャメルケースで、問題名をそのまま書く  
