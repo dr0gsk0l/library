@@ -23,9 +23,9 @@ class MCF{
   }
   bool SP_update(int from,int edge_id){
     const auto&e=G[from][edge_id];
-    if((e->cost).cap==0)return false;
-    if(chmin(dist[e->to],dist[from]+(e->cost).cost+potential[from]-potential[e->to])){
-      pre[e->to]={from,edge_id};
+    if((e.cost).cap==0)return false;
+    if(chmin(dist[e.to],dist[from]+(e.cost).cost+potential[from]-potential[e.to])){
+      pre[e.to]={from,edge_id};
       return true;
     }
     return false;
@@ -40,7 +40,7 @@ class MCF{
       if(dist[v]<now)continue;
       REP_(i,G[v].size())
         if(SP_update(v,i))
-          que.emplace(dist[G[v][i]->to],G[v][i]->to);
+          que.emplace(dist[G[v][i].to],G[v][i].to);
     }
   }
 
@@ -54,7 +54,7 @@ class MCF{
       int v=que.front();que.pop();
       REP_(i,G[v].size()){
         SP_update(v,i);
-        if(!--in_deg[G[v][i]->to])que.push(G[v][i]->to);
+        if(!--in_deg[G[v][i].to])que.push(G[v][i].to);
       }
     }
   }
@@ -82,13 +82,13 @@ public:
       if(dist[t]==INF)return pair<TC,bool>(res,false);
       REP_(v,n)if(dist[v]<INF)potential[v]+=dist[v];
       TF d=f;//d:今回流す量
-      for(int v=t;v!=s;v=pre[v].first)chmin(d,(G[pre[v].first][pre[v].second]->cost).cap);
+      for(int v=t;v!=s;v=pre[v].first)chmin(d,(G[pre[v].first][pre[v].second].cost).cap);
       f-=d;
       res+=potential[t]*d;
       for(int v=t;v!=s;v=pre[v].first){
-        auto&[cap,cost,rev]=G.mutable_edge(pre[v].first,pre[v].second)->cost;
+        auto&[cap,cost,rev]=G[pre[v].first][pre[v].second].cost;
         cap-=d;
-        (G.mutable_edge(v,rev)->cost).cap+=d;
+        (G[v][rev].cost).cap+=d;
       }
     }//このループを抜けてるならf流れてる
     return pair<TC,bool>(res,true);

@@ -12,24 +12,20 @@ private:
   vector<edge_type> edges;
   vector<int> in_deg;
   bool prepared;
-  class OutgoingEdges{
-    const Graph* g;
+ class OutgoingEdges{
+    Graph* g;
     int l,r;
   public:
-    OutgoingEdges(const Graph* g,int l,int r):g(g),l(l),r(r){}
-    const edge_type* begin()const{ return &(g->edges[l]); }
-    const edge_type* end()const{ return &(g->edges[r]); }
-    const edge_type* operator[](int i)const{ return &(g->edges[l+i]); }
+    OutgoingEdges(Graph* g,int l,int r):g(g),l(l),r(r){}
+    edge_type& begin(){ return g->edges[l]; }
+    edge_type& end(){ return g->edges[r]; }
+    edge_type& operator[](int i){ return g->edges[l+i]; }
     int size()const{ return r-l; }
   };
 public:
-  OutgoingEdges operator[](int v)const{
+  OutgoingEdges operator[](int v){
     assert(prepared);
     return { this,in_deg[v],in_deg[v+1] };
-  }
-  edge_type* mutable_edge(int v,int edge_id){
-    assert(prepared);
-    return &edges[in_deg[v]+edge_id];
   }
 
   bool is_prepared()const{ return prepared; }
