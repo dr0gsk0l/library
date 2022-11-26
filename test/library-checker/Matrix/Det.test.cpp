@@ -2,8 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "linearalgebra/matrix.cpp"
-#include "mod/modint.cpp"
+#include "linearalgebra/Matrix.cpp"
+#include "mod/Modint.cpp"
 
 using mint=Mint<long long,998244353>;
 using M=Matrix<mint>;

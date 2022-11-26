@@ -1,11 +1,11 @@
 #pragma once
-#include "segtree/segtree.cpp"
-#include "algebra/algebra_reverse.cpp"
-#include "tree/hld.cpp"
+#include "segtree/Segtree.cpp"
+#include "algebra/AlgebraReverse.cpp"
+#include "tree/HLD.cpp"
 template<typename TREE,typename Monoid>
 struct TreeMonoid{
   using X=typename Monoid::value_type;
-  using Monoid_r=Algebra_Reverse<Monoid>;
+  using Monoid_r=AlgebraReverse<Monoid>;
   int n;
   TREE T;
   HLD<Tree> hld;

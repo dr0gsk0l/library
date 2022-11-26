@@ -2,17 +2,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "algebra/group_add.cpp"
-#include "algebra/algebra_reverse.cpp"
-#include "segtree/segtree.cpp"
-#include "tree/tree.cpp"
-#include "tree/hld.cpp"
+#include "algebra/group/Add.cpp"
+#include "algebra/Reverse.cpp"
+#include "segtree/SegmentTree.cpp"
+#include "tree/Tree.cpp"
+#include "tree/HLD.cpp"
 #include "tree/TreeMonoid.cpp"
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  using G=Group_Add<long long>;
+  using G=GroupAdd<long long>;
 
   int n,q;cin>>n>>q; 
   vector<long long> a(n);

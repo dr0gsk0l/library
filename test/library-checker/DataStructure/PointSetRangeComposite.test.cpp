@@ -2,15 +2,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "segtree/segtree.cpp"
-#include "algebra/group_linear.cpp"
-#include "algebra/algebra_reverse.cpp"
-#include "mod/modint.cpp"
+#include "segtree/SegmentTree.cpp"
+#include "algebra/group/Affine.cpp"
+#include "algebra/Reverse.cpp"
+#include "mod/Modint.cpp"
 
 using ll=long long;
 using mint=Mint<ll>;
-using G_=Group_Affine<mint>;
-using G=Algebra_Reverse<G_>;
+using G_=GroupAffine<mint>;
+using G=AlgebraReverse<G_>;
 using F=G::value_type;
 
 int main(){

@@ -1,4 +1,4 @@
-#include "string/trie.cpp"
+#include "string/Trie.cpp"
 
 template<int char_size,int margin>
 struct AhoCorasick:Trie<char_size,margin>{

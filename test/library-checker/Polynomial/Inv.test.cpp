@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <formalpowerseries/base.cpp>
+#include <formalpowerseries/Base.cpp>
 
 #include <atcoder/modint>
 #include <atcoder/convolution>

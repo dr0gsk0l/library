@@ -1,5 +1,5 @@
 template<typename X>
-struct Group_CntSum{
+struct GroupCntSum{
   using P=pair<X,X>;
   using value_type=P;
   static constexpr P op(const P &x, const P &y){

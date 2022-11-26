@@ -2,11 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "segtree/segtree.cpp"
-#include "algebra/group_add.cpp"
+#include "segtree/SegmentTree.cpp"
+#include "algebra/group/Add.cpp"
 
 using ll=long long;
-using G=Group_Add<ll>;
+using G=GroupAdd<ll>;
 
 int main(){
   int n,q;cin>>n>>q;

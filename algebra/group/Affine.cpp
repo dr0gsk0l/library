@@ -1,6 +1,6 @@
 // op(f,g) = f(g(x))
 template<typename K>
-struct Group_Affine{
+struct GroupAffine{
   using F = pair<K, K>;
   using value_type = F;
   static constexpr F op(const F &f, const F &g) noexcept {

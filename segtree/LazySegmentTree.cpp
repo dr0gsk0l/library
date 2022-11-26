@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename Lazy>
-class LazySegTree{
+class LazySegmentTree{
   using MX = typename Lazy::MX;
   using MF = typename Lazy::MF;
   using X = typename MX::value_type;
@@ -29,9 +29,9 @@ class LazySegTree{
   void recalc(int k){ while(k>>=1)update(k); }
 
 public:
-  LazySegTree() : LazySegTree(0) {}
-  LazySegTree(int n):LazySegTree(vector<X>(n,MX::unit())) {}
-  LazySegTree(const vector<X>&v) : n(v.size()) {
+  LazySegmentTree() : LazySegmentTree(0) {}
+  LazySegmentTree(int n):LazySegmentTree(vector<X>(n,MX::unit())) {}
+  LazySegmentTree(const vector<X>&v) : n(v.size()) {
     for(log=1;(1<<log)<n;log++){}
     size=1<<log;
     dat.assign(size<<1,MX::unit());

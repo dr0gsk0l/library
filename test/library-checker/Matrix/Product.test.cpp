@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "linearalgebra/matrix.cpp"
+#include "linearalgebra/Matrix.cpp"
 #include "mod/modint.cpp"
 
 using mint=Mint<long long,998244353>;

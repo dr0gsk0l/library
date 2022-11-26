@@ -1,10 +1,10 @@
 template<typename Monoid>
-class CumulativeSum{
+class CumulativeMonoid{
   using T=typename Monoid::value_type;
   vector<T> pre,suf;
 public:
-  CumulativeSum():pre(1,Monoid::unit()),sum(pre){}
-  CumulativeSum(const vector<T>&v):pre(v.size()+1,Monoid::unit()),sum(pre){
+  CumulativeMonoid():pre(1,Monoid::unit()),sum(pre){}
+  CumulativeMonoid(const vector<T>&v):pre(v.size()+1,Monoid::unit()),sum(pre){
     for(int i=0;i<v.size();i++)pre[i+1]=Monoid::op(pre[i],v[i]);
     for(int i=v.size()-1;i>=0;i--)suf[i]=Monoid::op(v[i],suf[i+1]);
   }

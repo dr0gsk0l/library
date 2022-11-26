@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "graph/WeightedGraph.cpp"
-#include "graph/dijkstra.cpp"
+#include "graph/Dijkstra.cpp"
 
 using ll=long long;
 

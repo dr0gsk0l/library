@@ -2,11 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "datastructure/dsu.cpp"
+#include "datastructure/UnionFind.cpp"
 
 int main() {
   int n,q;cin>>n>>q;
-  dsu uf(n);
+  UnionFind uf(n);
   while(q--){
     int t,u,v;cin>>t>>u>>v;
     if(t)cout<<uf.same(u,v)<<"\n";

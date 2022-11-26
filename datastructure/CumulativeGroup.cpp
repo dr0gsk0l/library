@@ -1,5 +1,5 @@
 template<typename Group>
-struct Cumulative{
+struct CumulativeGroup{
   using T=typename Group::value_type;
   vector<T> A;
   CumulativeGroup():A(1,Group::unit()){}

@@ -1,6 +1,6 @@
 // reference:https://maspypy.com/slope-trick-1-解説編
 template<typename T>
-class Slope_Trick{
+class SlopeTrick{
   static constexpr T MIN=numeric_limits<T>::lowest()/2;
   static constexpr T MAX=numeric_limits<T>::max()/2;
   priority_queue<T> L;
@@ -13,8 +13,8 @@ class Slope_Trick{
   void push_R(T a){ R.push(a-add_r); }
 public:
   T min_f;
-  Slope_Trick():add_l(0),add_r(0),min_f(0){}
-  Slope_Trick(const vector<T>&l,const vector<T>&r,T min_f=0):
+  SlopeTrick():add_l(0),add_r(0),min_f(0){}
+  SlopeTrick(const vector<T>&l,const vector<T>&r,T min_f=0):
     L(l.begin().l.end()),R(r.begin(),r.end()),min_f(min_f),add_l(0),add_r(0){}
 
   int size()const{ return L.size()+R.size(); }
@@ -85,7 +85,7 @@ public:
   }
 
   // O(mlog(n+m)) n=size,m=g.size()
-  Slope_Trick& operator+=(Slope_Trick g){
+  SlopeTrick& operator+=(SlopeTrick g){
     min_f += g.min_f;
     while( g.L.size() ){
       T a=g.L0();g.L.pop();
@@ -98,5 +98,5 @@ public:
     return *this;
   }
 
-  Slope_Trick operator+(Slope_Trick g)const{ return (*this)+=g; }
+  SlopeTrick operator+(SlopeTrick g)const{ return (*this)+=g; }
 };

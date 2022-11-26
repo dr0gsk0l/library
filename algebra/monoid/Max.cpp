@@ -1,5 +1,5 @@
 template<typename X>
-struct Monoid_Max{
+struct MonoidMax{
   using value_type = X;
   static constexpr X op(const X &x, const X &y) noexcept { return max(x,y); }
   static constexpr X unit() { return numeric_limits<X>::min()/2; }

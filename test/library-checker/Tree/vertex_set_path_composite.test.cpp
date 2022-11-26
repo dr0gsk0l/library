@@ -2,11 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "algebra/group_linear.cpp"
-#include "algebra/algebra_reverse.cpp"
-#include "segtree/segtree.cpp"
-#include "tree/tree.cpp"
-#include "tree/hld.cpp"
+#include "algebra/group/Affine.cpp"
+#include "algebra/Reverse.cpp"
+#include "segtree/SegmentTree.cpp"
+#include "tree/Tree.cpp"
+#include "tree/HLD.cpp"
 #include "tree/TreeMonoid.cpp"
 
 #include <atcoder/modint>
@@ -22,7 +22,7 @@ istream& operator>>(istream &is,mint &a){
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  using G=Algebra_Reverse<Group_Affine<mint>>;
+  using G=AlgebraReverse<GroupAffine<mint>>;
   using F=G::value_type;
 
   int n,q;cin>>n>>q; 
