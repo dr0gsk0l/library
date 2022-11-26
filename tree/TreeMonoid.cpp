@@ -1,5 +1,5 @@
 #pragma once
-#include "segtree/Segmenttree.cpp"
+#include "segtree/SegmentTree.cpp"
 #include "algebra/Reverse.cpp"
 #include "tree/HLD.cpp"
 template<typename TREE,typename Monoid>
