@@ -17,8 +17,8 @@ private:
     int l,r;
   public:
     OutgoingEdges(Graph* g,int l,int r):g(g),l(l),r(r){}
-    edge_type& begin(){ return g->edges[l]; }
-    edge_type& end(){ return g->edges[r]; }
+    edge_type* begin(){ return &(g->edges[l]); }
+    edge_type* end(){ return &(g->edges[r]); }
     edge_type& operator[](int i){ return g->edges[l+i]; }
     int size()const{ return r-l; }
   };
