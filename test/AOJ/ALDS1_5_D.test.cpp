@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "util/inversion_number.cpp"
+#include "util/InversionNumber.cpp"
 
 int main(){
   int n;cin>>n;

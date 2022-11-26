@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "linearalgebra/Matrix.cpp"
-#include "mod/modint.cpp"
+#include "mod/Modint.cpp"
 
 using mint=Mint<long long,998244353>;
 using M=Matrix<mint>;
