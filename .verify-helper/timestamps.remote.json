@@ -18,5 +18,8 @@
 "test/library-checker/Polynomial/Inv.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/String/RunEnumerate.test.cpp": "2022-11-26 09:11:25 +0900",
-"test/library-checker/Tree/LowestCommonAncestor.test.cpp": "2022-11-26 10:16:59 +0900"
+"test/library-checker/Tree/LowestCommonAncestor.test.cpp": "2022-11-26 10:16:59 +0900",
+"test/library-checker/Tree/vertex_add_path_sum.test.cpp": "2022-11-26 10:38:42 +0900",
+"test/library-checker/Tree/vertex_add_subtree_sum.test.cpp": "2022-11-26 10:38:42 +0900",
+"test/library-checker/Tree/vertex_set_path_composite.test.cpp": "2022-11-26 10:38:42 +0900"
 }
