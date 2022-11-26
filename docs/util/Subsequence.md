@@ -1,6 +1,6 @@
 ---
 title: 部分列の種類数
-documentation_of: //util/subsequence.cpp
+documentation_of: //util/Subsequence.cpp
 ---
 
 配列の（非連続を許す）部分列の種類数を求める

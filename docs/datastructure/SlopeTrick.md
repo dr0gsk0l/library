@@ -1,6 +1,6 @@
 ---
 title: SlopeTrick
-documentation_of: //datastructure/slopetrick.cpp
+documentation_of: //datastructure/SlopeTrick.cpp
 ---
 
 基本的な用語などは reference と同じ  
@@ -16,7 +16,7 @@ documentation_of: //datastructure/slopetrick.cpp
 $f(x)$ を返す  
 priority_queue を走査するので時間がかかる  
 
-* ```Slope_Trick& operator+=(Slope_Trick g)```  
+* ```SlopeTrick& operator+=(SlopeTrick g)```  
 $f(x)+=g(x)$  
 マージテクでは ```size()``` の大きい方をメインにする
 
