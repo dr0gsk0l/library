@@ -1,6 +1,6 @@
 #pragma once
-#include "segtree/Segtree.cpp"
-#include "algebra/AlgebraReverse.cpp"
+#include "segtree/Segmenttree.cpp"
+#include "algebra/Reverse.cpp"
 #include "tree/HLD.cpp"
 template<typename TREE,typename Monoid>
 struct TreeMonoid{
