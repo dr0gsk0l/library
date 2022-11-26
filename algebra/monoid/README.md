@@ -1,6 +1,6 @@
 ```cpp
 template<typename X>
-struct A{
+struct MonoidHoge{
   using value_type=X
   static constexpr X op(const X& x, const X& y)
   static constexpr X power(const X& x, const long long n)
