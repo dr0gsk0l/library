@@ -14,7 +14,7 @@ LC の分け方に従って Polynomial や Matrix などのディレクトリを
 
 ### コードのテンプレート
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
+#define PROBLEM ""
 #include <bits/stdc++.h>
 using namespace std;
 
