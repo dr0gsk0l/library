@@ -17,12 +17,6 @@ HLD のように略語を使う際は全て大文字を使う
 HLD のように略語を使う際は全て大文字を使う
 ### 関数の名前
 ディレクトリ名と同じ  
-### testファイル
-以下の階層でディレクトリを作る
-#### AtCoder
-識別番号を使う ABC001A など
-LibraryChecker は 問題名を使う
-重複する場合は ABC001A(2).test.cpp のようにする
 ### テンプレート引数
 ```template<typename Graph>``` のように実在する構造体の名前を書きたい場合は  
 ```template<typename GRAPH>``` のように全て大文字で書く  
