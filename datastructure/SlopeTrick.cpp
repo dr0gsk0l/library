@@ -98,5 +98,8 @@ public:
     return *this;
   }
 
-  SlopeTrick operator+(SlopeTrick g)const{ return (*this)+=g; }
+  SlopeTrick operator+(SlopeTrick g)const{ 
+    if(size()<g.size())return g+=*this;
+    return (*this)+=g; 
+  }
 };
