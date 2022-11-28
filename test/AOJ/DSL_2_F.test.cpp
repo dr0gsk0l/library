@@ -10,7 +10,7 @@ int main(){
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  LazySegmentTree< LazyRangeSetRangeMin<int> > seg(vector<int>(n,(1LL<<31)-1));
+  LazySegmentTree< LazyRangeSetRangeMin<long long> > seg(vector<long long>(n,(1LL<<31)-1));
   while(q--){
     int t,l,r;cin>>t>>l>>r;r++;
     if(t)
