@@ -1,27 +1,29 @@
 // https://misawa.github.io/others/flow/dinic_time_complexity.html
+#pragma once
+#include "graph/WeightedGraph.cpp"
 template<typename T>
 class Dinic{
-  struct edge{
-    const int to,rev;
+  struct EdgeInfo{
     T cap;
-    edge(){}
-    edge(int to,int cap,int rev):to(to),cap(cap),rev(rev){} 
+    int rev;
   };
-  vector<vector<edge>> G;
-  vector<int> lavel,current_edge;
+  int n;
+  WeightedGraph< EdgeInfo > G;
+  vector<int> level,current_edge,out_deg;
   int s,t;
+  queue<int> que;
 
   void bfs(){
-    //lavel[v]を（容量正の辺による）sからの最短距離にする 到達出来なければ-1
-    fill(lavel.begin(),lavel.end(),-1);
-    queue<int> que;
-    lavel[s]=0;
+    //level[v]を（容量正の辺による）sからの最短距離にする 到達出来なければ-1
+    fill(level.begin(),level.end(),-1);
+    level[s]=0;
     que.emplace(s);
     while(que.size()){
       int v=que.front();que.pop();
       for(const auto&e:G[v]){
-        if(e.cap==0||~lavel[e.to])continue;
-        lavel[e.to]=lavel[v]+1;
+        const auto&[cap,rev]=e.cost;
+        if(cap==0||~level[e.to])continue;
+        level[e.to]=level[v]+1;
         que.emplace(e.to);
       }
     }
@@ -30,12 +32,13 @@ class Dinic{
     //vからtに最短路で水を流す fがvまで持ってこれた水量 流せた量が返り値
     if(v==t)return f;
     for(int &i=current_edge[v];i<G[v].size();i++){//このdfsで使わなかった辺は次のBFSまで使われることはない
-      edge &e=G[v][i];
-      if(e.cap>0&&lavel[v]<lavel[e.to]){//bfsをしているのでlavel[v]<lavel[e.to]ならlavel[v]+1==lavel[e.to]
-        T d=dfs(e.to,min(f,e.cap));
+      auto&e=G[v][i];
+      auto&[cap,rev]=e.cost;
+      if(cap>0&&level[v]<level[e.to]){//bfsをしているのでlevel[v]<level[e.to]ならlevel[v]+1==level[e.to]
+        T d=dfs(e.to,min(f,cap));
         if(d==0)continue;
-        e.cap-=d;
-        G[e.to][e.rev].cap+=d;
+        cap-=d;
+        G[e.to][rev].cost.cap+=d;
         return d;//一本流せたらreturn
       }
     }
@@ -43,17 +46,19 @@ class Dinic{
   }
 public:
   Dinic()=default;
-  Dinic(int n,int s,int t):G(n),lavel(n),current_edge(n),s(s),t(t){}
+  Dinic(int n,int s,int t):G(n),level(n),current_edge(n),out_deg(n,0),s(s),t(t){}
 
-  void add_edge(int from,int to,T cap){
-    G[from].emplace_back(to,cap,G[to].size());
-    G[to].emplace_back(from,0,G[from].size()-1);
+  void add_arc(int from,int to,T cap){
+    G.add_arc(from,to,{cap,out_deg[to]});
+    G.add_arc(to,from,{0,out_deg[from]});
+    out_deg[from]++;out_deg[to]++;
   }
   T flow(T lim){
+    if(!G.is_prepared())G.build();
     T fl=0;
     while(lim>0){
       bfs();
-      if(lavel[t]<0)break;
+      if(level[t]<0)break;
       fill(current_edge.begin(),current_edge.end(),0);
       while(true){
         T f=dfs(s,lim);
