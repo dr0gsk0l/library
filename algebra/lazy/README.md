@@ -1,4 +1,5 @@
 ```cpp
+#pragma once
 #include M1
 #include M2
 template<typename X,typename Y> // Y は無いことも多い

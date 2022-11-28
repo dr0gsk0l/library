@@ -1,3 +1,4 @@
+#pragma once
 #include "algebra/group/CntSum.cpp"
 #include "algebra/group/Affine.cpp"
 template<typename X>
