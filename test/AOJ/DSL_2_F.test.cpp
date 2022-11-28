@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "algebra/lazy/RangeSetRangeMin.cpp"
-#include "seg tree/LazySegmentTree.cpp"
+#include "segtree/LazySegmentTree.cpp"
 
 int main(){
   ios::sync_with_stdio(false);
