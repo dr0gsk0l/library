@@ -5,12 +5,14 @@ using namespace std;
 #include "algebra/lazy/RangeAddRangeSum.cpp"
 #include "segtree/LazySegmentTree.cpp"
 
+using ll=long long;
+
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  LazySegmentTree<LazyRangeAddRangeSum<int>> seg(vector<pair<int,int>>(n,{0,1}));
+  LazySegmentTree<LazyRangeAddRangeSum<ll>> seg(vector<pair<ll,ll>>(n,{0,1}));
   
   while(q--){
     int t,l,r;cin>>t>>l>>r;l--;

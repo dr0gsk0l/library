@@ -3,14 +3,14 @@
 using namespace std;
 
 #include "algebra/lazy/RangeSetRangeMin.cpp"
-#include "segmenttree/LazySegmentTree.cpp"
+#include "segtree/LazySegmentTree.cpp"
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  LazySegmentTree< Lazy_Min_Set<int> > seg(vector<int>(n,(1LL<<31)-1));
+  LazySegmentTree< LazyRangeSetRangeMin<int> > seg(vector<int>(n,(1LL<<31)-1));
   while(q--){
     int t,l,r;cin>>t>>l>>r;r++;
     if(t)
