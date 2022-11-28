@@ -9,7 +9,7 @@ int main(){
   Dinic<int> fl(n,0,n-1);
   while(m--){
     int u,v,c;cin>>u>>v>>c;
-    fl.add_edge(u,v,c);
+    fl.add_arc(u,v,c);
   }
   cout<<fl.flow()<<endl;
 }
