@@ -14,9 +14,9 @@ int main(){
   
   int n,q;cin>>n>>q;
 
-  vector<pair<mint,mint>> v(n);
-  for(auto&[a,b]:v){ cin>>a; b=1; }
-  LazySegmentTree< LazyRangeAffineRangeSum<mint> > seg(v);
+  vector<mint> v(n);
+  for(int i=0;i<n;i++)cin>>v[i];
+  LazySegmentTree< LazyRangeAffineRangeSum<mint> > seg(cnt_init(v));
 
   while(q--){
     int t,l,r;cin>>t>>l>>r;
