@@ -9,3 +9,14 @@ struct GroupCntSum{
   static constexpr P unit() { return {0, 0}; }
   static constexpr bool commute = true;
 };
+template<typename X>
+vector<pair<X,X>> cnt_init(int n,const X&x){
+  return vector<pair<X,X>>(n,{x,1});
+}
+template<typename X>
+vector<pair<X,X>> cnt_init(const vector<X>&v){
+  int n=v.size();
+  vector<pair<X,X>> res(n);
+  for(int i=0;i<n;i++)res[i]={v[i],1};
+  return res;
+}
