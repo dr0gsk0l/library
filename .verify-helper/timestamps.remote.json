@@ -23,6 +23,7 @@
 "test/library-checker/Polynomial/Log.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/String/RunEnumerate.test.cpp": "2022-11-26 09:11:25 +0900",
 "test/library-checker/Tree/LowestCommonAncestor.test.cpp": "2022-11-26 20:25:33 +0900",
+"test/library-checker/Tree/RootedTreeIsomorphismClassification.test.cpp": "2022-11-29 20:15:43 +0900",
 "test/library-checker/Tree/vertex_add_path_sum.test.cpp": "2022-11-26 20:25:33 +0900",
 "test/library-checker/Tree/vertex_add_subtree_sum.test.cpp": "2022-11-26 20:25:33 +0900",
 "test/library-checker/Tree/vertex_set_path_composite.test.cpp": "2022-11-26 20:25:33 +0900"
