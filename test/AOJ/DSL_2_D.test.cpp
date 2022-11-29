@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "algebra/lazy/RangeSetRangeMin.cpp"
+#include "algebra/lazy/SetMin.cpp"
 #include "segtree/DualSegmentTree.cpp"
 
 int main(){
@@ -10,7 +10,7 @@ int main(){
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  DualSegmentTree< LazyRangeSetRangeMin<int> > seg(vector<int>(n,(1LL<<31)-1));
+  DualSegmentTree< LazySetMin<int> > seg(vector<int>(n,(1LL<<31)-1));
   while(q--){
     int t;cin>>t;
     if(t){

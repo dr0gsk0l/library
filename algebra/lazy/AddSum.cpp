@@ -2,7 +2,7 @@
 #include "algebra/group/CntSum.cpp"
 #include "algebra/group/Add.cpp"
 template<typename X>
-struct LazyRangeAddRangeSum{
+struct LazyAddSum{
   using MX=GroupCntSum<X>;
   using MF=GroupAdd<X>;
   using S=typename MX::value_type;

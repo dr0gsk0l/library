@@ -2,7 +2,7 @@
 #include "algebra/group/CntSum.cpp"
 #include "algebra/group/Affine.cpp"
 template<typename X>
-struct LazyRangeAffineRangeSum{
+struct LazyAffineSum{
   using MX=GroupCntSum<X>;
   using MF=GroupAffine<X>;
   using P=typename MX::value_type;

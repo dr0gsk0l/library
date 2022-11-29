@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "algebra/lazy/RangeAddRangeSum.cpp"
+#include "algebra/lazy/AddSum.cpp"
 #include "segtree/LazySegmentTree.cpp"
 
 using ll=long long;
@@ -12,7 +12,7 @@ int main(){
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  LazySegmentTree<LazyRangeAddRangeSum<ll>> seg(cnt_init(n,0LL));
+  LazySegmentTree<LazyAddSum<ll>> seg(cnt_init(n,0LL));
   
   while(q--){
     int t,l,r;cin>>t>>l>>r;l--;

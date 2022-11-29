@@ -2,7 +2,7 @@
 #include "algebra/monoid/Min.cpp"
 #include "algebra/monoid/Set.cpp"
 template<typename X>
-struct LazyRangeSetRangeMin{
+struct LazySetMin{
   using MX=MonoidMin<X>;
   using MF=MonoidSet<X>;
   using F=typename MF::value_type;

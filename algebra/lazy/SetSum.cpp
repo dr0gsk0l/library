@@ -2,7 +2,7 @@
 #include "algebra/group/CntSum.cpp"
 #include "algebra/monoid/Set.cpp"
 template<typename X>
-struct LazyRangeSetRangeSum{
+struct LazySetSum{
   using MX=GroupCntSum<X>;
   using MF=MonoidSet<X>;
   using P=typename MX::value_type;

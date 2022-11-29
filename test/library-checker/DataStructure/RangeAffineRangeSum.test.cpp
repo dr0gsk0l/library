@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "algebra/lazy/RangeAffineRangeSum.cpp"
+#include "algebra/lazy/AffineSum.cpp"
 #include "segtree/LazySegmentTree.cpp"
 #include "mod/Modint.cpp"
 
@@ -16,7 +16,7 @@ int main(){
 
   vector<mint> v(n);
   for(int i=0;i<n;i++)cin>>v[i];
-  LazySegmentTree< LazyRangeAffineRangeSum<mint> > seg(cnt_init(v));
+  LazySegmentTree< LazyAffineSum<mint> > seg(cnt_init(v));
 
   while(q--){
     int t,l,r;cin>>t>>l>>r;

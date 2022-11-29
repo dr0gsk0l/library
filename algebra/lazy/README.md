@@ -1,9 +1,9 @@
 ```cpp
 #pragma once
-#include M1
-#include M2
+#include "algebra/M1"
+#include "algebra/M2"
 template<typename X,typename Y> // Y は無いことも多い
-struct LazyRangeHogeRangeHuga{ // Hoge が作用素、 Huga が区間和
+struct LazyHogeHuga{ // Hoge が作用素、 Huga が区間和
   using MX=M1<X>;
   using MF=M2<Y>;
   static constexpr MX::value_type mapping(const MF::value_type&f,const MX::value_type&x)
