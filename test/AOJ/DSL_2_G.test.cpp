@@ -12,7 +12,7 @@ int main(){
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  LazySegmentTree<LazyRangeAddRangeSum<ll>> seg(vector<pair<ll,ll>>(n,{0,1}));
+  LazySegmentTree<LazyRangeAddRangeSum<ll>> seg(cnt_init(n,0LL));
   
   while(q--){
     int t,l,r;cin>>t>>l>>r;l--;
