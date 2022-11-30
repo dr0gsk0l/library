@@ -8,8 +8,8 @@ struct Edge{
 struct Graph{
   int n;
   using edge_type=Edge;
-private:
   vector<edge_type> edges;
+private:
   vector<int> in_deg;
   bool prepared;
  class OutgoingEdges{
