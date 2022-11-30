@@ -12,8 +12,8 @@ struct WeightedGraph{
   int n;
   using cost_type=T;
   using edge_type=WeightedEdge<T>;
-private:
   vector<edge_type> edges;
+private:
   vector<int> in_deg;
   bool prepared;
   class OutgoingEdges{
