@@ -1,6 +1,6 @@
 #pragma once
 #include "segtree/LazySegmentTree.cpp"
-#include "algebra/Lazy/Reverse.cpp"
+#include "algebra/lazy/Reverse.cpp"
 #include "tree/HLD.cpp"
 template<typename TREE,typename Lazy>
 struct TreeLazy{
