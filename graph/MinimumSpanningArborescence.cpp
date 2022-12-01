@@ -1,13 +1,11 @@
 #pragma once
 #include "datastructure/UnionFind.cpp"
-template<typename WG,typename E=typename WG::edge_type,typename W=typename WG::weight_type>
+template<typename WG,typename W=typename WG::weight_type>
 optional< pair<W,vector<int>> > minimum_spanning_arborescence(WG g,int r=0){
   int n=g.n;
   W res=0;
   vector<W> new_add(n,0);
-  vector<int> tree(n);
-  vector<int> state(n,0);
-  vector<int> pre(n);
+  vector<int> tree(n),pre(n),state(n,0);
   UnionFind uf(n);
   state[r]=2;
 

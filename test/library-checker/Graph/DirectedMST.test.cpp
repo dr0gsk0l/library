@@ -4,7 +4,6 @@ using namespace std;
 
 #include "graph/WeightedGraph.cpp"
 #include "graph/MinimumSpanningArborescence.cpp"
-#include "tree/WeightedTree.cpp"
 using ll=long long;
 
 int main(){
@@ -13,11 +12,16 @@ int main(){
   auto ans=minimum_spanning_arborescence(g,s);
   assert(ans.has_value());
   auto [val,tree]=ans.value();
-  WeightedTree<ll> t(n);
-  for(int edge_id:tree)
-    t.add_edge(g.edges[edge_id]);
-  t.build(s);
+  vector<int> p(n);
+  p[s]=s;
+  ll sum=0;
+  for(int id:tree){
+    const auto&e=g.edges[id];
+    sum+=e.weight;
+    p[e.to]=e.from;
+  }
+  assert(sum==val);
   cout<<val<<"\n";
   for(int v=0;v<n;v++)
-    cout<<(v==s?s:t.parent(v).to)<<"\n "[v+1<n];
+    cout<<p[v]<<"\n "[v+1<n];
 }
