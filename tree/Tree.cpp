@@ -23,6 +23,7 @@ struct Tree:Graph{
   }
   OutgoingEdges son(int v){
     assert(~root);
+    if(v==root)return {this,in_deg[v],in_deg[v+1]};
     return {this,in_deg[v]+1,in_deg[v+1]};
   }
 
