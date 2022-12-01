@@ -13,7 +13,7 @@ int main(){
   WeightedTree<int> t(n);
   t.scan(0);
 
-  ReRooting< WeightedTree<int>, int> RR;
+  ReRooting< WeightedTree<int>, int > RR(t);
   auto score=[&](int now,auto&e){
     return now+e.weight;
   };
