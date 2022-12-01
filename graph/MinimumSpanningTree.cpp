@@ -1,17 +1,21 @@
 #include "datastructure/UnionFind.cpp"
 template<typename WG,typename E=typename WG::edge_type,typename W=typename WG::weight_type>
-pair<W,vector<E>> minimum_spanning_tree(const WG&g){
-  int n=g.n;
+pair<W,vector<int>> minimum_spanning_tree(const WG&g){
+  assert(g.is_prepared());
+  int n=g.n,m=g.edges.size();
   UnionFind uf(n);
-  auto edges=g.edges;
-  sort(edges.begin(),edges.end(),[](const E&e1,const E&e2){
-    return e1.weight<e2.weight;
+  vector<int> id(m);
+  iota(id.begin(),id.end(),0);
+  sort(id.begin(),id.end(),[](const int i,const int j){
+    return g.edges[i].weight<g.edges[j].weight;
   });
   W res=0;
-  vector<E> tree;
-  for(const auto&[from,to,weight]:edges){
+  vector<int> tree;
+  tree.reserve(n-1);
+  for(int i:id){
+    const auto&[from,to,weight]=g.edges[i];
     if(uf.same(from,to))continue;
-    tree.emplace_back(from,to,weight);
+    tree.push_back(i);
     uf.merge(from,to);
     res+=weight;
   }
