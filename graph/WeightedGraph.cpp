@@ -2,18 +2,18 @@
 template<typename T>
 struct WeightedEdge{
   WeightedEdge()=default;
-  WeightedEdge(int from,int to,T cost):from(from),to(to),cost(cost){}
+  WeightedEdge(int from,int to,T weight):from(from),to(to),weight(weight){}
   int from,to;
-  T cost;
+  T weight;
 };
 
 template<typename T>
 struct WeightedGraph{
   int n;
-  using cost_type=T;
+  using weight_type=T;
   using edge_type=WeightedEdge<T>;
   vector<edge_type> edges;
-private:
+protected:
   vector<int> in_deg;
   bool prepared;
   class OutgoingEdges{
@@ -41,24 +41,24 @@ public:
 
   void resize(int n){n=n;}
 
-  void add_arc(int from,int to,T cost){
+  void add_arc(int from,int to,T weight){
     assert(!prepared);
     assert(0<=from and from<n and 0<=to and to<n);
-    edges.emplace_back(from,to,cost);
+    edges.emplace_back(from,to,weight);
     in_deg[from+1]++;
   }
-  void add_edge(int u,int v,T cost){
-    add_arc(u,v,cost);
-    add_arc(v,u,cost);
+  void add_edge(int u,int v,T weight){
+    add_arc(u,v,weight);
+    add_arc(v,u,weight);
   }
 
   void scan(int m,bool directed=false,int indexed=1){
     edges.reserve(directed?m:2*m);
     while(m--){
       int u,v;cin>>u>>v;u-=indexed;v-=indexed;
-      T cost;cin>>cost;
-      if(directed)add_arc(u,v,cost);
-      else add_edge(u,v,cost);
+      T weight;cin>>weight;
+      if(directed)add_arc(u,v,weight);
+      else add_edge(u,v,weight);
     }
     build();
   }
@@ -80,7 +80,7 @@ public:
     for(int from=0;from<n;from++){
       cerr<<from<<";";
       for(int i=in_deg[from];i<in_deg[from+1];i++)
-        cerr<<"("<<edges[i].to<<","<<edges[i].cost<<")";
+        cerr<<"("<<edges[i].to<<","<<edges[i].weight<<")";
       cerr<<"\n";
     }
   }

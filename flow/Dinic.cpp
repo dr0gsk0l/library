@@ -21,7 +21,7 @@ class Dinic{
     while(que.size()){
       int v=que.front();que.pop();
       for(const auto&e:G[v]){
-        const auto&[cap,rev]=e.cost;
+        const auto&[cap,rev]=e.weight;
         if(cap==0||~level[e.to])continue;
         level[e.to]=level[v]+1;
         que.emplace(e.to);
@@ -33,12 +33,12 @@ class Dinic{
     if(v==t)return f;
     for(int &i=current_edge[v];i<G[v].size();i++){//このdfsで使わなかった辺は次のBFSまで使われることはない
       auto&e=G[v][i];
-      auto&[cap,rev]=e.cost;
+      auto&[cap,rev]=e.weight;
       if(cap>0&&level[v]<level[e.to]){//bfsをしているのでlevel[v]<level[e.to]ならlevel[v]+1==level[e.to]
         T d=dfs(e.to,min(f,cap));
         if(d==0)continue;
         cap-=d;
-        G[e.to][rev].cost.cap+=d;
+        G[e.to][rev].weight.cap+=d;
         return d;//一本流せたらreturn
       }
     }

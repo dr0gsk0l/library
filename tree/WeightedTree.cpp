@@ -1,19 +1,26 @@
 #pragma once
-#include "graph/Graph.cpp"
-struct Tree:Graph{
-  using Graph::Graph;
+#include "graph/WeightedGraph.cpp"
+template<typename T>
+struct WeightedTree:WeightedGraph<T>{
+  using WeightedGraph<T>::WeightedGraph;
+  using edge_type=typename WeightedGraph<T>::edge_type;
+  using OutgoingEdges=typename WeightedGraph<T>::OutgoingEdges;
+  using WeightedGraph<T>::n;
+  using WeightedGraph<T>::in_deg;
+  
   int root=-1;
   vector<int> DFS,BFS,depth;
 
   void scan_root(int indexed=1){
     for(int i=1;i<n;i++){
       int p;cin>>p;
-      add_edge(p-indexed,i);
+      T weight;cin>>weight;
+      add_edge(p-indexed,i,weight);
     }
     build();
   }
   void scan(int indexed=1){
-    Graph::scan(n-1,false,indexed);
+    WeightedGraph<T>::scan(n-1,false,indexed);
     build();
   }
 
@@ -23,14 +30,14 @@ struct Tree:Graph{
   }
   OutgoingEdges son(int v){
     assert(~root);
+    if(v==root)return {this,in_deg[v],in_deg[v+1]};
     return {this,in_deg[v]+1,in_deg[v+1]};
   }
 
 private:
   void dfs(int v,int pre=-1){
-    for(int i=0;i<T[v].size();i++){
-      auto&e=T[v][i];
-      if(e.to==pre)swap(T[v][0],T[v][i]);
+    for(auto&e:(*this)[v]){
+      if(e.to==pre)swap((*this)[v][0],e);
       else{
         depth[e.to]=depth[v]+1;
         dfs(e.to,v);
@@ -40,7 +47,7 @@ private:
   }
 public:
   void build(int r=0){
-    if(!is_prepared())Graph::build();
+    if(!WeightedGraph<T>::is_prepared())WeightedGraph<T>::build();
     if(~root){
       assert(r==root);
       return;
@@ -54,7 +61,7 @@ public:
     while(que.size()){
       int p=que.front();que.pop();
       BFS.push_back(p);
-      for(int c:son(p))que.push(c);
+      for(const auto&e:son(p))que.push(e.to);
     }
   }
 };

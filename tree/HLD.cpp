@@ -9,15 +9,15 @@ struct HLD{
 private:
   void dfs_sz(int v){
     sz[v]=1;
-    for(int c:T.son[v]){
-      sz[v]+=sz[c];
-      if(sz[c]>sz[T.son[v][0]])swap(c,T.son[v][0]);
+    for(auto&e:T.son(v)){
+      sz[v]+=sz[e.to];
+      if(sz[e.to]>sz[T.son(v)[0]])swap(e,T.son(v)[0]);
     }
   }
   void dfs_hld(int v,int& k){
     id[v]=k++;
-    for(int c:T.son[v]){
-      head[c]=(c==T.son[v][0]?head[v]:c);
+    for(const auto&e:T.son(v)){
+      head[e.to]=(e.to==T.son(v)[0]?head[v]:e.to);
       dfs_hld(c,k);
     }
     id2[v]=k;
@@ -34,13 +34,17 @@ public:
     return id;
   }
 
-  int lca(int u,int v){
+  int lca(int u,int v)const{
     assert(prepared);
     while(head[u]!=head[v]){
-      if(T.depth[head[u]]>T.depth[head[v]])u=T.parent[head[u]];
-      else v=T.parent[head[v]];
+      if(T.depth[head[u]]>T.depth[head[v]])u=T.parent(head[u]).to;
+      else v=T.parent(head[v]).to;
     }
     return (T.depth[u]<T.depth[v]?u:v);
+  }
+  int distance(int u,int v)const{
+    int w=lca(u,v);
+    return T.depth[u]+T.depth[v]-T.depth[w]*2;
   }
 
   // l=lca(u,v) とした時、[u,l] パスと [v,l] パス を閉区間の組みで返す
@@ -58,11 +62,11 @@ public:
       }
       if(T.depth[head[u]]<T.depth[head[v]]){
         path_v.emplace_back(id[v],id[head[v]]);
-        v=T.parent[head[v]];
+        v=T.parent(head[v]);
       }
       else{
         path_u.emplace_back(id[u],id[head[u]]);
-        u=T.parent[head[u]];
+        u=T.parent(head[u]);
       }
     }
     if(u==v)path_u.emplace_back(id[u],id[u]);
