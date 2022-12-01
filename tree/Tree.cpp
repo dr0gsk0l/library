@@ -29,9 +29,8 @@ struct Tree:Graph{
 
 private:
   void dfs(int v,int pre=-1){
-    for(int i=0;i<T[v].size();i++){
-      auto&e=T[v][i];
-      if(e.to==pre)swap(T[v][0],T[v][i]);
+    for(auto&e:(*this)[v]){
+      if(e.to==pre)swap((*this)[v][0],e);
       else{
         depth[e.to]=depth[v]+1;
         dfs(e.to,v);
@@ -55,7 +54,7 @@ public:
     while(que.size()){
       int p=que.front();que.pop();
       BFS.push_back(p);
-      for(int c:son(p))que.push(c);
+      for(const auto&e:son(p))que.push(e.to);
     }
   }
 };

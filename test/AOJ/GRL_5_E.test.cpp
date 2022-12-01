@@ -34,8 +34,9 @@ int main(){
   vector<int> root2(n,-1);
   for(int v:t.BFS){
     if(v==0)continue;
-    if(t.parent[v]==0)root2[v]=v;
-    else root2[v]=root2[ t.parent[v] ];
+    int p=t.parent(v).to;
+    if(p==0)root2[v]=v;
+    else root2[v]=root2[p];
   }
 
   int q;cin>>q;

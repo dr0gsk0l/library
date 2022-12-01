@@ -9,7 +9,7 @@ struct Graph{
   int n;
   using edge_type=Edge;
   vector<edge_type> edges;
-private:
+protected:
   vector<int> in_deg;
   bool prepared;
  class OutgoingEdges{

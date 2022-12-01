@@ -11,14 +11,15 @@ private:
     sz[v]=1;
     for(auto&e:T.son(v)){
       sz[v]+=sz[e.to];
-      if(sz[e.to]>sz[T.son(v)[0]])swap(e,T.son(v)[0]);
+      if(sz[e.to]>sz[T.son(v)[0].to])swap(e,T.son(v)[0]);
     }
   }
   void dfs_hld(int v,int& k){
     id[v]=k++;
-    for(const auto&e:T.son(v)){
-      head[e.to]=(e.to==T.son(v)[0]?head[v]:e.to);
-      dfs_hld(c,k);
+    for(int i=0;i<T.son(v).size();i++){
+      const auto&e=T.son(v)[i];
+      head[e.to]=(i?head[v]:e.to);
+      dfs_hld(e.to,k);
     }
     id2[v]=k;
   }
@@ -34,7 +35,7 @@ public:
     return id;
   }
 
-  int lca(int u,int v)const{
+  int lca(int u,int v){
     assert(prepared);
     while(head[u]!=head[v]){
       if(T.depth[head[u]]>T.depth[head[v]])u=T.parent(head[u]).to;
@@ -42,7 +43,7 @@ public:
     }
     return (T.depth[u]<T.depth[v]?u:v);
   }
-  int distance(int u,int v)const{
+  int distance(int u,int v){
     int w=lca(u,v);
     return T.depth[u]+T.depth[v]-T.depth[w]*2;
   }
@@ -62,11 +63,11 @@ public:
       }
       if(T.depth[head[u]]<T.depth[head[v]]){
         path_v.emplace_back(id[v],id[head[v]]);
-        v=T.parent(head[v]);
+        v=T.parent(head[v]).to;
       }
       else{
         path_u.emplace_back(id[u],id[head[u]]);
-        u=T.parent(head[u]);
+        u=T.parent(head[u]).to;
       }
     }
     if(u==v)path_u.emplace_back(id[u],id[u]);
