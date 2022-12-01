@@ -12,22 +12,26 @@ pair<vector<optional<T>>,vector<int>> bellman_ford(WG&g,int s=0){
     bool update=false;
     for(int v=0;v<n;v++)if(d[v]<INF)
       for(const auto&e:g[v])
-        if(d[e.to]>d[e.from]+e.weight){
-          d[e.to]=d[e.from]+e.weight;
+        if(d[e.to]>d[v]+e.weight){
+          d[e.to]=d[v]+e.weight;
+          pre[e.to]=v;
           update=true;
         }
     if(!update)make_pair(d,pre);
   }
-  auto now_state=d;
-  for(int _=0;_<n;_++){
-    for(int v=0;v<n;v++)if(d[v]<INF)
+  auto now_d=d;
+  for(int v=0;v<n;v++)if(d[v]<INF)
+    for(const auto&e:g[v])
+      if(d[e.to]>d[v]+e.weight)
+        d[e.to]=d[v]+e.weight;
+  for(int _=1;_<n;_++)
+    for(int v=0;v<n;v++)if(d[v]<now_d[v])
       for(const auto&e:g[v])
-        if(d[e.to]>d[e.from]+e.weight)
-          d[e.to]=d[e.from]+e.weight;
-  }
+        if(d[e.to]>d[v]+e.weight)
+          d[e.to]=d[v]+e.weight;
   vector<optional<T>> res(n);
   for(int v=0;v<n;v++)
-    if(now_state[v]==d[v])res[v]=d[v];
+    if(now_d[v]==d[v])res[v]=d[v];
     else res[v]=nullopt;
   return {res,pre};
 }
