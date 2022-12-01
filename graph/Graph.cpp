@@ -47,6 +47,12 @@ public:
     add_arc(u,v);
     add_arc(v,u);
   }
+  void add_arc(const edge_type&e){
+    add_arc(e.from,e.to);
+  }
+  void add_edge(const edge_type&e){
+    add_edge(e.from,e.to);
+  }
 
   void scan(int m,bool directed=false,int indexed=1){
     edges.reserve(directed?m:2*m);
