@@ -18,7 +18,7 @@ int main(){
     return now+e.weight;
   };
   auto merge=[&](int&now,int add){
-    return max(now,add);
+    if(now<add)now=add;
   };
   auto ans=RR.build(score,merge,0);
 
