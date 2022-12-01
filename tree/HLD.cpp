@@ -18,7 +18,7 @@ private:
     id[v]=k++;
     for(int i=0;i<T.son(v).size();i++){
       const auto&e=T.son(v)[i];
-      head[e.to]=(i?head[v]:e.to);
+      head[e.to]=(i?e.to:head[v]);
       dfs_hld(e.to,k);
     }
     id2[v]=k;
