@@ -1,5 +1,6 @@
-// https://misawa.github.io/others/flow/dinic_time_complexity.html
 #pragma once
+
+// https://misawa.github.io/others/flow/dinic_time_complexity.html
 #include "graph/WeightedGraph.cpp"
 template<typename T>
 class Dinic{
@@ -7,11 +8,12 @@ class Dinic{
     T cap;
     int rev;
   };
-  int n;
   WeightedGraph< EdgeInfo > G;
   vector<int> level,current_edge,out_deg;
   int s,t;
   queue<int> que;
+  int m;
+  vector<pair<int,int>> edge_memo;
 
   void bfs(){
     //level[v]を（容量正の辺による）sからの最短距離にする 到達出来なければ-1
@@ -46,12 +48,39 @@ class Dinic{
   }
 public:
   Dinic()=default;
-  Dinic(int n,int s,int t):G(n),level(n),current_edge(n),out_deg(n,0),s(s),t(t){}
+  Dinic(int n,int s=0,int t_=-1,int m_=-1):G(n),level(n),current_edge(n),out_deg(n,0),s(s),t(t_),m(m_){
+    if(t<0)t=n-1;
+    if(m<0)m=2*n;
+    edge_memo.reserve(m);
+  }
+
+  // 0-indexed で edge_id 番目に追加した辺に流した量を返す
+  T operator[](const int edge_id)const{
+    assert(G.is_prepared());
+    const auto&[from,id]=edge_memo[edge_id];
+    return G.edge[from][id].weight.cap;
+  }
+  // 辺を追加した順番に [from,to,流量]
+  vector< tuple<int,int,T> > all_edge(){
+    assert(G.is_prepared());
+    vector< tuple<int,int,T> > res;
+    res.reserve(edge_memo.size());
+    for(const auto&[v,id]:edge_memo){
+      const auto&[to,from,weight]=G[v][id];
+      res.emplace_back(from,to,weight.cap);
+    }
+    return res;
+  }
 
   void add_arc(int from,int to,T cap){
     G.add_arc(from,to,{cap,out_deg[to]});
     G.add_arc(to,from,{0,out_deg[from]});
-    out_deg[from]++;out_deg[to]++;
+    if(edge_memo.size()==m){
+      m<<=1;
+      edge_memo.reserve(m);
+    }
+    out_deg[from]++;
+    edge_memo.emplace_back(to,out_deg[to]++);
   }
   T flow(T lim){
     if(!G.is_prepared())G.build();
