@@ -11,7 +11,7 @@ public:
     for(int i=0;i<A;i++)fl.add_arc(S,i,1);
     for(int j=0;j<B;j++)fl.add_arc(A+j,T,1);
   }
-  void add_arc(int u,int v){
+  void add_edge(int u,int v){
     assert(0<=u and u<A);
     assert(0<=v and v<B);
     fl.add_arc(u,A+v,1);

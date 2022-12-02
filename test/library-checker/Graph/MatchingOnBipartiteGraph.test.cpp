@@ -13,7 +13,7 @@ int main(){
   BipartiteMatching BM(l,r);
   while(m--){
     int a,b;cin>>a>>b;
-    BM.add_arc(a,b);
+    BM.add_edge(a,b);
   }
   auto ans=BM.solve();
   cout<<ans.size()<<"\n";
