@@ -5,7 +5,7 @@ template<int MAX,bool PRIME_FACTOR=false,bool DIVISOR=false>
 class PrimeUtil{
   using ll=long long;
   array<bool,MAX+1> isP;
-  ll pow2(ll a){ return a*a; }
+  static ll pow2(ll a){ return a*a; }
 public:
   vector<int> primes;
   conditional_t< PRIME_FACTOR, array< vector<pair<int,int>>, MAX+1 >, bool> prime_factor;
