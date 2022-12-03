@@ -25,6 +25,7 @@
 "test/library-checker/DataStructure/StaticRangeSum.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/DataStructure/unionfind.test.cpp": "2022-11-26 09:11:25 +0900",
 "test/library-checker/Graph/MatchingOnBipartiteGraph.test.cpp": "2022-12-02 20:26:46 +0900",
+"test/library-checker/Graph/SCC.test.cpp": "2022-12-03 17:21:27 +0900",
 "test/library-checker/Graph/ShortestPath.test.cpp": "2022-12-01 20:59:34 +0900",
 "test/library-checker/Math/2Sat.test.cpp": "2022-09-08 17:20:23 +0900",
 "test/library-checker/Matrix/Det.test.cpp": "2022-11-26 09:34:53 +0900",
