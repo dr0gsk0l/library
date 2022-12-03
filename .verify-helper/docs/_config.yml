@@ -2,5 +2,3 @@ exclude: [ac-library/]
 title: competitive drogramming library
 theme: jekyll-theme-cayman
 author: drogskol
-description: "バグや提案などは気軽に [drogskol](https://twitter.com/cureskol) に報告して下さい（GitHub の issue などからでも良いです）"
-footer_description: "みんな笑顔でウルトラハッピー"
