@@ -1,4 +1,4 @@
-#include "datastructure/UnionFind.cpp"
+#include "datastructure/unionfind/UnionFind.cpp"
 template<typename WG,typename W=typename WG::weight_type>
 pair<W,vector<int>> minimum_spanning_tree(const WG&g){
   assert(g.is_prepared());

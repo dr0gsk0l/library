@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "datastructure/PotentialUnionFind.cpp"
+#include "datastructure/unionfind/PotentialUnionFind.cpp"
 #include "algebra/group/Add.cpp"
 
 int main(){

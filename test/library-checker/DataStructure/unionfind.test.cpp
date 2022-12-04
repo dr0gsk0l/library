@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "datastructure/UnionFind.cpp"
+#include "datastructure/unionfind/UnionFind.cpp"
 
 int main() {
   int n,q;cin>>n>>q;
