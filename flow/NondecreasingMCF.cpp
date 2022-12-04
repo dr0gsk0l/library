@@ -1,6 +1,7 @@
 #pragma once
+// 辺の重みが流量に対して単調増加な関数
+// 現在の流量を引数として、そこに新たに 1 流す時にかかるコストを返す関数を渡す
 #include "graph/WeightedGraph.cpp"
-// 辺の重みが流量に対して単調非減少な関数
 #define REP_(i,n) for(int i=0;i<(n);i++)
 template<typename TC>
 class NondecreasingMCF{
@@ -22,7 +23,8 @@ class NondecreasingMCF{
   int n;
   WeightedGraph< EdgeInfo > G;
   vector<TC> potential,dist;
-  static constexpr TC INF=numeric_limits<TC>::max()/2;
+  static constexpr TC INF= is_same_v<TC,__int128> ? TC(1e30) : numeric_limits<TC>::max()/2;
+  // numeric_limits<__int128 >::max() は AOJ でバグった
   vector<pair<int,int>> pre; // pre[v]=[u,i] : G[u][i] で v に来た
   vector<int> in_deg,out_deg;
   priority_queue< pair<TC,int>,vector<pair<TC,int>>,greater<pair<TC,int>>> que;
@@ -91,7 +93,7 @@ public:
       if(negative)DAG(s);
       else dijkstra(s);
       if(dist[t]==INF)return make_pair(res,false);
-      REP_(v,n)if(dist[v]<1e15)potential[v]+=dist[v];
+      REP_(v,n)if(dist[v]!=INF)potential[v]+=dist[v];
       res+=potential[t];
       for(int v=t;v!=s;v=pre[v].first){
         auto& w=G[pre[v].first][pre[v].second].weight;
