@@ -33,9 +33,9 @@ public:
     assert(0<=x and x<n and 0<=y and y<n);
     auto [rx,dx]=from_root(x);
     auto [ry,dy]=from_root(y);
-    if(rx==ry)return dx==dy;
     d=AbelGroup::op(d,dx);
     d=AbelGroup::op(d,AbelGroup::inverse(dy));
+    if(rx==ry)return d==AbelMonoid::unit();
     if(sz[rx]<sz[ry]){
       swap(rx,ry);
       d=AbelGroup::inverse(d);
