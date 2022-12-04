@@ -35,7 +35,7 @@ public:
     auto [ry,dy]=from_root(y);
     d=AbelGroup::op(d,dx);
     d=AbelGroup::op(d,AbelGroup::inverse(dy));
-    if(rx==ry)return d==AbelMonoid::unit();
+    if(rx==ry)return d==AbelGroup::unit();
     if(sz[rx]<sz[ry]){
       swap(rx,ry);
       d=AbelGroup::inverse(d);
