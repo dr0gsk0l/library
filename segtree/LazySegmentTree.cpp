@@ -15,7 +15,7 @@ class LazySegmentTree{
     return dat[k];
   }
   void point_apply(int k,const F&f){
-    if(k<size)laz[k]=MF::op(f,laz[k]);
+    if(k<size)MF::Lchop(f,laz[k]);
     else dat[k]=Lazy::mapping(f,dat[k]);
   }
   void push(int k){
@@ -60,8 +60,8 @@ public:
     thrust((R+=size-1)++);
     X vl=MX::unit(),vr=MX::unit();
     while(L<R){
-      if(L&1)vl=MX::op(vl,reflect(L++));
-      if(R&1)vr=MX::op(reflect(--R),vr);
+      if(L&1)MX::Rchop(vl,reflect(L++));
+      if(R&1)MX::Lchop(reflect(--R),vr);
       L>>=1,R>>=1;
     }
     return MX::op(vl,vr);

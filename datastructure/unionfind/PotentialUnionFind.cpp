@@ -16,7 +16,7 @@ public:
     if(x==parent[x])return {x,AbelGroup::unit()};
     auto [r,add]=from_root(parent[x]);
     parent[x]=r;
-    potential[x]=AbelGroup::op(add,potential[x]);
+    AbelGroup::Rchop(potential[x],add);
     return {r,potential[x]};
   }
   
@@ -33,8 +33,8 @@ public:
     assert(0<=x and x<n and 0<=y and y<n);
     auto [rx,dx]=from_root(x);
     auto [ry,dy]=from_root(y);
-    d=AbelGroup::op(d,dx);
-    d=AbelGroup::op(d,AbelGroup::inverse(dy));
+    AbelGroup::Rchop(d,dx);
+    AbelGroup::Rchop(d,AbelGroup::inverse(dy));
     if(rx==ry)return d==AbelGroup::unit();
     if(sz[rx]<sz[ry]){
       swap(rx,ry);

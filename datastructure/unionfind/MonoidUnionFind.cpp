@@ -21,7 +21,7 @@ public:
   T sum(int x){ return value[leader(x)]; }
 
   void multiply(int x,T a){
-    value[leader(x)]=AbelMonoid::op(sum(x),a);
+    AbelMonoid::Rchop(value[leader(x)],a);
   }
   
   bool same(int x,int y){
@@ -36,7 +36,7 @@ public:
     if(sz[x]<sz[y])swap(x,y);
     sz[x]+=sz[y];
     parent[y]=x;
-    value[x]=AbelMonoid::op(value[x],value[y]);
+    AbelMonoid::Rchop(value[x],value[y]);
     num--;
     return true;
   }

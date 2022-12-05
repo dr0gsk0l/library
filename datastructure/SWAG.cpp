@@ -13,7 +13,7 @@ public:
   SWAG():back_value(Monoid::unit()){}
   void push_back(X x){
     back_stack.push(x);
-    back_value=Monoid::op(back_value,a);
+    Monoid::Rchop(back_value,a);
   }
   void push_front(Monoid a){
     front_stack.push(Monoid::op(a,front_value));

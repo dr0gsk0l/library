@@ -9,7 +9,7 @@ class DualSegmentTree{
   vector<F> laz;
 
   void point_apply(int k,const F&f){
-    if(k<size)laz[k]=MF::op(f,laz[k]);
+    if(k<size)MF::Lchop(f,laz[k]);
     else dat[k-size]=Lazy::mapping(f,dat[k-size]);
   }
   void push(int k){

@@ -8,6 +8,7 @@ class Doubling{
   static constexpr P unit={-1,Monoid::unit()};
   vector<vector<P>> DP;
 
+  // a から 2^k 動く
   P k_move(const P&a,int k){
     if(a.first==-1)return a;
     const auto [now,val]=a;

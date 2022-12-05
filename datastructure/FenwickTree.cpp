@@ -17,7 +17,7 @@ public:
     assert(AbelGroup::commute);
     for(int i=1;i<=n;i++){
       int j=i+(i&-i);
-      if(j<=n)chop(dat[j-1],dat[i-1]);
+      if(j<=n)AbelGroup::Rchop(dat[j-1],dat[i-1]);
     }
   }
 
@@ -26,17 +26,17 @@ public:
   void set(int k,const T&x){
     T diff=AbelGroup::op(x,AbelGroup::inverse(raw[k]));
     raw[k]=x;
-    for(++k;k<=n;k+=k&-k)chop(dat[k-1],diff);
+    for(++k;k<=n;k+=k&-k)AbelGroup::Rchop(dat[k-1],diff);
   }
   void multiply(int k,const T&x){
     chop(raw[k],x);
-    for(++k;k<=n;k+=k&-k)chop(dat[k-1],x);
+    for(++k;k<=n;k+=k&-k)AbelGroup::Rchop(dat[k-1],x);
   }
 
   T prod(int k){
     T res=AbelGroup::unit();
     while(k>0){
-      chop(res, dat[k-1]);
+      AbelGroup::Rchop(res, dat[k-1]);
       k -= k&-k;
     }
     return res;
@@ -44,15 +44,15 @@ public:
   T prod(int L,int R){
     T pos=AbelGroup::unit();
     while(L<R){
-      chop(pos,dat[R-1]);
+      AbelGroup::Rchop(pos,dat[R-1]);
       R -= R&-R;
     }
     T neg=AbelGroup::unit();
     while(R<L){
-      chop(neg, dat[L - 1]);
+      AbelGroup::Rchop(neg, dat[L - 1]);
       L -= L&-L;
     }
-    chop(pos,AbelGroup::inverse(neg));
+    AbelGroup::Rchop(pos,AbelGroup::inverse(neg));
     return pos;
   }
 };

@@ -27,7 +27,7 @@ public:
     T sum=AbelGroup::unit();
     while(sta.size()){
       int v=sta.top();sta.pop();
-      sum=AbelGroup::op(sum,value[v]);
+      AbelGroup::Rchop(sum,value[v]);
       value[v]=sum;
       parent[v]=x;
     }
@@ -42,7 +42,7 @@ public:
   // x と連結な頂点全体に *=a
   void multiply(int x,T a){
     x=leader(x);
-    value[x]=AbelGroup::op(value[x],a);
+    AbelGroup::Rchop(value[x],a);
   }
   
   bool same(int x,int y){
@@ -57,7 +57,7 @@ public:
     if(sz[x]<sz[y])swap(x,y);
     sz[x]+=sz[y];
     parent[y]=x;
-    value[y]=AbelGroup::op(value[y],AbelGroup::inverse(value[x]));
+    AbelGroup::Rchop(value[y],AbelGroup::inverse(value[x]));
     num--;
     return true;
   }

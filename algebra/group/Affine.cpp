@@ -6,6 +6,14 @@ struct GroupAffine{
   static constexpr F op(const F &f, const F &g) noexcept {
     return F({f.first * g.first, f.first * g.second + f.second});
   }
+  static constexpr void Rchop(F&f, const F&g){
+    f.second += f.first*g.second;
+    f.first *= g.first;
+  }
+  static constexpr void Lchop(const F&f, F&g){
+    (g.second *= f.first) += f.second;
+    g.first *= f.first;
+  }
   static constexpr F inverse(const F &x) {
     auto [a, b] = x; assert(a!=0);
     a = K(1) / a;

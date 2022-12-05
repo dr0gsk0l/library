@@ -45,11 +45,11 @@ struct TreeLazy{
     X prod_u=MX::unit(),prod_v=MX::unit();
     for(const auto&[l,r]:path_u){
       X val=(MX::commute?seg.prod(r,l+1):seg_r.prod(r,l+1));
-      prod_u=MX::op(prod_u,val);
+      MX::Rchop(prod_u,val);
     }
     for(const auto&[l,r]:path_v){
       X val=seg.prod(r,l+1);
-      prod_v=MX::op(val,prod_v);
+      MX::Lchop(val,prod_v);
     }
     return MX::op(prod_u,prod_v);
   }

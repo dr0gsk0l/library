@@ -31,8 +31,8 @@ public:
     X vl=Monoid::unit(),vr=Monoid::unit();
     L+=size, R+=size;
     while(L<R){
-      if(L&1)vl=Monoid::op(vl,dat[L++]);
-      if(R&1)vr=Monoid::op(dat[--R],vr);
+      if(L&1)Monoid::Rchop(vl,dat[L++]);
+      if(R&1)Monoid::Lchop(dat[--R],vr);
       L>>=1,R>>=1;
     }
     return Monoid::op(vl,vr);
@@ -49,16 +49,13 @@ public:
       while (L % 2 == 0) L >>= 1;
       if (!check(Monoid::op(sm, dat[L]))) {
         while (L < size) {
-          L = 2 * L;
-          if (check(Monoid::op(sm, dat[L]))) {
-            sm = Monoid::op(sm, dat[L]);
-            L++;
-          }
+          L <<= 1;
+          if (check(Monoid::op(sm, dat[L])))
+            Monoid::Rchop(sm, dat[L++]);
         }
         return L - size;
       }
-      sm = Monoid::op(sm, dat[L]);
-      L++;
+      Monoid::Rchop(sm, dat[L++]);
     } while ((L & -L) != L);
     return n;
   }
@@ -74,15 +71,13 @@ public:
       while (R > 1 && (R % 2)) R >>= 1;
       if (!check(Monoid::op(dat[R], sm))) {
         while (R < size) {
-          R = 2 * R + 1;
-          if (check(Monoid::op(dat[R], sm))) {
-            sm = Monoid::op(dat[R], sm);
-            R--;
-          }
+          ( R <<= 1 )++;
+          if (check(Monoid::op(dat[R], sm)))
+            Monoid::Lchop(dat[R--], sm);
         }
         return R + 1 - size;
       }
-      sm = Monoid::op(dat[R], sm);
+      Monoid::Lchop(dat[R], sm);
     } while ((R & -R) != R);
     return 0;
   }
@@ -94,8 +89,8 @@ public:
     X x = Monoid::unit();
     for (int k = 0; k < log + 1; ++k) {
       if (l >= r) break;
-      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++) ^ xor_val)]); }
-      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r) ^ xor_val)]); }
+      if (l & 1) { Monoid::Rchop(x, dat[(size >> k) + ((l++) ^ xor_val)]); }
+      if (r & 1) { Monoid::Rchop(x, dat[(size >> k) + ((--r) ^ xor_val)]); }
       l /= 2, r /= 2, xor_val /= 2;
     }
     return x;

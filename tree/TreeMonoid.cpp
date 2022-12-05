@@ -42,11 +42,11 @@ struct TreeMonoid{
     X prod_u=Monoid::unit(),prod_v=Monoid::unit();
     for(const auto&[l,r]:path_u){
       X val=(Monoid::commute?seg.prod(r,l+1):seg_r.prod(r,l+1));
-      prod_u=Monoid::op(prod_u,val);
+      Monoid::Rchop(prod_u,val);
     }
     for(const auto&[l,r]:path_v){
       X val=seg.prod(r,l+1);
-      prod_v=Monoid::op(val,prod_v);
+      Monoid::Lchop(val,prod_v);
     }
     return Monoid::op(prod_u,prod_v);
   }
