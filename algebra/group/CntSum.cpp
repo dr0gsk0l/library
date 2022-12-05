@@ -9,7 +9,7 @@ struct GroupCntSum{
     x.first+=y.first;
     x.second+=y.second;
   }
-  static constexpr void Lchop(const X&x, X&y){
+  static constexpr void Lchop(const P&x, P&y){
     y.first+=x.first;
     y.second+=x.second;
   }
