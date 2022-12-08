@@ -13,10 +13,10 @@ public:
   SWAG():back_value(Monoid::unit()){}
   void push_back(X x){
     back_stack.push(x);
-    Monoid::Rchop(back_value,a);
+    Monoid::Rchop(back_value,x);
   }
-  void push_front(Monoid a){
-    front_stack.push(Monoid::op(a,front_value));
+  void push_front(X x){
+    front_stack.push(Monoid::op(x,front_value()));
   }
   void pop_front(){
     if(front_stack.empty()){
@@ -29,7 +29,10 @@ public:
     }
     front_stack.pop();
   }
-  X fold(){
+  X prod(){
     return Monoid::op(front_value(),back_value);
+  }
+  int size(){
+    return back_stack.size()+front_stack.size();
   }
 };
