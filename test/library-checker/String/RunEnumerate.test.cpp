@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "string/RunEnumerate.cpp"
+#include "sequence/RunEnumerate.cpp"
 
 int main(){
   string s;cin>>s;
