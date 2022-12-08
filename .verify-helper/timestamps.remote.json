@@ -37,6 +37,7 @@
 "test/library-checker/Polynomial/Exp.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Inv.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2022-11-26 09:34:53 +0900",
+"test/library-checker/String/RunEnumerate.test.cpp": "2022-12-08 09:47:11 +0900",
 "test/library-checker/Tree/LowestCommonAncestor.test.cpp": "2022-12-01 20:59:34 +0900",
 "test/library-checker/Tree/RootedTreeIsomorphismClassification.test.cpp": "2022-12-01 20:59:34 +0900",
 "test/library-checker/Tree/vertex_add_path_sum.test.cpp": "2022-12-05 18:06:16 +0900",
