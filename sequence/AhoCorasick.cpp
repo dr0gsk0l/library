@@ -1,8 +1,8 @@
-#include "string/Trie.cpp"
-
-template<int char_size,int margin>
-struct AhoCorasick:Trie<char_size,margin>{
-  using super=Trie<char_size,margin>;
+#pragma once
+#include "sequence/Trie.cpp"
+template<typename CHAR,int SIGMA,typename COUNT=int>
+struct AhoCorasick:Trie<CHAR,SIGMA,COUNT>{
+  using super=Trie<CHAR,SIGMA,COUNT>;
   using super::nodes,super::nxt;
   
   vector<int> suffix;
@@ -13,7 +13,7 @@ struct AhoCorasick:Trie<char_size,margin>{
     que.emplace(0);
     while(que.size()){
       int now=que.front();que.pop();
-      for(int i=0;i<char_size;i++){
+      for(int i=0;i<SIGMA;i++){
         int&nxt_id=nodes[now].nxt[i];
         if(~nxt_id){
           suffix[nxt_id]=(now?nodes[suffix[now]].nxt[i]:0);
@@ -24,10 +24,11 @@ struct AhoCorasick:Trie<char_size,margin>{
     }
   }
  
-  int match_count(const string&s){
-    int res=0,now=0;
-    for(const char&c:s){
-      now=nxt(now,c);
+  COUNT match_count(const vector<CHAR>&v){
+    int now=0;
+    COUNT res=0;
+    for(const CHAR&a:v){
+      now=nxt(now,a);
       res+=nodes[now].count;
     }
     return res;
