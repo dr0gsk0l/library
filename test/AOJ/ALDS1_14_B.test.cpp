@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "string/RollingHash.cpp"
+#include "sequence/RollingHash.cpp"
 
 int main(){
   string t;cin>>t;
