@@ -1,7 +1,6 @@
 {
 "test/AOJ/2647.test.cpp": "2022-12-04 10:24:14 +0900",
 "test/AOJ/3297.test.cpp": "2022-12-04 20:39:20 +0900",
-"test/AOJ/ALDS1_14_B.test.cpp": "2022-12-02 18:34:08 +0900",
 "test/AOJ/ALDS1_1_C.test.cpp": "2022-12-03 19:22:03 +0900",
 "test/AOJ/ALDS1_5_D.test.cpp": "2022-11-26 10:16:59 +0900",
 "test/AOJ/DSL_1_B.test.cpp": "2022-12-05 17:28:49 +0900",
@@ -37,7 +36,6 @@
 "test/library-checker/Polynomial/Exp.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Inv.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2022-11-26 09:34:53 +0900",
-"test/library-checker/String/RunEnumerate.test.cpp": "2022-11-26 09:11:25 +0900",
 "test/library-checker/Tree/LowestCommonAncestor.test.cpp": "2022-12-01 20:59:34 +0900",
 "test/library-checker/Tree/RootedTreeIsomorphismClassification.test.cpp": "2022-12-01 20:59:34 +0900",
 "test/library-checker/Tree/vertex_add_path_sum.test.cpp": "2022-12-05 18:06:16 +0900",
