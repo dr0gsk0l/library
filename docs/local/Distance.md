@@ -1,6 +1,6 @@
 ---
 title: Distance
-documentation_of: //string/Distance.cpp
+documentation_of: local/Distance.cpp
 ---
 
 * ```int shortest_path(const F&f,const T&s)```  
