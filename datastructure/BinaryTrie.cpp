@@ -1,5 +1,6 @@
 template<int LOG,typename COUNT>
 class BinaryTrie{
+  static_assert(LOG <=64, "Binary Trie overflow");
   using T=conditional_t< LOG<=32, unsigned int, unsigned long long >;
   struct Node{
     array<int,2> nxt_node;
@@ -53,13 +54,13 @@ public:
       int s=f^1;
       if(nxt(now,f)==-1){
         now=nxt(now,s);
-        res+=1<<i;
+        res+=T{1}<<i;
         continue;
       }
       if(nodes[nxt(now,f)].count<=k){
         k-=nodes[nxt(now,f)].count;
         now=nxt(now,s);
-        res+=1<<i;
+        res+=T{1}<<i;
       }
       else
         now=nxt(now,f);
