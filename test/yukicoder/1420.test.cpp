@@ -1,4 +1,5 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1420"
+#define ERROR 1 // Check only whether the answer is -1 or not (by hitonanode)
 #include <bits/stdc++.h>
 using namespace std;
 
