@@ -43,6 +43,7 @@
 "test/library-checker/Tree/vertex_add_path_sum.test.cpp": "2022-12-05 18:06:16 +0900",
 "test/library-checker/Tree/vertex_add_subtree_sum.test.cpp": "2022-12-05 18:06:16 +0900",
 "test/library-checker/Tree/vertex_set_path_composite.test.cpp": "2022-12-05 18:06:16 +0900",
+"test/yukicoder/1036.test.cpp": "2022-12-08 20:22:11 +0900",
 "test/yukicoder/1077.test.cpp": "2022-12-05 13:25:01 +0900",
 "test/yukicoder/1097.test.cpp": "2022-12-05 17:28:49 +0900",
 "test/yukicoder/1502.test.cpp": "2022-12-04 18:13:37 +0900",
