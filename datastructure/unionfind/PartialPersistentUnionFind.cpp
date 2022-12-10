@@ -1,4 +1,5 @@
 #pragma once
+// https://tiramister.net/blog/posts/persistent-unionfind/
 class PartialPersistentUnionFind{
   int now; // 現在時刻
   vector<int> par,rank,time;
@@ -17,29 +18,31 @@ public:
     return find(x,t)==find(y,t);
   }
   // x と y がいつ連結になったか（まだ非連結なら -1 ）
+  // stack を使う実装も考えたけど少し遅そう https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/37116694
   int when_same(int x,int y){
-    stack<int> sx,sy;
-    while(x!=par[x]){
-      sx.push(time[x]);
+    int diff=0; // x の深さ - y の深さ
+    int X=x,Y=y;
+    while(par[x]!=x){
       x=par[x];
+      diff++;
     }
-    while(y!=par[y]){
-      sy.push(time[y]);
+    while(par[y]!=y){
       y=par[y];
+      diff--;
     }
     if(x!=y)return -1;
-    while(sx.size() and sy.size() and sx.top()==sy.top()){
-      sx.pop();
-      sy.pop();
-    }
     int res=0;
-    while(sx.size()){
-      res=max(res,sx.top());
-      sx.pop();
-    }
-    while(sy.size()){
-      res=max(res,sy.top());
-      sy.pop();
+    while(X!=Y){
+      if(diff>0){
+        res=max(res,time[X]);
+        X=par[X];
+        diff--;
+      }
+      else{
+        res=max(res,time[Y]);
+        Y=par[Y];
+        diff++;
+      }
     }
     return res;
   }
