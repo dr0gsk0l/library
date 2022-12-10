@@ -6,7 +6,7 @@ class PartialPersistentUnionFind{
   vector<vector<pair<int,int>>> sz;
   static constexpr int NOW=numeric_limits<int>::max();
 public:
-  PartialPersistentUnionFind(int n):now(0),par(n),rank(n,0),time(n,0),size(x){
+  PartialPersistentUnionFind(int n):now(0),par(n),rank(n,0),time(n,0),sz(n){
     iota(par.begin(),par.end(),0);
   }
 
@@ -20,7 +20,7 @@ public:
     return find(x,t)==find(y,t);
   }
   // x と y がいつ連結になったか（まだ非連結なら -1 ）
-  // stack を使う実装も考えたけど少し遅そう https://atcoder.jp/contests/code-thanks-festival-2017-open/submissions/37116694
+  // stack を使う実装も考えたけど少し遅そう atcoder/submissions/37116694
   int when_same(int x,int y){
     int diff=0; // x の深さ - y の深さ
     int X=x,Y=y;
@@ -67,11 +67,11 @@ public:
   // 時刻 t の連結成分 x のサイズ
   int size(int x,int t=NOW){
     x=find(x,t);
-    int ok=-1,ng=num[x].size();
+    int ok=-1,ng=sz[x].size();
     while(ng-ok>1){
       int mid=(ok+ng)>>1;
-      (num[x][mid].first <= t?ok:ng)=mid;
+      (sz[x][mid].first <= t?ok:ng)=mid;
     }
-    return ( ~ok ? num[x][ok].second : 1 );
+    return ( ~ok ? sz[x][ok].second : 1 );
   }
 };
