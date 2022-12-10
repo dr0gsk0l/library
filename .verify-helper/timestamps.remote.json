@@ -36,6 +36,7 @@
 "test/library-checker/Matrix/Det.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Matrix/Inverse.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Matrix/Product.test.cpp": "2022-11-26 10:16:59 +0900",
+"test/library-checker/New/NumberOfSubsequence.test.cpp": "2022-12-10 11:17:47 +0900",
 "test/library-checker/Polynomial/Exp.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Inv.test.cpp": "2022-11-26 09:34:53 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2022-11-26 09:34:53 +0900",
@@ -50,6 +51,5 @@
 "test/yukicoder/1097.test.cpp": "2022-12-05 17:28:49 +0900",
 "test/yukicoder/1420.test.cpp": "2022-12-09 14:47:54 +0900",
 "test/yukicoder/1502.test.cpp": "2022-12-04 18:13:37 +0900",
-"test/yukicoder/2109.test.cpp": "2022-12-04 19:43:25 +0900",
-"test/yukicoder/416.test.cpp": "2022-12-10 10:44:33 +0900"
+"test/yukicoder/2109.test.cpp": "2022-12-04 19:43:25 +0900"
 }
