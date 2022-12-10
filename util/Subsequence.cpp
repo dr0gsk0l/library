@@ -2,15 +2,14 @@ template<typename T,typename U>
 T sparse_subsequence(const vector<U>&v){
   map<U,T> mp;
   T res=1;
-  for(U p:v){
+  for(const U&p:v){
     T tmp=res;
     res=res*2-mp[p];
     mp[p]=tmp;
   }
   return res;
 }
-
-template<typename T,typename SIZE>
+template<typename T,int SIZE>
 T subsequence(const vector<int>&v){
   vector<T> memo(SIZE,0);
   T res=1;
@@ -21,7 +20,6 @@ T subsequence(const vector<int>&v){
   }
   return res;
 }
-
 template<typename T>
 T subsequence_alphabet(const string&s){
   vector<int> v;v.reserve(s.size());

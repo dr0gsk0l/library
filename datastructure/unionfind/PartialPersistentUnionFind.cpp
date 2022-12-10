@@ -3,18 +3,20 @@
 class PartialPersistentUnionFind{
   int now; // 現在時刻
   vector<int> par,rank,time;
+  vector<vector<pair<int,int>>> sz;
+  static constexpr int NOW=numeric_limits<int>::max();
 public:
-  PartialPersistentUnionFind(int n):now(0),par(n),rank(n,0),time(n,0){
+  PartialPersistentUnionFind(int n):now(0),par(n),rank(n,0),time(n,0),size(x){
     iota(par.begin(),par.end(),0);
   }
 
   // 時刻 t の leader
-  int find(int x, int t=numeric_limits<int>::max()){
+  int find(int x, int t=NOW){
     while(x!=par[x] and time[x]<t)x=par[x];
     return x;
   }
   // 時刻 t で x,y が連結か
-  bool same(int x,int y,int t=numeric_limits<int>::max()){
+  bool same(int x,int y,int t=NOW){
     return find(x,t)==find(y,t);
   }
   // x と y がいつ連結になったか（まだ非連結なら -1 ）
@@ -57,8 +59,19 @@ public:
       return -1;
     }
     if(rank[x]<rank[y])swap(x,y);
+    sz[x].emplace_back(now, size(x)+size(y));
     if(rank[x]==rank[y])rank[x]++;
     par[y]=x;
     return time[y]=now;
+  }
+  // 時刻 t の連結成分 x のサイズ
+  int size(int x,int t=NOW){
+    x=find(x,t);
+    int ok=-1,ng=num[x].size();
+    while(ng-ok>1){
+      int mid=(ok+ng)>>1;
+      (num[x][mid].first <= t?ok:ng)=mid;
+    }
+    return ( ~ok ? num[x][ok].second : 1 );
   }
 };
