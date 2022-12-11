@@ -4,7 +4,6 @@ using namespace std;
 
 #include "mod/Modint.cpp"
 #include "mod/MintUtility.cpp"
-int digit(char c){ return (c>='0' and c<='9' ? c-'0' : -1);}
 
 using mint=Mint<long long,1000'000'007>;
 MintUtility<mint> M;
