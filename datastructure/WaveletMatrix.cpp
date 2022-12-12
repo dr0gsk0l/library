@@ -20,6 +20,8 @@ class WaveletMatrix{
   }
 public:
   WaveletMatrix(vector<T> v):n(v.size()){
+    for(const T&p:v)
+      assert(0<=p and p<(1ull<<LOG));
     vector<T> lv(n),rv(n);
     REP_(h,LOG){
       mat[h]=FullyIndexableDictionary(n);
