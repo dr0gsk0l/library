@@ -2,17 +2,17 @@
 #include "datastructure/FullyIndexableDictionary.cpp"
 #include "util/Compress.cpp"
 #define REP_(i,n) for(int i=0;i<(n);i++)
-template<typename T,bool Compress=true>
+template<typename T,bool COMPRESS=true>
 class WaveletMatrix{
-  using U=conditional_t<Compress,int,T>;
+  using U=conditional_t<COMPRESS,int,T>;
   static_assert(is_integral_v<U>,"Wavelet Matrix is only for integer");
   int n,memo,log;
   vector<FullyIndexableDictionary> mat;
   vector<int> zero_cnt;
-  Compress C;
+  Compress<T,true> C;
 
   constexpr U comp(const T&a)const{
-    if constexpr(Compress){ return C.leq(a); }
+    if constexpr(COMPRESS){ return C.leq(a); }
     else{ return a; }
   }
 
@@ -27,11 +27,11 @@ class WaveletMatrix{
     return mat[h].rank(idx,bit)+(bit?zero_cnt[h]:0);
   }
 public:
-  WaveletMatrix(vector<T> v):n(v.size()){
-    if constexpr(Compress){
-      C=Compress(v,true);
+  WaveletMatrix(vector<T> v,int log_=0):n(v.size()),log(log_){
+    if constexpr(COMPRESS){
+      C=Compress<T,true>(v);
       for(T&a:v)a=C[a];
-      for(log=0;C.size()>=(1ull<<log);log++){}
+      while(C.size()>=(1ull<<log))log++;
     }
     else{
       T mx=0;
@@ -39,7 +39,7 @@ public:
         assert(a>=0);
         if(mx<a)mx=a;
       }
-      for(log=0;mx>=(1ull<<log);log++){}
+      while(mx>=(1ull<<log))log++;
     }
     mat.resize(log);
     zero_cnt.resize(log);
@@ -63,7 +63,7 @@ public:
 
   // [l,r) の x の個数
   int rank(const T&x,int l,int r){
-    if constexpr(Compress){
+    if constexpr(COMPRESS){
       if(!C.exist(x))return 0;
     }
     U a=comp(x);
@@ -78,7 +78,7 @@ public:
 
   // k 番目の x の index
   int select(const T&x,int k){
-    a=comp(x);
+    U a=comp(x);
     if(rank(a,n)<k)return -1;
     k+=memo;
     for(int h=log-1;h>=0;h--){
@@ -108,7 +108,7 @@ public:
         r-=R;
       }
     }
-    if constexpr(Compress){ return C.r[res]; }
+    if constexpr(COMPRESS){ return C.r(res); }
     else{ return res; }
   }
   T kth_smallest(int l,int r,int k){ return kth_largest(l,r,r-l-k-1); }
