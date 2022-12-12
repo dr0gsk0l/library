@@ -20,7 +20,7 @@ int main(){
     v[i]+=INF;
   }
 
-  WaveletMatrix<int,31> WM(v);
+  WaveletMatrix<int> WM(v);
   ll ans=0;
   for(int k=1;k<=n;k++){
     vector<ll> pre{0};
