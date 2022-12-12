@@ -1,32 +1,70 @@
-template<typename T>
-struct Compress{
-  map<T,int> mp;
-  vector<T> rev;
-
-  Compress()=default;
-  Compress(const vector<T>&v,bool banpei=false){
-    for(const T&a:v)mp[a];
-    if(banpei)mp[numeric_limits<T>::max()],mp[numeric_limits<T>::min()];
+#pragma once
+#define ALL_(v) v.begin(),v.end()
+template<typename T,bool Sentinel=false>
+class Compress{
+  vector<T> v;
+  bool prepared;
+public:
+  Compress():prepared(false){
+    if constexpr(Sentinel){
+      v={numeric_limits<T>::min(),numeric_limits<T>::max()};
+    }
+  }
+  Compress(const vector<T>&w):v(w),prepared(false){
+    if constexpr(Sentinel){
+      v.push_back(numeric_limits<T>::min());
+      v.push_back(numeric_limits<T>::max());
+    }
     build();
   }
   
-  void add(T a){ mp[a]; }
+  void add(T a){ 
+    assert(!prepared);
+    v.push_back(a); 
+  }
   void build(){
-    int cnt=0;
-    rev.resize(mp.size());
-    for(auto&[val,id]:mp){
-      rev[cnt]=val;
-      id=cnt++;
-    }
+    assert(!prepared);
+    prepared=true;
+    sort(ALL_(v));
+    v.erase(unique(ALL_(v)),v.end());
   }
 
-  int operator[](T a)const{return mp.at(a);}
-  int geq(T a)const{return mp.lower_bound(a)->second;}
-  int leq(T a)const{return (--mp.upper_bound(a))->second;}
-  int gt(T a)const{return mp.upper_bound(a)->second;}
-  int lt(T a)const{return (--mp.lower_bound(a))->second;}
+  bool is_prepared()const{ return prepared; }
 
-  T r(int id)const{return rev[id];}
-
-  int size()const{return mp.size();}
+  int operator[](const T&a)const{
+    assert(prepared);
+    auto it=lower_bound(ALL_(v),a);
+    assert(*it==a);
+    return distance(v.begin(),it);
+  }
+  int geq(const T&a)const{
+    assert(prepared);
+    auto it=lower_bound(ALL_(v),a);
+    return distance(v.begin(),it);
+  }
+  int gt(const T&a)const{
+    assert(prepared);
+    auto it=upper_bound(ALL_(v),a);
+    return distance(v.begin(),it);
+  }
+  int leq(const T&a)const{
+    assert(prepared);
+    auto it=--upper_bound(ALL_(v),a);
+    return distance(v.begin(),it);
+  }
+  int lt(const T&a)const{
+    assert(prepared);
+    auto it=--lower_bound(ALL_(v),a);
+    return distance(v.begin(),it);
+  }
+  T r(int id)const{
+    assert(prepared);
+    return v[id];
+  }
+  bool exist(const T&a)const{
+    assert(prepared);
+    return (*lower_bound(ALL_(v),a))==a;
+  }
+  int size()const{return v.size();}
 };
+#undef ALL_
