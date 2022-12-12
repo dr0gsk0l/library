@@ -22,7 +22,7 @@ struct Matrix{
   }
   Matrix& operator-=(const Matrix &A){
     assert(r==A.r&&c==A.c);
-    REP_(i,r)REP_(j,c)M[i][j]+=A[i][j];
+    REP_(i,r)REP_(j,c)M[i][j]-=A[i][j];
     return *this;
   }
   Matrix operator+(const Matrix &A){ return Matrix(M)+=A; }
