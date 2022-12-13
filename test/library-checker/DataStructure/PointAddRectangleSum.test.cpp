@@ -4,22 +4,24 @@ using namespace std;
 #define REP(i,n) for(int i=0;i<(n);i++)
 
 #include "datastructure/GroupWaveletMatrix.cpp"
-#include "util/Projection.cpp"
+#include "r2/XY.cpp"
+#include "r2/Projection.cpp"
 #include "algebra/group/Add.cpp"
 
 using ll=long long;
+using r2=XY<ll>;
 
 int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   int n,q;cin>>n>>q;
-  vector<pair<int,int>> forP(n);
-  forP.reserve(n+q);
+  vector<r2> r2s(n);
+  r2s.reserve(n+q);
   vector<int> x(n),y(n),w(n),qt(q),l(q),d(q),r(q),u(q);
   REP(i,n){
     cin>>x[i]>>y[i]>>w[i];
-    forP[i]=make_pair(x[i],y[i]);
+    r2s[i]=r2(x[i],y[i]);
   }
   REP(j,q){
     cin>>qt[j];
@@ -27,14 +29,14 @@ int main(){
       cin>>l[j]>>d[j]>>r[j]>>u[j];
     else{
       cin>>l[j]>>d[j]>>r[j];
-      forP.emplace_back(l[j],d[j]);
+      r2s.emplace_back(l[j],d[j]);
     }
   }
 
-  auto P=Projection(forP);
+  auto P=Projection(r2s);
   vector<int> Y(P.size(),0);
   vector<ll> W(P.size(),0);
-  REP(id,P.size())Y[id]=P.r(id).second;
+  REP(id,P.size())Y[id]=P.r(id).y;
   REP(i,n){
     int id=P.id(x[i],y[i]);
     W[id]+=w[i];
