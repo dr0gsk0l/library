@@ -7,11 +7,13 @@ class Compress{
 public:
   Compress():prepared(false){
     if constexpr(Sentinel){
+      static_assert(std::numeric_limits<T>::is_specialized,"cannot use Sentinel");
       v={numeric_limits<T>::min(),numeric_limits<T>::max()};
     }
   }
   Compress(const vector<T>&w):v(w),prepared(false){
     if constexpr(Sentinel){
+      static_assert(std::numeric_limits<T>::is_specialized,"cannot use Sentinel");
       v.push_back(numeric_limits<T>::min());
       v.push_back(numeric_limits<T>::max());
     }

@@ -11,6 +11,7 @@ class GroupWaveletMatrix:WaveletMatrix<T,true>{
   using S=typename AbelGroup::value_type;
   vector<FT> ft;
 public:
+  using super::rank,super::select,super::kth_largest,super::kth_smallest,super::range_freq,super::lt,super::leq,super::gt,super::geq;
   GroupWaveletMatrix(vector<T> v):super::WaveletMatrix(v){
     ft.resize(log);
     for(auto&p:ft)p=FT(n);

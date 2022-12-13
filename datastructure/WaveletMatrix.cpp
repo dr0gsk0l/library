@@ -34,12 +34,14 @@ protected:
   }
 public:
   WaveletMatrix(vector<T> v,int log_=0):n(v.size()),data(v),log(log_){
+    vector<U> cv(n);
     if constexpr(COMPRESS){
       C=Compress<T,true>(v);
-      for(T&a:v)a=C[a];
+      for(int i=0;i<n;i++)cv[i]=C[v[i]];
       while(C.size()>=(1ull<<log))log++;
     }
     else{
+      cv=v;
       T mx=0;
       for(const T&a:v){
         assert(a>=0);
@@ -54,16 +56,16 @@ public:
       mat[h]=FullyIndexableDictionary(n);
       int l=0,r=0;
       REP_(i,n)
-        if(high_bit(v[i],h)){
-          rv[r++]=v[i];
+        if(high_bit(cv[i],h)){
+          rv[r++]=cv[i];
           mat[h].set(i);
         }
         else
-          lv[l++]=v[i];
+          lv[l++]=cv[i];
       zero_cnt[h]=l;
       mat[h].build();
-      swap(lv,v);
-      REP_(i,r)v[l+i]=rv[i];
+      swap(lv,cv);
+      REP_(i,r)cv[l+i]=rv[i];
     }
   }
 
