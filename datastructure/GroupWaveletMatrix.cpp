@@ -30,17 +30,12 @@ public:
     U a=comp(upper);
     S res=AbelGroup::unit();
     REP_(h,log){
-      bool bit=high_bit(a,h);
-      if(bit){
+      if(high_bit(a,h)){
         int L=mat[h].rank(l,0),R=mat[h].rank(r,0);
         AbelGroup::Rchop(res,ft[h].sum(L,R));
-        l=nxt(l,h,a);
-        r=nxt(r,h,a);
       }
-      else{
-        l=nxt(l,h,a);
-        r=nxt(r,h,a);
-      }
+      l=nxt(l,h,a);
+      r=nxt(r,h,a);
     }
     return res;
   }
