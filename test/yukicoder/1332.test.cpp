@@ -17,6 +17,6 @@ int main(){
   int q;cin>>q;
   while(q--){
     int l,r,x;cin>>l>>r>>x;l--;
-    cout<<min(x-(WM.leq(l,r,x)).value_or(-INF), (WM.geq(l,r,x)).value_or(INF)-x)<<"\n"; 
+    cout<<min(x-(WM.leq(l,r,x)).value_or(-INF), (WM.geq(l,r,x)).value_or(2*INF)-x)<<"\n"; 
   }
 }

@@ -66,5 +66,7 @@ public:
     return (*lower_bound(ALL_(v),a))==a;
   }
   int size()const{return v.size();}
+  T max()const{ return v.back(); }
+  T min()const{ return v[0]; }
 };
 #undef ALL_

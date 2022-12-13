@@ -4,12 +4,14 @@
 #define REP_(i,n) for(int i=0;i<(n);i++)
 template<typename T,bool COMPRESS=true>
 class WaveletMatrix{
+protected:
   using U=conditional_t<COMPRESS,int,T>;
   static_assert(is_integral_v<U>,"Wavelet Matrix is only for integer");
   int n,memo,log;
   vector<FullyIndexableDictionary> mat;
   vector<int> zero_cnt;
   Compress<T,true> C;
+  vector<T> data;
 
   constexpr U comp(const T&x)const{
     if constexpr(COMPRESS){ return C.geq(x); }
@@ -31,7 +33,7 @@ class WaveletMatrix{
     return mat[h].rank(idx,bit)+(bit?zero_cnt[h]:0);
   }
 public:
-  WaveletMatrix(vector<T> v,int log_=0):n(v.size()),log(log_){
+  WaveletMatrix(vector<T> v,int log_=0):n(v.size()),data(v),log(log_){
     if constexpr(COMPRESS){
       C=Compress<T,true>(v);
       for(T&a:v)a=C[a];

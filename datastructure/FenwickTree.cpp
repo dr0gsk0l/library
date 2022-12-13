@@ -32,6 +32,7 @@ public:
     chop(raw[k],x);
     for(++k;k<=n;k+=k&-k)AbelGroup::Rchop(dat[k-1],x);
   }
+  void add(int k,const T&x){ multiply(k,x); }
 
   T prod(int k){
     T res=AbelGroup::unit();
@@ -41,6 +42,7 @@ public:
     }
     return res;
   }
+  T sum(int k){ return prod(k); }
   T prod(int L,int R){
     T pos=AbelGroup::unit();
     while(L<R){
@@ -55,4 +57,5 @@ public:
     AbelGroup::Rchop(pos,AbelGroup::inverse(neg));
     return pos;
   }
+  T sum(int L,int R){ return prod(L,R); }
 };
