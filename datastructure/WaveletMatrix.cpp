@@ -11,8 +11,12 @@ class WaveletMatrix{
   vector<int> zero_cnt;
   Compress<T,true> C;
 
-  constexpr U comp(const T&a)const{
-    if constexpr(COMPRESS){ return C.leq(a); }
+  constexpr U comp(const T&x)const{
+    if constexpr(COMPRESS){ return C.geq(x); }
+    else{ return x; }
+  }
+  constexpr T uncomp(const U&a){
+    if constexpr(COMPRESS){ return C.r(a); }
     else{ return a; }
   }
 
@@ -62,7 +66,7 @@ public:
   }
 
   // [l,r) の x の個数
-  int rank(const T&x,int l,int r){
+  int rank(int l,int r,const T&x){
     if constexpr(COMPRESS){
       if(!C.exist(x))return 0;
     }
@@ -74,10 +78,10 @@ public:
     memo=l;
     return r-l;
   }
-  int rank(const T&x,int r){ return rank(x,0,r); }
+  int rank(int r,const T&x){ return rank(x,0,r); }
 
   // k 番目の x の index
-  int select(const T&x,int k){
+  int select(int k,const T&x){
     U a=comp(x);
     if(rank(a,n)<k)return -1;
     k+=memo;
@@ -108,9 +112,53 @@ public:
         r-=R;
       }
     }
-    if constexpr(COMPRESS){ return C.r(res); }
-    else{ return res; }
+    return uncomp(res);
   }
   T kth_smallest(int l,int r,int k){ return kth_largest(l,r,r-l-k-1); }
+
+  // [l,r) で x 未満の個数
+  int range_freq(int l,int r,const T&upper){
+    U a=comp(upper);
+    int res=0;
+    REP_(h,log){
+      bool bit=high_bit(a,h);
+      if(bit){
+        res+=r-l;
+        l=nxt(l,h,a);
+        r=nxt(r,h,a);
+        res-=r-l;
+      }
+      else{
+        l=nxt(l,h,a);
+        r=nxt(r,h,a);
+      }
+    }
+    return res;
+  }
+  // [l,r) で [lower,upper) の個数
+  int range_freq(int l,int r,const T&lower,const T&upper){
+    return range_freq(l,r,upper)-range_freq(l,r,lower);
+  }
+
+  optional<T> lt(int l,int r,const T&x){
+    int cnt=range_freq(l,r,x);
+    if(cnt)return kth_smallest(l,r,cnt-1);
+    return nullopt;
+  }
+  optional<T> leq(int l,int r,const T&x){
+    if(rank(l,r,x))return x;
+    return lt(l,r,x);
+  }
+  optional<T> geq(int l,int r,const T&x){
+    int cnt=r-l-range_freq(l,r,x);
+    if(cnt)return kth_largest(l,r,cnt-1);
+    return nullopt;
+  }
+  optional<T> gt(int l,int r,const T&x){
+    T y;
+    if constexpr(COMPRESS){ y=C.r(C.gt(x)); }
+    else{ y=x+1; }
+    return geq(l,r,y);
+  }
 };
 #undef REP_
