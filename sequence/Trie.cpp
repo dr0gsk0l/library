@@ -74,4 +74,15 @@ public:
   }
   X prod()const{ return nodes[0].suffix_val; }
   int size()const{ return nodes.size(); }
+
+  template<typename F>
+  void query(const vector<CHAR>&v,const F&f,int l=0,int r=-1){
+    if(r<0)r=v.size();
+    int now=0;
+    for(int i=l;i<r;i++){
+      now=nxt(now,v[i]);
+      if(~now)f(now);
+      else break;
+    }
+  }
 };

@@ -22,14 +22,7 @@ int main(){
   }
 
   int ans=0;
-  for(int i=0;i<ss.size();i++){
-    int now=0;
-    for(int j=i;j<ss.size();j++){
-      int nxt=T.nxt(now,ss[j]);
-      if(nxt==-1)break;
-      now=nxt;
-      ans+=T.val(now);
-    }
-  }
+  for(int i=0;i<ss.size();i++)
+    T.query(ss,[&](int id){ans+=T.val(id);},i);
   cout<<ans<<endl;
 }
