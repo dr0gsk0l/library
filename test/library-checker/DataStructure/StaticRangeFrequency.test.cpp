@@ -1,4 +1,4 @@
-#define PROBLEM ""
+#define PROBLEM "https://judge.yosupo.jp/problem/static_range_frequency"
 #include <bits/stdc++.h>
 using namespace std;
 
