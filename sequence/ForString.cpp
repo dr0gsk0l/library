@@ -1,3 +1,4 @@
+#pragma once
 template<char MARGIN>
 struct ForString{
   static constexpr char change(char c){ return c-MARGIN; }

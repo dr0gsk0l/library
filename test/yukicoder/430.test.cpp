@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include "sequence/ForString.cpp"
 #include "sequence/Trie.cpp"
 
 int main(){
