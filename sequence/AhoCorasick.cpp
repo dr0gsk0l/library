@@ -41,7 +41,7 @@ public:
     int now=0;
     for(const CHAR&a:v){
       now=nxt(now,a);
-      AbelMonoid::Rchop(res,val[now]);
+      AbelMonoid::Rchop(res,val(now));
     }
     return res;
   }
