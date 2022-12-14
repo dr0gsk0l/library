@@ -67,9 +67,13 @@ public:
     assert(0<=node_id and node_id<nodes.size());
     vector<CHAR> res;
     while(~nodes[node_id].pre){
-      int p=nodes[node_id].pre;
-      for(int p:nodes[p].nxt)if(p==node_id)res.push_back(p);
-      node_id=p;
+      int pre=nodes[node_id].pre;
+      for(int j=0;j<SIGMA;j++)
+        if(nxt(pre,j)==node_id){
+          res.push_back(j);
+          break;
+        }
+      node_id=pre;
     }
     reverse(res.begin(),res.end());
     return res;
