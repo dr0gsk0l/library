@@ -1,35 +1,37 @@
 #pragma once
-template<typename CHAR,int SIGMA,typename COUNT=int>
+#include "algebra/group/Add.cpp"
+template<typename CHAR,int SIGMA,typename AbelMonoid=GroupAdd<int>>
 class Trie{
+  using X=typename AbelMonoid::value_type;
   struct Node{
     array<int,SIGMA> nxt;
-    COUNT count,//自分の個数
-          ancestor_count;//（自分を含まない）子孫の個数
-    Node():,count(0),ancestor_count(0){
+    int pre;
+    X val,suffix_val; // suffix_val は自身を含まない
+    Node(int pre):pre(pre),val(AbelMonoid::unit()),suffix_val(AbelMonoid::unit()){
       fill(nxt.begin(),nxt.end(),-1);
     }
   };
   vector<Node> nodes;
-
-  inline int& nxt(int now,const CHAR&a){ return nodes[now].nxt[a]; }
 public:
-  Trie():nodes(1,Node()){}
+  Trie():nodes(1,Node(-1)){}
+
+  int& nxt(int now,const CHAR&a){ return nodes[now].nxt[a]; }
   
-  int add(const vector<CHAR>&v,COUNT num=1){
+  int add(const vector<CHAR>&v,X x=1){
     int now=0;
     for(const CHAR&a:v){
       assert(0<=a and a<SIGMA);
       if(!~nxt(now,a)){
         nxt(now,a)=nodes.size();
-        nodes.emplace_back();
+        nodes.emplace_back(now);
       }
-      nodes[now].ancestor_count+=num;
+      AbelMonoid::Rchop(nodes[now].suffix_val,x);
       now=nxt(now,a);
     }
-    nodes[now].count+=num;
+    AbelMonoid::Rchop(nodes[now].val,x);
     return now;
   }
-  int node_idx(const vector<CHAR>&v)const{
+  int node_idx(const vector<CHAR>&v){
     // s の Node を返す　追加されて無ければ -1
     int now=0;
     for(const CHAR&a:v){
@@ -38,49 +40,38 @@ public:
     }
     return now;
   }
-  COUNT count(const vector<CHAR>&v)const{
-    int id=node_idx(s);
-    return (~id?nodes[id].count:0);
+  X val(const vector<CHAR>&v){
+    int id=node_idx(v);
+    return ( ~id ? nodes[id].val : AbelMonoid::unit());
   }
+  X& val(int node_id){ return nodes[node_id].val; }
   //vは含まない
-  COUNT prefix_count(const vector<CHAR>&v)const{
+  X prefix_prod(const vector<CHAR>&v){
     int now=0;
-    COUNT sum=0;
+    X sum=AbelMonoid::unit();
     for(const CHAR&a:v){
       if(!~nxt(now,a))break;
-      sum+=nodes[now].count;
-      now=nxt(now,c);
+      AbelMonoid::Rchop(sum,nodes[now].val);
+      now=nxt(now,a);
     }
     return sum;
   }
   //vは含まない
-  COUNT suffix_count(const vector<CHAR>&v)const{
-    int id=node_idx(s);
-    return (~id?nodes[id].ancestor_count:0);
+  X suffix_prod(const vector<CHAR>&v)const{
+    int id=node_idx(v);
+    return (~id?nodes[id].suffix_val:AbelMonoid::unit());
   }
-
-  COUNT size()const{ return nodes[0].ancestor_count; }
-
-  // 辞書順, 0-indexed で並べた際の k 番目を出力
-  vector<CHAR> k_th(COUNT k)const{
-    assert(size()>k);
+  vector<CHAR> restore(int node_id){
+    assert(0<=node_id and node_id<nodes.size());
     vector<CHAR> res;
-    int now=0;
-    while(true){
-      if(nodes[now].count>k)return res;
-      k-=nodes[now].count;
-      for(int i=0;i<SIGMA;i++){
-        int to=nxt(now,i);
-        if(to==-1)continue;
-        COUNT c=nodes[to].count + nodes[to].ancestor_count;
-        if(c<=k)k-=c;
-        else{
-          now=to;
-          res.push_back(i);
-          break;
-        }
-      }
+    while(~nodes[node_id].pre){
+      int p=nodes[node_id].pre;
+      for(int p:nodes[p].nxt)if(p==node_id)res.push_back(p);
+      node_id=p;
     }
-    return res; // ここに来ることは無い
+    reverse(res.begin(),res.end());
+    return res;
   }
+  X prod()const{ return nodes[0].suffix_val; }
+  int size()const{ return nodes.size(); }
 };
