@@ -6,7 +6,6 @@ class AhoCorasick:Trie<CHAR,SIGMA,AbelMonoid>{
   using super::nodes;
   using X=typename AbelMonoid::value_type;
   vector<int> suffix;
-  vector<X> cum_val;
   bool prepared;
 public:
   using super::nxt,super::add,super::node_idx,super::val,super::prefix_prod,super::suffix_prod,super::query,super::restore,super::prod,super::size;
@@ -19,7 +18,6 @@ public:
     assert(!prepared);
     prepared=true;
     suffix.resize(nodes.size());
-    cum_val.resize(nodes.size());
     queue<int> que;
     que.push(0);
     while(que.size()){
@@ -28,7 +26,7 @@ public:
         int&nxt_id=nodes[now].nxt[i];
         if(~nxt_id){
           suffix[nxt_id]=(now?nodes[suffix[now]].nxt[i]:0);
-          cum_val[nxt_id]=AbelMonoid::op(val(nxt_id),cum_val[suffix[nxt_id]]);
+          AbelMonoid::Rchop(val(nxt_id),val(suffix[nxt_id]));
           que.push(nxt_id);
         }
         else
@@ -43,7 +41,7 @@ public:
     int now=0;
     for(const CHAR&a:v){
       now=nxt(now,a);
-      AbelMonoid::Rchop(res,cum_val[now]);
+      AbelMonoid::Rchop(res,val[now]);
     }
     return res;
   }

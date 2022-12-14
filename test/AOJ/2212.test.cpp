@@ -16,14 +16,13 @@ int solve(int h,int w){
   int S=GR.find('S'),T=GR.find('G');
   auto&G=GR.G;
 
-  set<int> ban;
   AhoCorasick<char,4> AC;
   int m;cin>>m;
   REP(_,m){
     string t;cin>>t;
     vector<char> tt(t.size());
     REP(i,t.size())tt[i]=mp.at(t[i]);
-    ban.insert(AC.add(tt));
+    AC.add(tt);
   }
   AC.build();
 
@@ -35,7 +34,7 @@ int solve(int h,int w){
     auto [idx,now]=que.front();que.pop();
     for(auto&e:G[idx]){
       int nxt=AC.nxt(now,e.weight);
-      if(ban.count(nxt))continue;
+      if(AC.val(nxt))continue;
       if(dp[e.to][nxt]<0){
         dp[e.to][nxt]=dp[idx][now]+1;
         que.emplace(e.to,nxt);
