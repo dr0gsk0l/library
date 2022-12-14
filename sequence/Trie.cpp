@@ -1,7 +1,9 @@
 #pragma once
+#include "sequence/ForString.cpp"
 #include "algebra/group/Add.cpp"
 template<typename CHAR,int SIGMA,typename AbelMonoid=GroupAdd<int>>
 class Trie{
+protected:
   using X=typename AbelMonoid::value_type;
   struct Node{
     array<int,SIGMA> nxt;
