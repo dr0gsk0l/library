@@ -11,6 +11,8 @@ class AhoCorasick:Trie<CHAR,SIGMA,AbelMonoid>{
 public:
   using super::nxt,super::add,super::node_idx,super::val,super::prefix_prod,super::suffix_prod,super::query,super::restore,super::prod,super::size;
 
+  AhoCorasick():prepared(false){}
+
   bool is_prepared()const{ return prepared; }
  
   void build(){

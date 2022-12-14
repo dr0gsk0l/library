@@ -5,6 +5,7 @@ template<typename T>
 class Grid{
   const int h,w;
   optional<T> ban;
+  // D,R,U,L
   static constexpr pair<int,int> d4[4]={{1,0},{0,1},{-1, 0},{0, -1}};
   template<typename vecvecT> void build(const vecvecT&grid){
     REP_(y,h)REP_(x,w){
