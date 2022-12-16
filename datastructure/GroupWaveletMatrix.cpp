@@ -42,5 +42,24 @@ public:
   S sum(int l,int r,const T&lower,const T&upper){
     return AbelGroup::op(sum(l,r,upper),AbelGroup::inverse(sum(l,r,lower)));
   }
+  S kth_largest_sum(int l,int r,int k){
+    assert(0<=k and k<r-l);
+    S res=AbelGroup::unit();
+    REP_(h,log){
+      int L=mat[h].rank(l);
+      int R=mat[h].rank(r);
+      if(R-L>k){
+        l=L+zero_cnt[h];
+        r=R+zero_cnt[h];
+      }
+      else{
+        AbelGroup::Rchop(res,ft[h].sum(L+zero_cnt[h],R+zero_cnt[h]));
+        k-=R-L;
+        l-=L;
+        r-=R;
+      }
+    }
+    return res;
+  }
 };
 #undef REP_

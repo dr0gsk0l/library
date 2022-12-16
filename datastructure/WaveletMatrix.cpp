@@ -186,5 +186,27 @@ public:
     }
     return res;
   }
+  vector<tuple<int,int,int>> kth_largest_intervals(int l,int r,int k){
+    assert(0<=k and k<r-l);
+    vector<tuple<int,int,int>> res;
+    REP_(h,log){
+      int L=mat[h].rank(l);
+      int R=mat[h].rank(r);
+      if(R-L>k){
+        l=L+zero_cnt[h];
+        r=R+zero_cnt[h];
+      }
+      else{
+        res.emplace_back(h,L+zero_cnt[h],R+zero_cnt[h]);
+        k-=R-L;
+        l-=L;
+        r-=R;
+      }
+    }
+    return res;
+  }
+  vector<tuple<int,int,int>> kth_smallest_intervals(int l,int r,int k){
+    return kth_largest_intervals(l,r,r-l-k-1);
+  }
 };
 #undef REP_
