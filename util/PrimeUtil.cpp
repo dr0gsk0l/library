@@ -31,7 +31,7 @@ public:
         int limit=MAX/i+1;
         for(ll j=pow2(i);j<=MAX;j*=i){
           for(int k=j;k<=MAX;k+=j)
-            prime_factor[k].second++;
+            prime_factor[k].back().second++;
           if(j>limit)break;
         }
       }
