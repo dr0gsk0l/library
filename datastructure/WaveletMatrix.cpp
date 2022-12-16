@@ -125,17 +125,12 @@ public:
     U a=comp(upper);
     int res=0;
     REP_(h,log){
-      bool bit=high_bit(a,h);
-      if(bit){
-        res+=r-l;
-        l=nxt(l,h,a);
-        r=nxt(r,h,a);
-        res-=r-l;
+      if(high_bit(a,h)){
+        int L=mat[h].rank(l,0),R=mat[h].rank(r,0);
+        res+=R-L;
       }
-      else{
-        l=nxt(l,h,a);
-        r=nxt(r,h,a);
-      }
+      l=nxt(l,h,a);
+      r=nxt(r,h,a);
     }
     return res;
   }
@@ -163,6 +158,33 @@ public:
     if constexpr(COMPRESS){ y=C.r(C.gt(x)); }
     else{ y=x+1; }
     return geq(l,r,y);
+  }
+
+  // セグ木などを載せる時用
+  // BIT は専用のライブラリを作ってあるが、一応抽象化も持っておく
+  // 構築したものを返してるので遅そう
+  int height()const{ return log; }
+  vector<int> points(int idx){
+    vector<int> res(log);
+    U a=comp(data[idx]);
+    REP_(h,log){
+      idx=nxt(idx,h,a);
+      res[h]=idx;
+    }
+    return res;
+  }
+  vector<tuple<int,int,int>> intervals(int l,int r,const T&upper){
+    vector<tuple<int,int,int>> res;
+    U a=comp(upper);
+    REP_(h,log){
+      if(high_bit(a,h)){
+        int L=mat[h].rank(l,0),R=mat[h].rank(r,0);
+        res.emplace_back(h,L,R);
+      }
+      l=nxt(l,h,a);
+      r=nxt(r,h,a);
+    }
+    return res;
   }
 };
 #undef REP_
