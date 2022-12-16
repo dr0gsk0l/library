@@ -5,7 +5,7 @@
 template<typename T,typename AbelGroup>
 class GroupWaveletMatrix:WaveletMatrix<T,true>{
   using super=WaveletMatrix<T,true>;
-  using super::log,super::n,super::nxt,super::comp,super::data,super::high_bit,super::mat;
+  using super::log,super::n,super::nxt,super::comp,super::data,super::high_bit,super::mat,super::zero_cnt;
   using U=typename super::U;
   using FT=FenwickTree<AbelGroup>;
   using S=typename AbelGroup::value_type;
