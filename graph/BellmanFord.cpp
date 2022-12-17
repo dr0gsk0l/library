@@ -17,7 +17,7 @@ pair<vector<optional<T>>,vector<int>> bellman_ford(WG&g,int s=0){
           pre[e.to]=v;
           update=true;
         }
-    if(!update)make_pair(d,pre);
+    if(!update)return {d,pre};
   }
   auto now_d=d;
   for(int v=0;v<n;v++)if(d[v]<INF)
