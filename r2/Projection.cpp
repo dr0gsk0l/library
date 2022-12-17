@@ -4,7 +4,7 @@
 template<typename T>
 class Projection{
   using r2=XY<T>;
-  Compress<r2> C; // pair で番兵は壊れるので使わない
+  Compress<r2> C;
 public:
   Projection(const vector<r2>&v):C(v){}
   int size(){ return C.size(); }
