@@ -4,7 +4,7 @@ using namespace std;
 
 #include "graph/WeightedGraph.cpp"
 #include "graph/NegativeCycleFind.cpp"
-#include "graph/WarshallFloyd.cpp"
+#include "graph/shortest_path/WarshallFloyd.cpp"
 
 using ll=long long;
 

@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "graph/WeightedGraph.cpp"
-#include "graph/BellmanFord.cpp"
+#include "graph/shortest_path/BellmanFord.cpp"
 
 using ll=long long;
 

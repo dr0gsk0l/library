@@ -17,7 +17,11 @@ pair<vector<optional<T>>,vector<int>> bellman_ford(WG&g,int s=0){
           pre[e.to]=v;
           update=true;
         }
-    if(!update)return {d,pre};
+    if(!update){
+      vector<optional<T>> d_(n);
+      for(int i=0;i<n;i++)d_[i]=d[i];
+      return {d_,pre};
+    }
   }
   auto now_d=d;
   for(int v=0;v<n;v++)if(d[v]<INF)
