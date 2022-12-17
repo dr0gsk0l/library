@@ -14,6 +14,6 @@ int main(){
     int u,v,c,d;cin>>u>>v>>c>>d;
     fl.add_arc(u,v,c,d);
   }
-  auto [ans,ok]=fl.flow(0,n-1,f);
+  auto [ans,ok]=fl.flow(f);
   cout<< (ok?ans:-1) <<endl;
 }
