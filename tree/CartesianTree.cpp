@@ -6,31 +6,30 @@
 template<typename T>
 WeightedTree<pair<int,int>> cartesian_tree(const vector<T>&v){
   int n=v.size();
-  vector<pair<int,int>> interval(n);
-  for(int i=0;i<n;i++)interval[i]={0,n};
+  vector<pair<int,int>> lr(n,{0,n});
   stack<int> sta;
   for(int i=0;i<n;i++){
     int pre=-1;
     while(sta.size() and v[i]<v[sta.top()]){
       pre=sta.top();
-      interval[pre].second=i;
+      lr[pre].second=i;
       sta.pop();
     }
-    if(sta.size())interval[i].first=sta.top()+1;
+    if(sta.size())lr[i].first=sta.top()+1;
     sta.push(i);
   }
   WeightedTree<pair<int,int>> t(n);
   int root;
   for(int i=0;i<n;i++){
-    const auto&[l,r]=interval[i];
+    const auto&[l,r]=lr[i];
     if(l==0 and r==n)
       root=i;
     else{
-      if(l==0)t.add_edge(r,i,{l,r});
-      if(r==n)t.add_edge(l-1,i,{l,r});
+      if(l==0)t.add_edge(r,i,lr[i]);
+      if(r==n)t.add_edge(l-1,i,lr[i]);
       if(l!=0 and r!=n)
-        if(v[l-1]>v[r])t.add_edge(l-1,i,{l,r});
-        else t.add_edge(r,i,{l,r});
+        if(v[l-1]>v[r])t.add_edge(l-1,i,lr[i]);
+        else t.add_edge(r,i,lr[i]);
     }
   }
   t.build(root);
