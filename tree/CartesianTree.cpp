@@ -9,10 +9,8 @@ WeightedTree<pair<int,int>> cartesian_tree(const vector<T>&v){
   vector<pair<int,int>> lr(n,{0,n});
   stack<int> sta;
   for(int i=0;i<n;i++){
-    int pre=-1;
     while(sta.size() and v[i]<v[sta.top()]){
-      pre=sta.top();
-      lr[pre].second=i;
+      lr[sta.top()].second=i;
       sta.pop();
     }
     if(sta.size())lr[i].first=sta.top()+1;
