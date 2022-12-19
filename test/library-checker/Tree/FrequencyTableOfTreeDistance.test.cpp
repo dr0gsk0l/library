@@ -12,11 +12,14 @@ using namespace atcoder;
 using ll=long long;
 
 int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+
   int n;cin>>n;
   Tree T(n);
   T.scan(0);
-
-  vector<ll> ans(n,0);
+  
+  vector<ll> ans(2*n,0);
   vector<bool> used(n,false);
 
   auto calc_D=[&](const vector<ll>&D,bool add){
@@ -33,12 +36,11 @@ int main(){
       if(e.to!=pre and !used[e.to])
         make_D(make_D,e.to,v,d+1,D);
   };
-  
   auto CD=centroid_decomposition(T);
   for(int c:CD){
     used[c]=true;
     vector<ll> D{1};
-    for(auto e:T[c]){
+    for(const auto&e:T[c]){
       if(used[e.to])continue;
       vector<ll> subD{0};
       make_D(make_D,e.to,c,1,subD);
@@ -49,5 +51,5 @@ int main(){
     calc_D(D,true);
   }
 
-  for(int i=1;i<n;i++)cout<< ans[i]/2 <<"\n "[i+1<n];
+  REP(i,n)if(i)cout<< ans[i]/2 <<"\n "[i+1<n];
 }
