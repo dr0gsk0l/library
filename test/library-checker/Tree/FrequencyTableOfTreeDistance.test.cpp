@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
 #include <bits/stdc++.h>
 using namespace std;
-#define REP(i,n) for(int i=0;i<(n);i++)
 
 #include <atcoder/convolution>
 using namespace atcoder;
@@ -30,7 +29,7 @@ int main(){
     if(D.size()<=d)D.push_back(0);
     D[d]++;
   };
-  auto finish=[&](bool add){;
+  auto finish=[&](bool add){
     auto D2=convolution_ll(D,D);
     for(int i=0;i<D2.size() and i<n;i++)
       if(add)ans[i]+=D2[i];
@@ -40,5 +39,5 @@ int main(){
 
   CD.all_calc(0,next_val,action,finish);
 
-  REP(i,n)if(i)cout<< ans[i]/2 <<"\n "[i+1<n];
+  for(int i=1;i<n;i++)cout<< ans[i]/2 <<"\n "[i+1<n];
 }

@@ -1,5 +1,6 @@
 #pragma once
-template<typename AbelGroup>
+#include "algebra/group/Add.cpp"
+template<typename AbelGroup=GroupAdd<long long>>
 class FenwickTree{
   using T=typename AbelGroup::value_type;
   int n;
