@@ -5,11 +5,16 @@ using namespace std;
 #include "sequence/RollingHash.cpp"
 
 int main(){
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
+
   string t;cin>>t;
-  RollingHash T(t);
+  RollingHash RH(FSa::change(t));
+
   string p;cin>>p;
-  auto h=RollingHash::full_hash(p);
+  auto h=RollingHash<char>::full_hash(FSa::change(p));
+
   for(int i=0;i+p.size()<=t.size();i++)
-    if(T.get_hash(i,i+p.size())==h)
+    if(RH.get_hash(i,i+p.size())==h)
       cout<<i<<"\n";
 }

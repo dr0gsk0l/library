@@ -1,10 +1,12 @@
+#pragma once
 #include <atcoder/string>
 using namespace atcoder;
 
 #define SIZE_(s) int(s.size())
+
 struct RunEnumerate{
   string s;
-  RunEnumerate(string s):s(s){ build(); }
+  RunEnumerate(const string&s):s(s){ build(); }
 
   struct Run{
     int t,l,r;

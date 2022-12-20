@@ -95,7 +95,7 @@ struct FormalPowerSeries:vector<T>{
   FPS inv()const{
     assert(size() and at(0)!=0);
     FPS res(1,at(0).inv());
-    for(int i=0;(1<<i)<size();i++)res*=(2-res*(*this));
+    for(int i=0;(1<<i)<MX;i++)res*=(2-res*(*this));
     return res;
   }
 
