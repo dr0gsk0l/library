@@ -30,7 +30,7 @@ protected:
     const WeightedGraph* g;
     int l,r;
   public:
-    OutgoingEdges(const WeightedGraph* g,int l,int r):g(g),l(l),r(r){}
+    ConstOutgoingEdges(const WeightedGraph* g,int l,int r):g(g),l(l),r(r){}
     const edge_type* begin()const{ return &(g->edges[l]); }
     const edge_type* end()const{ return &(g->edges[r]); }
     const edge_type& operator[](int i)const{ return g->edges[l+i]; }
