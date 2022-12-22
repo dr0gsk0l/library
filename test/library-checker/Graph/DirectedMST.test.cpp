@@ -1,4 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/directedmst"
+#define IGNORE
 #include <bits/stdc++.h>
 using namespace std;
 
