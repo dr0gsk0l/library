@@ -1,7 +1,7 @@
 #pragma once
 #include "datastructure/unionfind/UnionFind.cpp"
 template<typename WG,typename W=typename WG::weight_type>
-optional< pair<W,vector<int>> > minimum_spanning_arborescence(const WG g,int r=0){
+optional< pair<W,vector<int>> > minimum_spanning_arborescence(WG g,int r=0){
   int n=g.n;
   W res=0;
   vector<W> new_add(n,0);
