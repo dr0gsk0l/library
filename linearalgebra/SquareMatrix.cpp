@@ -11,7 +11,7 @@ struct SquareMatrix{
 
   SquareMatrix(K a=0){ 
     for(vec& v:M)v.fill(0); 
-    if(a)REP_(i,N)M[i][i]=a;
+    if(a!=0)REP_(i,N)M[i][i]=a;
   }
   SquareMatrix(const mat&A):M(A){}
   SquareMatrix(const vector<vector<K>>&v){
