@@ -1,6 +1,6 @@
 #include "graph/WeightedGraph.cpp"
 template<typename WG,typename T=typename WG::weight_type>
-pair<vector<T>,vector<int>> bfs01(WG&g,int s=0){
+pair<vector<T>,vector<int>> bfs01(const WG&g,int s=0){
   assert(g.is_prepared());
   vector<T> d(g.n,-1);
   vector<int> pre(g.n,-1);

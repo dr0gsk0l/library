@@ -1,7 +1,7 @@
 // s からの最短距離が定まるなら最短距離, 無限に小さく出来るなら nullopt
 // そもそも到達出来ない場合は pre が -1 になっている
 template<typename WG,typename T=typename WG::weight_type>
-pair<vector<optional<T>>,vector<int>> bellman_ford(WG&g,int s=0){
+pair<vector<optional<T>>,vector<int>> bellman_ford(const WG&g,int s=0){
   assert(g.is_prepared());
   int n=g.n;
   static constexpr T INF=numeric_limits<T>::max()/2;

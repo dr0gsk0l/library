@@ -22,7 +22,7 @@ class SCC{
 public:
   Graph DAG;
   vector<vector<int>> component;
-  SCC(DirectedGraph&G):n(G.n),G(G),belong(n),used(n,false){
+  SCC(const DirectedGraph&G):n(G.n),G(G),belong(n),used(n,false){
     assert(G.is_prepared());
     visit.reserve(n);
     R=reverse_graph(G);

@@ -3,7 +3,7 @@ class ReRooting{
   int n;
   TREE T;
 public:
-  ReRooting(TREE&T):T(T),n(T.n){}
+  ReRooting(const TREE&T):T(T),n(T.n){}
 
   template<typename F1,typename F2>
   vector<Data> build(const F1&score,const F2&merge,const Data&unit){
