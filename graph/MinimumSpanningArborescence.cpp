@@ -1,5 +1,4 @@
 #pragma once
-#define IGNORE
 #include "datastructure/unionfind/UnionFind.cpp"
 template<typename WG,typename W=typename WG::weight_type>
 optional< pair<W,vector<int>> > minimum_spanning_arborescence(const WG g,int r=0){
