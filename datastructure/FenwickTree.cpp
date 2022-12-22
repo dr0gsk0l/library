@@ -5,7 +5,6 @@ class FenwickTree{
   using T=typename AbelGroup::value_type;
   int n;
   vector<T> dat,raw;
-  void chop(T&a,T b){ a=AbelGroup::op(a,b); }
 public:
   FenwickTree(){
     assert(AbelGroup::commute);
@@ -23,6 +22,7 @@ public:
   }
 
   T operator[](int k)const{ return raw[k]; }
+  T get(int k)const{ return raw[k]; }
 
   void set(int k,const T&x){
     T diff=AbelGroup::op(x,AbelGroup::inverse(raw[k]));
@@ -30,12 +30,12 @@ public:
     for(++k;k<=n;k+=k&-k)AbelGroup::Rchop(dat[k-1],diff);
   }
   void multiply(int k,const T&x){
-    chop(raw[k],x);
+    AbelGroup::Rchop(raw[k],x);
     for(++k;k<=n;k+=k&-k)AbelGroup::Rchop(dat[k-1],x);
   }
   void add(int k,const T&x){ multiply(k,x); }
 
-  T prod(int k){
+  T prod(int k)const{
     T res=AbelGroup::unit();
     while(k>0){
       AbelGroup::Rchop(res, dat[k-1]);
@@ -43,8 +43,8 @@ public:
     }
     return res;
   }
-  T sum(int k){ return prod(k); }
-  T prod(int L,int R){
+  T sum(int k)const{ return prod(k); }
+  T prod(int L,int R)const{
     T pos=AbelGroup::unit();
     while(L<R){
       AbelGroup::Rchop(pos,dat[R-1]);
@@ -52,11 +52,10 @@ public:
     }
     T neg=AbelGroup::unit();
     while(R<L){
-      AbelGroup::Rchop(neg, dat[L - 1]);
+      AbelGroup::Rchop(neg,dat[L-1]);
       L -= L&-L;
     }
-    AbelGroup::Rchop(pos,AbelGroup::inverse(neg));
-    return pos;
+    return AbelGroup::op(pos,AbelGroup::inverse(neg));
   }
-  T sum(int L,int R){ return prod(L,R); }
+  T sum(int L,int R)const{ return prod(L,R); }
 };
