@@ -1,12 +1,12 @@
 template<typename T>
-class CumulativeSum{
+class CumulativeSum2D{
   using U=conditional_t< is_same_v<T,int>,long long,T >;
   int h,w;
   vector<vector<U>> A;
   bool prepared;
 public:
-  CumulativeSum(int h=0,int w=0):h(h),w(w),A(h+1,vector<U>(w+1,0)),prepared(false){}
-  CumulativeSum(const vector<vector<T>>&v):h(v.size()),w(v[0].size()),A(h+1,vector<U>(w+1,0)),prepared(false){
+  CumulativeSum2D(int h=0,int w=0):h(h),w(w),A(h+1,vector<U>(w+1,0)),prepared(false){}
+  CumulativeSum2D(const vector<vector<T>>&v):h(v.size()),w(v[0].size()),A(h+1,vector<U>(w+1,0)),prepared(false){
     for(int i=0;i<h;i++)for(int j=0;j<w;j++)A[i+1][j+1]=v[i][j];
     build();
   }
