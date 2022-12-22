@@ -3,10 +3,7 @@
 using namespace std;
 
 #include "algebra/group/Add.cpp"
-#include "algebra/Reverse.cpp"
-#include "segtree/SegmentTree.cpp"
 #include "tree/Tree.cpp"
-#include "tree/HLD.cpp"
 #include "tree/TreeMonoid.cpp"
 
 int main(){
