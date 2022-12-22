@@ -26,8 +26,22 @@ protected:
     edge_type& operator[](int i){ return g->edges[l+i]; }
     int size()const{ return r-l; }
   };
+  class ConstOutgoingEdges{
+    const WeightedGraph* g;
+    int l,r;
+  public:
+    OutgoingEdges(const WeightedGraph* g,int l,int r):g(g),l(l),r(r){}
+    const edge_type* begin()const{ return &(g->edges[l]); }
+    const edge_type* end()const{ return &(g->edges[r]); }
+    const edge_type& operator[](int i)const{ return g->edges[l+i]; }
+    int size()const{ return r-l; }
+  };
 public:
   OutgoingEdges operator[](int v){
+    assert(prepared);
+    return { this,in_deg[v],in_deg[v+1] };
+  }
+  const ConstOutgoingEdges operator[](int v)const{
     assert(prepared);
     return { this,in_deg[v],in_deg[v+1] };
   }
