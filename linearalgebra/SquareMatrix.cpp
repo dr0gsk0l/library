@@ -10,9 +10,8 @@ struct SquareMatrix{
   mat M;
 
   SquareMatrix(int a=0){ 
-    assert(a==0||a==1);
     for(vec& v:M)v.fill(0); 
-    if(a==1)REP_(i,N)M[i][i]=1;
+    if(a)REP_(i,N)M[i][i]=a;
   }
   SquareMatrix(const mat&A):M(A){}
   SquareMatrix(const vector<vector<K>>&v){
