@@ -9,7 +9,7 @@ struct SquareMatrix{
   using mat=array<vec,N>;
   mat M;
 
-  SquareMatrix(int a=0){ 
+  SquareMatrix(K a=0){ 
     for(vec& v:M)v.fill(0); 
     if(a)REP_(i,N)M[i][i]=a;
   }
