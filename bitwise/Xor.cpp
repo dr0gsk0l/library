@@ -21,7 +21,7 @@ struct BitwiseXor{
       REP_(S,1<<n){
         if(bitwise::in(S,i))continue;
         T x=A[S],y=A[S|(1<<i)];
-        A[S]+=y
+        A[S]+=y;
         A[S|(1<<i)]-=x;
       }
     T inv=T(1)/(1<<n);
