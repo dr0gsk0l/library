@@ -16,6 +16,6 @@ int main(){
   vector<mint> a(N),b(N);
   REP(i,N)cin>>a[i];
   REP(i,N)cin>>b[i];
-  auto c=RankedBitwise::subset_convolution(a,b);
+  auto c=BitwiseRanked::convolution(a,b);
   REP(i,N)cout<<c[i]<<"\n "[i+1<N];
 }

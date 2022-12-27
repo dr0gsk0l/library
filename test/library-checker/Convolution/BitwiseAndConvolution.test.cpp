@@ -4,7 +4,7 @@ using namespace std;
 #define REP(i,n) for(int i=0;i<(n);i++)
 
 #include "mod/Modint.cpp"
-#include "bitwise/Base.cpp"
+#include "bitwise/And.cpp"
 
 using mint=Mint<long long>;
 
@@ -17,6 +17,6 @@ int main(){
   vector<mint> a(N),b(N);
   REP(i,N)cin>>a[i];
   REP(i,N)cin>>b[i];
-  auto c=Bitwise::and_convolution(a,b);
+  auto c=BitwiseAnd::convolution(a,b);
   REP(i,N)cout<<c[i]<<"\n "[i+1<N];
 }
