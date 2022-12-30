@@ -25,9 +25,7 @@ class Expander:
     # library_include に以下の正規表現を代入している
     # r'' は raw 文字列 エスケープシーケンスをしなくて良くなる https://note.nkmk.me/python-raw-string-escape/
     # acl と自分のを分けているのは、acl 内の <algorithm> などを探さないようにするため
-    acl_pattern = 'atcoder/[a-z_]*(|.hpp)'
-    drog_pattern = '[/\w]*.cpp'
-    __library_include_checker = re.compile(r'#include\s*["<]({}|{})[">]\s*'.format(acl_pattern,drog_pattern))
+    
     
     # 正規表現の解説 https://murashun.jp/article/programming/regular-expression.html
     # \s : スペース
@@ -42,8 +40,15 @@ class Expander:
     # Expander の変数 lib_paths に引数の lib_paths を代入 List[Path] は型を明示的に書いてる
     # Path は pathlib から import した型
     # lib_paths は list なので、複数のライブラリを渡せる
-    def __init__(self, lib_paths: List[Path]):
+    def __init__(self, lib_paths: List[Path], acl_compile:bool, replace_endl:bool):
         self.lib_paths = lib_paths
+        self.replace_endl = replace_endl
+        acl_pattern = 'atcoder/[a-z_]*(|.hpp)'
+        drog_pattern = '[/\w]*.cpp'
+        if acl_compile:
+            self.__library_include_checker = re.compile(r'#include\s*["<]({}|{})[">]\s*'.format(acl_pattern,drog_pattern))
+        else:
+            self.__library_include_checker = re.compile(r'#include\s*["<]({})[">]\s*'.format(drog_pattern))
 
     # library の名前を渡して、（見つかれば）そこへのパスを返す
     def __find_library_path(self, library_file_name: str) -> Path:
@@ -111,6 +116,8 @@ class Expander:
                 result.extend(self.__expand_library(library_path))
                 continue
 
+            if self.replace_endl:
+                line = line.replace('endl',"'\\n'")
             result.append(line)
         return '\n'.join(result)
 
@@ -132,9 +139,11 @@ if __name__ == "__main__":
     # この時 '-a2' と一緒に書けば "-a2 sarusa" でも良くなる（省略形）
     # action='store_true' は引数を取らず、実行時にそれの --arg が呼ばれていたら true が代入される
     # 上の qiita を読むと action や help 以外にも色々あって楽しい
-    parser.add_argument('source', help='Source File')
+    parser.add_argument('source', nargs='?', default='b.cpp', help='Source File')
     parser.add_argument('--lib', nargs='*', help='Path to Library')
     parser.add_argument('--pbcopy', '-cp', action='store_true', help='output to pbcopy')
+    parser.add_argument('--acl', action='store_true', help='expand acl')
+    parser.add_argument('--endl', action='store_false', help='not replace endl')
     opts = parser.parse_args()
 
     print("[INFO] " + GREEN + "expand library" + END)
@@ -151,7 +160,7 @@ if __name__ == "__main__":
     # カレントディレクトリを lib_paths に追加
     lib_paths.append(Path.cwd())
     # Expander の構築
-    expander = Expander(lib_paths)
+    expander = Expander(lib_paths,opts.acl,opts.endl)
     # コマンドライン引数から source を取り出す
     source = open(opts.source).read()
     # combined.cpp の作成
