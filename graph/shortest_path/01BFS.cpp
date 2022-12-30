@@ -1,3 +1,4 @@
+#pragma once
 #include "graph/WeightedGraph.cpp"
 template<typename WG,typename T=typename WG::weight_type>
 pair<vector<T>,vector<int>> bfs01(const WG&g,int s=0){
