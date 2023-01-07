@@ -32,3 +32,9 @@ struct FSAa{
 using FSA=ForString<'A'>;
 using FSa=ForString<'a'>;
 using FS0=ForString<'0'>;
+
+#ifdef STR
+  #define STRA(s) STR(s##tomato);auto s=FSA::change(s##tomato);
+  #define STRa(s) STR(s##tomato);auto s=FSa::change(s##tomato);
+  #define STR0(s) STR(s##tomato);auto s=FS0::change(s##tomato);
+#endif
