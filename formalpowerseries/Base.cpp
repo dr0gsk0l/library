@@ -5,6 +5,7 @@ struct FormalPowerSeries:vector<T>{
   using vector<T>::resize;
   using vector<T>::size;
   using vector<T>::at;
+  using vector<T>::assign;
 
   FormalPowerSeries()=default;
   FormalPowerSeries(int n,T a={}){
@@ -112,7 +113,7 @@ struct FormalPowerSeries:vector<T>{
     while(n){
       if(n&1)res*=now;
       now*=now;
-      res>>=1;
+      n>>=1;
     }
     return res;
   }
