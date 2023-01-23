@@ -6,14 +6,15 @@
 random_device rollonghash_rnd;
 mt19937 rollonghash_mt(rollonghash_rnd());
 
-template<typename CHAR=char, MINT=Modint61>
+template<typename CHAR=char,typename MINT=Modint61>
 class RollingHash{
   using ll=long long;
-  static constexpr ll mod = MINT.mod();
-  using T = conditional_t< less<ll>(mod,ll(numeric_limits<int>::max())), int, ll>;
+  static constexpr ll mod = (1LL<<61)-1;
+  //using T = conditional_t< less<ll>(mod,ll(numeric_limits<int>::max())), int, ll>;
+  using T=ll;
   inline static const MINT base=MINT::raw(rollonghash_mt()%(mod-2)+2);
 
-  static MINT nxt_hash(MINT x,CHAR c){ return (x*base) + MINT::raw(c); }
+  
 
   int n;
   vector<MINT> hash,power;
@@ -24,6 +25,8 @@ public:
       power[i+1]=power[i]*base;
     }
   }
+
+  static MINT nxt_hash(MINT x,CHAR c){ return (x*base) + MINT::raw(c); }
   
   T get_hash(int l=0,int r=-1){
     if(r<0)r=n;
