@@ -96,12 +96,12 @@ public:
     return x;
   }
 
-  ostream& operator<<(ostream&os)const{
+  friend ostream& operator<<(ostream&os,const SegmentTree&seg){
     os<<"(";
-    for(int L=1;L<=size;L<<=1){
+    for(int L=1;L<=seg.size;L<<=1){
       os<<"[";
       for(int j=L;j<(L<<1);j++){
-        os<<dat[j];
+        os<<seg.dat[j];
         if(j+1<(L<<1))os<<",";
       }
       os<<"]";
