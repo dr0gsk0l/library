@@ -10,14 +10,16 @@ struct FormalPowerSeries:vector<T>{
   using vector<T>::vector;
   using vector<T>::begin;
   using vector<T>::end;
+  using vector<T>::back;
+  using vector<T>::pop_back;
 
   void strict(int n){ if(size()>n)resize(n); }
 
   FormalPowerSeries(const vector<T>&f){
-    while(f.size() and f.back()==0)f.pop_back();
     int n=min(MX,int(f.size()));
     resize(n);
     REP_(i,n)at(i)=f[i];
+    while(size() and back()==0)pop_back();
   }
 
   static FPS unit(){ return {1}; }
@@ -124,16 +126,60 @@ struct FormalPowerSeries:vector<T>{
     return res;
   }
 
-  FPS operator()(FPS f)const{
-    assert(!f.size() or f[0]==0); // 自身が多項式なら f[0]!=0 でも良い
+  // *this = f_1 + f_2 x^n ⇒ [*this←f_1, return f_2]
+  FPS separate(int n){
+    if(size()<=n)return FPS(0);
+    FPS f_2(size()-n);
+    for(int i=n;i<size();i++)f_2[i-n]=at(i);
+    strict(n);
+    return f_2;
+  }
+
+  FPS operator()(FPS g)const{
+    assert(!g.size() or g[0]==0); // 自身が多項式なら g[0]!=0 でも良い
+    if(size()==0)return *this;
     if(size()==1)return FPS(1,at(0));
-    if(size()==2)return FPS(at(0)+at(1)*f);
-    int n=size()/2;
-    FPS s=*this;
-    s.strict(n);
-    FPS t(size()-n);
-    for(int i=n;i<size();i++)t[i-n]=at(i);
-    return s(f)+f.pow(n)*t(f);
+    if(size()==2)return FPS(at(0)+at(1)*g);
+
+    int m=sqrt(MX/20);
+    FPS&g1=g;
+    FPS g2=g1.separate(m);
+
+    int z;
+    for(z=1;z<g1.size() and g1[z]==0;z++){}
+    if(z==g1.size()){
+      FPS res(0),
+          g2pow=FPS::unit();
+      for(int i=0;i*m<MX and i<size();i++,g2pow*=g2)
+        res += at(i) * g2pow<<(i*m);
+      return res;
+    }
+    
+    //　f[l,l+d) ○ g1 を再帰で計算
+    auto rec=[&](auto rec,int l,int d){
+      if(d==0 or l>=size())return FPS(0);
+      if(d==1)return FPS(1,at(l));
+      if(d==2)return at(l) + (l+1<size()?at(l+1)*g1:FPS(0));
+      FPS f1=rec(rec,l,d>>1);
+      FPS f2=rec(rec,l+(d>>1),d-(d>>1));
+      f2 *= g1.pow(d>>1);
+      return f1+f2;
+    };
+    FPS res = rec(rec,0,size());
+
+    FPS dfg=res,
+        g1inv=(differential(g)>>(--z)).inv(),
+        g2pow=FPS::unit();
+    T factinv=1;
+    
+    for(int i=1;i*m<MX;i++){
+      dfg=(differential(dfg)>>z)*g1inv;
+      dfg.strict(MX-m*i);
+      (g2pow*=g2).strict(MX-m*i);
+      factinv /= i;
+      res += factinv * (dfg * g2pow) << (m*i);
+    }
+    return res;
   }
 
   static FPS differential(FPS f){
