@@ -22,7 +22,7 @@ class MCF{
     return (a>b and (a=b,true));
   }
   bool SP_update(int from,int edge_id){
-    if(dist[e.from]==INF)return false;
+    if(dist[from]==INF)return false;
     const auto&e=G[from][edge_id];
     if((e.weight).cap==0)return false;
     if(chmin(dist[e.to],dist[from]+(e.weight).cost+potential[from]-potential[e.to])){
