@@ -12,6 +12,7 @@ struct FormalPowerSeries:vector<T>{
   using vector<T>::end;
   using vector<T>::back;
   using vector<T>::pop_back;
+  using value_type=T;
 
   void strict(int n){ if(size()>n)resize(n); }
   void shrink(){ while(size() and back()==0)pop_back(); }
