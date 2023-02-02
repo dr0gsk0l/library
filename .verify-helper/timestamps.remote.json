@@ -54,7 +54,6 @@
 "test/library-checker/Matrix/Product.test.cpp": "2022-12-22 11:56:51 +0900",
 "test/library-checker/New/NumberOfSubsequence.test.cpp": "2022-12-10 11:17:47 +0900",
 "test/library-checker/Polynomial/Composition.test.cpp": "2023-02-02 13:14:01 +0900",
-"test/library-checker/Polynomial/DivisionOfPolynomials.test.cpp": "2023-02-02 15:00:08 +0900",
 "test/library-checker/Polynomial/Exp.test.cpp": "2023-02-02 13:14:01 +0900",
 "test/library-checker/Polynomial/Inv.test.cpp": "2023-02-02 13:14:01 +0900",
 "test/library-checker/Polynomial/Log.test.cpp": "2023-02-02 13:14:01 +0900",
