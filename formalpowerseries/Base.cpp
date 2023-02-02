@@ -14,12 +14,13 @@ struct FormalPowerSeries:vector<T>{
   using vector<T>::pop_back;
 
   void strict(int n){ if(size()>n)resize(n); }
+  void shrink(){ while(size() and back()==0)pop_back(); }
 
   FormalPowerSeries(const vector<T>&f){
     int n=min(MX,int(f.size()));
     resize(n);
     REP_(i,n)at(i)=f[i];
-    while(size() and back()==0)pop_back();
+    shrink();
   }
 
   static FPS unit(){ return {1}; }
@@ -182,6 +183,27 @@ struct FormalPowerSeries:vector<T>{
     return res;
   }
 
+  // f(x+c)
+  void taylor_shift(T c){
+    shrink();
+    if(size()<=1 or c==0)return;
+    int n=size();
+    T fact=1;
+    REP_(i,n){
+      if(i)fact*=i;
+      at(i)*=fact;
+    }
+    reverse(begin(),end());
+    *this *= exp(c).pre(n);
+    strict(n);
+    reverse(begin(),end());
+    T finv=fact.inv();
+    for(int i=n-1;i>=0;i--){
+      at(i)*=finv;
+      finv *= i;
+    }
+  }
+
   static FPS differential(FPS f){
     if(f.size()<=1)return FPS(0);
     REP_(i,f.size()-1)f[i]=(i+1)*f[i+1];
@@ -208,6 +230,13 @@ struct FormalPowerSeries:vector<T>{
       res *= (f.pre(1<<(n+1))+1-log(res).pre(1<<(n+1)));
       res.strict(1<<(n+1));
     }
+    return res;
+  }
+  // exp(nx)
+  static FPS exp(const T n){
+    if(n==0)return unit();
+    FPS res(MX,1);
+    for(int i=1;i<MX;i++)res[i]=res[i-1]*n/i;
     return res;
   }
 };
