@@ -13,7 +13,7 @@ istream& operator>>(istream &is,mint &a){
   return is;
 }
 #include "formalpowerseries/Base.cpp"
-using FPS=FormalPowerSeries<mint,(1<<17)>;
+using FPS=FormalPowerSeries<mint,(1<<17)+1>;
 #include "formalpowerseries/MultipointEvaluation.cpp"
 
 int main(){

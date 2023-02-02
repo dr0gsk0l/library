@@ -103,15 +103,15 @@ struct FormalPowerSeries:vector<T>{
     return FPS(begin(),begin()+n);
   }
 
-  FPS inv()const{
+  FPS inv(int SZ=MX)const{
     assert(size() and at(0)!=0);
     FPS res(1,at(0).inv());
-    for(int n=0;(1<<n)<MX;n++){
+    for(int n=0;(1<<n)<SZ;n++){
       // mod[1<<n] → mod[1<<(n+1)]
       res *= (2- (res*pre(1<<(n+1))).pre(1<<(n+1)));
       res.strict(1<<(n+1));
     }
-    return res;
+    return res.pre(SZ);
   }
 
   FPS pow(int n)const{
