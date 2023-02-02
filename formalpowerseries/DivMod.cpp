@@ -9,7 +9,8 @@ pair<FPS,FPS> div_mod(FPS f,FPS g){
   if(f.size()<g.size())return {FPS(0),f};
   REVERSE_(f);
   REVERSE_(g);
-  FPS q=(f/g).pre(f.size()-g.size()+1);
+  int d=f.size()-g.size()+1;
+  FPS q = (f.pre(d) * (g.inv().pre(d))).pre(d);
   REVERSE_(q);
   REVERSE_(f);
   REVERSE_(g);
