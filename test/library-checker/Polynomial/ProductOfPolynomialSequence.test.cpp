@@ -14,7 +14,7 @@ istream& operator>>(istream &is,mint &a){
 }
 
 #include "formalpowerseries/Base.cpp"
-using FPS=FormalPowerSeries<mint,500000>;
+using FPS=FormalPowerSeries<mint,500001>;
 #include "formalpowerseries/Prod.cpp"
 
 int main(){
