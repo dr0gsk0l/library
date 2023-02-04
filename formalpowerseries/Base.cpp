@@ -114,18 +114,27 @@ struct FormalPowerSeries:vector<T>{
     return res.pre(SZ);
   }
 
-  FPS pow(int n)const{
+  FPS pow(long long n)const{
     assert(n>=0);
     if(n==0)return unit();
     if(n==1)return *this;
-    if(at(0)==1)return exp(n*log(*this));
-    FPS res=unit(),now=*this;
+
+    FPS now=*this;
+    now.shrink();
+    if(!now.size())return now;
+    int d;
+    for(d=0;d<now.size() and now[d]==0;d++){}
+    if(d>=(MX+n-1)/n)return FPS(0);
+    now >>= d;
+    d *= n;
+    if(at(0)==1)return exp(n*log(now))<<d;
+    FPS res=unit();
     while(n){
       if(n&1)res*=now;
       now*=now;
       n>>=1;
     }
-    return res;
+    return res<<d;
   }
 
   // *this = f_1 + f_2 x^n ⇒ [*this←f_1, return f_2]
@@ -181,6 +190,12 @@ struct FormalPowerSeries:vector<T>{
       factinv /= i;
       res += factinv * (dfg * g2pow) << (m*i);
     }
+    return res;
+  }
+  T operator()(T a)const{
+    T res=0,b=1;
+    for(int i=0;i<size();i++,b*=a)
+      res += at(i)*b;
     return res;
   }
 

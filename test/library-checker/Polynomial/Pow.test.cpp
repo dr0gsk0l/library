@@ -20,9 +20,11 @@ int main(){
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   
-  int n,m;cin>>n>>m;
+  int n;
+  long long m;
+  cin>>n>>m;
   FPS f(n);
   for(int i=0;i<n;i++)cin>>f[i];
   f=f.pow(m);
-  for(int i=0;i<n;i++)cout<<f[i]<<"\n "[i+1<n];
+  for(int i=0;i<n;i++)cout<<(i<f.size()?f[i]:0)<<"\n "[i+1<n];
 }

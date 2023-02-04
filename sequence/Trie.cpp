@@ -18,6 +18,7 @@ public:
   Trie():nodes(1,Node(-1)){}
 
   int& nxt(int now,const CHAR&a){ return nodes[now].nxt[a]; }
+  const int& nxt(int now,const CHAR&a)const{ return nodes[now].nxt[a]; }
   
   int add(const vector<CHAR>&v,X x=1){
     int now=0;
@@ -33,7 +34,7 @@ public:
     AbelMonoid::Rchop(nodes[now].val,x);
     return now;
   }
-  int node_idx(const vector<CHAR>&v){
+  int node_idx(const vector<CHAR>&v)const{
     // s の Node を返す　追加されて無ければ -1
     int now=0;
     for(const CHAR&a:v){

@@ -10,7 +10,7 @@ struct Perm{
     map<T,int> mp;
     REP(i,v.size())if(!i or w[i-1]!=w[i])mp[w[i]]=i;
     REP(i,v.size())w[i]=mp[v[i]]++;
-    return res;
+    return w;
   }
   // r[p[i]]=i;
   static vi rev(const vi&p){
@@ -20,7 +20,7 @@ struct Perm{
   }
   // r[i] = p[q[i]]
   static vi composite(const vi&p, const vi&q){
-    assert(p.size();==q.size());
+    assert(p.size()==q.size());
     auto res=p;
     REP(i,p.size())res[i]=p[q[i]];
     return res;
@@ -41,5 +41,5 @@ public:
     execute_rearrange(p,v);
     rearrange(p,tail...);
   }
-}
+};
 #undef REP_

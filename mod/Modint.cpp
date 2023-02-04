@@ -1,3 +1,5 @@
+#pragma once
+#include "math/ExtraGCD.cpp"
 template<typename T,T MOD=998244353>
 struct Mint{
   inline static constexpr T mod = MOD;
@@ -12,7 +14,7 @@ struct Mint{
     return x;
   }
 
-  Mint pow(long long k){
+  Mint pow(long long k)const{
     Mint res(1),tmp(v);
     while(k){
       if(k&1)res*=tmp;
@@ -25,7 +27,8 @@ struct Mint{
   static Mint add_identity(){return Mint(0);}
   static Mint mul_identity(){return Mint(1);}
 
-  Mint inv(){return pow(MOD-2);}
+  //Mint inv()const{return pow(MOD-2);}
+  Mint inv()const{ return Mint(ext_gcd(v,mod).first); }
 
   Mint& operator+=(Mint a){v+=a.v;if(v>=MOD)v-=MOD;return *this;}
   Mint& operator-=(Mint a){v+=MOD-a.v;if(v>=MOD)v-=MOD;return *this;}
