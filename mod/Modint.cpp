@@ -39,7 +39,12 @@ struct Mint{
   Mint operator-(Mint a) const{return Mint(v)-=a;}
   Mint operator*(Mint a) const{return Mint(v)*=a;}
   Mint operator/(Mint a) const{return Mint(v)/=a;}
-
+#define FRIEND(op) friend Mint operator op (int a,Mint b){ return Mint(a) op b; }
+  FRIEND(+);
+  FRIEND(-);
+  FRIEND(*);
+  FRIEND(/);
+#undef FRIEND
   Mint operator+() const{return *this;}
   Mint operator-() const{return v?Mint(MOD-v):Mint(v);}
 

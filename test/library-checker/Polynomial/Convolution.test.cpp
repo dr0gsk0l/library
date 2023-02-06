@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "mod/Modint.cpp"
-#include "convolution/ntt.cpp"
+#include "convolution/NTT.cpp"
 
 using mint = Mint<long long,998244353>;
 
