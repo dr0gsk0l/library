@@ -50,8 +50,8 @@ struct XY{
   //}
 
   friend T dot(const XY&u,const XY& v){ return u.x*v.x + u.y*v.y; }
-  T square_abs(){ return dot(*this,*this); }
-  T abs(){ return sqrt(square_abs()); }
+  T norm(){ return dot(*this,*this); }
+  T abs(){ return sqrt(norm()); }
 
   friend istream&operator>>(istream&is,XY&v){ is>>v.x>>v.y; return is; }
   friend ostream&operator<<(ostream&os,const XY&v){ os<<v.x<<" "<<v.y; return os;}
