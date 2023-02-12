@@ -16,11 +16,14 @@ using F=G::value_type;
 int main(){
   int n,q;cin>>n>>q;
   vector<F> v(n);
-  for(int i=0;i<n;i++)cin>>v[i].first>>v[i].second;
+  for(int i=0;i<n;i++)cin>>v[i];
   SegmentTree<G> seg(v);
   while(q--){
     int t,l,r,x;cin>>t>>l>>r>>x;
-    if(t)cout<<G::eval(seg.prod(l,r),x)<<"\n";
+    if(t){
+      F f=seg.prod(l,r);
+      cout<<f(x)<<"\n";
+    }
     else seg.set(l,F(r,x));
   }
 }

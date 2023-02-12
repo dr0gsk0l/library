@@ -22,8 +22,8 @@ int main(){
     int t,l,r;cin>>t>>l>>r;
     if(t)cout<<seg.prod(l,r).first<<'\n';
     else{
-      int b,c;cin>>b>>c;
-      seg.apply(l,r,{b,c});
+      Line<mint> f;cin>>f;
+      seg.apply(l,r,f);
     }
   }
 }

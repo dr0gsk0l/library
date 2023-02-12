@@ -8,6 +8,6 @@ struct LazyAffineSum{
   using P=typename MX::value_type;
   using F=typename MF::value_type;
   static constexpr P mapping(const F&f,const P&x){
-    return {f.first*x.first+f.second*x.second, x.second};
+    return {f.a*x.first+f.b*x.second, x.second};
   }
 };

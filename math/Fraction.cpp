@@ -1,3 +1,4 @@
+#pragma once
 template<typename T>
 struct Fraction{
   T num,den;
@@ -33,8 +34,8 @@ struct Fraction{
   Fraction& operator--(){ return (*this)-=1; }
   Fraction& operator++(int){ return (*this)+=1; }
   Fraction& operator--(int){ return (*this)-=1; }
-  Fraction& operator+(){ return *this; }
-  Fraction& operator-(){ num*=-1; return *this; }
+  Fraction operator+()const{ return *this; }
+  Fraction operator-()const{ return Fraction(-num,den); }
 
   static Fraction raw(T a){ return Fraction(a,1); }
   Fraction pow(long long k)const{

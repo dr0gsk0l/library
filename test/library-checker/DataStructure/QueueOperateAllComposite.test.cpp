@@ -21,15 +21,14 @@ int main(){
   while(q--){
     int t;cin>>t;
     if(t==0){
-      F f;
-      cin>>f.first>>f.second;
+      F f;cin>>f;
       S.push_back(f);
     }
     if(t==1)S.pop_front();
     if(t==2){
       int x;cin>>x;
       F f=S.prod();
-      cout<<G::eval(f,x)<<"\n";
+      cout<<f(x)<<"\n";
     }
   }
 }

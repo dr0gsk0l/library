@@ -29,6 +29,8 @@ struct XY{
   bool operator==(const XY&v)const{ return x==v.x and y==v.y; }
   bool operator!=(const XY&v)const{ return !(*this==v); }
 
+  double arg()const{ return atan2(y,x); }
+
   // [0,2pi) で θ(u)<θ(v) の時 true 
   // (0,0) は 2pi に相当
   //static bool angle_cmp(const XY&u,const XY&v){

@@ -3,6 +3,7 @@ struct Edge{
   int from,to;
   Edge()=default;
   Edge(int from,int to):from(from),to(to){}
+  operator int()const{ return to; }
 };
 
 struct Graph{

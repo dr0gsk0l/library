@@ -28,6 +28,7 @@ namespace geometry{
       is>>s.p1>>s.p2;
       return is;
     }
+    double arg()const{ return (p2-p1).arg(); }
   };
   using Line = Segment;
 

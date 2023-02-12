@@ -5,6 +5,7 @@ struct WeightedEdge{
   WeightedEdge(int from,int to,T weight):from(from),to(to),weight(weight){}
   int from,to;
   T weight;
+  operator int()const{ return to; }
 };
 
 template<typename T>
