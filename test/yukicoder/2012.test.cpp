@@ -29,8 +29,8 @@ int main(){
       continue;
     }
     if(CHT1.size()){
-      ld res1=CHT1.query(v.y/v.x)*v.x, res2=CHT2.query(v.y/v.x)*v.x;
-      chmax(ans, max(abs(res1),abs(res2)));
+      chmax(ans, abs(CHT1.query(v.y/v.x)*v.x));
+      chmax(ans, abs(CHT2.query(v.y/v.x)*v.x));
     }
     Line<ld> f(v.x,-v.y);
     CHT1.add(f);
