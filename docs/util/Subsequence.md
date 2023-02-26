@@ -10,7 +10,7 @@ documentation_of: //util/Subsequence.cpp
 空間 $O(SIZE)$
 
 * ```<T> T subsequence_alphabet(const string&s)```  
-英子文字のみ or 英大文字のみからなる文字列 $s$ に対して求める
+英小文字のみ or 英大文字のみからなる文字列 $s$ に対して求める
 時間 $O(|s|)$  
 空間 $O(1)$
 
