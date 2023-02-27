@@ -1,6 +1,6 @@
 template<typename AbelMonoid>
 class UnionFind{
-  using T=AbelMonoid::value_type;
+  using T=typename AbelMonoid::value_type;
   int n,num;
   vector<int> sz,parent;
   vector<T> value;
