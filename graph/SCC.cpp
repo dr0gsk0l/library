@@ -11,13 +11,13 @@ class SCC{
   vector<bool> used;
   void dfs(int v){
     used[v]=true;
-    for(const auto&e:G[v])if(!used[e.to])dfs(e.to);
+    for(int to:G[v])if(!used[to])dfs(to);
     visit.push_back(v);
   }
   void rdfs(int v,int k){
     used[v]=true;
     belong[v]=k;
-    for(const auto&e:R[v])if(!used[e.to])rdfs(e.to,k);
+    for(int to:R[v])if(!used[to])rdfs(to,k);
   }
 public:
   Graph DAG;
@@ -36,9 +36,9 @@ public:
     component.resize(k);
     REP_(v,n){
       component[belong[v]].push_back(v);
-      for(auto&e:G[v])
-        if(belong[v]!=belong[e.to])
-          edges[belong[v]].push_back(belong[e.to]);
+      for(int to:G[v])
+        if(belong[v]!=belong[to])
+          edges[belong[v]].push_back(belong[to]);
     }
     DAG=Graph(k);
     REP_(from,k){

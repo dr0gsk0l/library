@@ -5,7 +5,7 @@ pair<int,vector<int>> rooted_tree_isomorphism(TREE&t){
   map<vector<int>,int> mp;
   for(const int v:t.DFS){
     vector<int> h;
-    for(const auto&e:t.son(v))h.push_back(res[e.to]);
+    for(int to:t.son(v))h.push_back(res[to]);
     sort(h.begin(),h.end());
     if(!mp.count(h))mp[h]=mp.size();
     res[v]=mp[h];

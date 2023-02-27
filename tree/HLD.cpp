@@ -17,9 +17,9 @@ private:
   void dfs_hld(int v,int& k){
     id[v]=k++;
     for(int i=0;i<T.son(v).size();i++){
-      const auto&e=T.son(v)[i];
-      head[e.to]=(i?e.to:head[v]);
-      dfs_hld(e.to,k);
+      int to=T.son(v)[i];
+      head[to]=(i?to:head[v]);
+      dfs_hld(to,k);
     }
     id2[v]=k;
   }
@@ -37,10 +37,11 @@ public:
 
   int lca(int u,int v){
     assert(prepared);
-    while(head[u]!=head[v]){
-      if(T.depth[head[u]]>T.depth[head[v]])u=T.parent(head[u]).to;
-      else v=T.parent(head[v]).to;
-    }
+    while(head[u]!=head[v])
+      if(T.depth[head[u]]>T.depth[head[v]])
+        u=T.parent(head[u]);
+      else 
+        v=T.parent(head[v]);
     return (T.depth[u]<T.depth[v]?u:v);
   }
   int distance(int u,int v){
@@ -63,11 +64,11 @@ public:
       }
       if(T.depth[head[u]]<T.depth[head[v]]){
         path_v.emplace_back(id[v],id[head[v]]);
-        v=T.parent(head[v]).to;
+        v=T.parent(head[v]);
       }
       else{
         path_u.emplace_back(id[u],id[head[u]]);
-        u=T.parent(head[u]).to;
+        u=T.parent(head[u]);
       }
     }
     if(u==v)path_u.emplace_back(id[u],id[u]);

@@ -9,10 +9,10 @@ class CentroidDecomposition{
     for(int i=0;i<S.size();i++){
       const int u=S[i];
       sz[u]=1;
-      for(const auto&e:T[u]){
-        if(e.to==pre[u]||~timing[e.to])continue;
-        pre[e.to]=u;
-        S.push_back(e.to);
+      for(int to:T[u]){
+        if(to==pre[u]||~timing[to])continue;
+        pre[to]=u;
+        S.push_back(to);
       }
     }
     int SZ=S.size();
@@ -34,9 +34,9 @@ public:
       int c=find_centroid(que.front());que.pop();
       timing[c]=order.size();
       order.push_back(c);
-      for(const auto&e:T[c])
-        if(timing[e.to]<0)
-          que.push(e.to);
+      for(int to:T[c])
+        if(timing[to]<0)
+          que.push(to);
     }
   }
 
