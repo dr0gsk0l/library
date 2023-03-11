@@ -14,8 +14,6 @@ class RollingHash{
   using T=ll;
   inline static const MINT base=MINT::raw(rollonghash_mt()%(mod-2)+2);
 
-  
-
   int n;
   vector<MINT> hash,power;
 public:
@@ -25,6 +23,7 @@ public:
       power[i+1]=power[i]*base;
     }
   }
+  RollingHash()=default;
 
   static MINT nxt_hash(MINT x,CHAR c){ return (x*base) + MINT::raw(c); }
   

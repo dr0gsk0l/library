@@ -36,4 +36,12 @@ struct YX{
 
   friend istream&operator>>(istream&is,YX&v){ is>>v.y>>v.x; return is; }
   friend ostream&operator<<(ostream&os,const YX&v){ os<<v.y<<" "<<v.x; return os;}
+
+  static YX direction(const char&c){
+    if(c=='R')return {0,1};
+    if(c=='L')return {0,-1};
+    if(c=='U')return {-1,0};
+    if(c=='D')return {1,0};
+    return {0,0};
+  }
 };

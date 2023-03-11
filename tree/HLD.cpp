@@ -10,6 +10,7 @@ private:
   void dfs_sz(int v){
     sz[v]=1;
     for(auto&e:T.son(v)){
+      dfs_sz(e.to);
       sz[v]+=sz[e.to];
       if(sz[e.to]>sz[T.son(v)[0].to])swap(e,T.son(v)[0]);
     }

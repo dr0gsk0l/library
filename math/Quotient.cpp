@@ -8,7 +8,7 @@ struct Quotient{
       T k = n/(double)l;
       f(l,l,k);
     }
-    for(T k = n/(double); k; l=r+1,k--){
+    for(T k = n/(double)l; k; l=r+1,k--){
       r = n/(double)k;
       f(l,r,k);
     }

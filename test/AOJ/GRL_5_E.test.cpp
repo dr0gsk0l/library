@@ -1,7 +1,4 @@
-#define IGNORE
-// 最大ケースで 8m　程度かかるっぽい
-
-//#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E"
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E"
 #include <bits/stdc++.h>
 using namespace std;
 #define REP(i,n) for(int i=0;i<(n);i++)

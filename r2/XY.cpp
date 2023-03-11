@@ -58,4 +58,12 @@ struct XY{
 
   friend istream&operator>>(istream&is,XY&v){ is>>v.x>>v.y; return is; }
   friend ostream&operator<<(ostream&os,const XY&v){ os<<v.x<<" "<<v.y; return os;}
+
+  static XY direction(const char&c){
+    if(c=='R')return {1,0};
+    if(c=='L')return {-1,0};
+    if(c=='U')return {0,-1};
+    if(c=='D')return {0,1};
+    return {0,0};
+  }
 };
