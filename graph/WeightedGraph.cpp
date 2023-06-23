@@ -94,7 +94,7 @@ public:
   }
 
   void graph_debug()const{
-  #ifndef __LOCAL
+  #ifndef __DEBUG
     return;
   #endif
     assert(prepared);

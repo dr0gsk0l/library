@@ -38,6 +38,6 @@ public:
 
   template< typename A,typename E,typename F>
   void calc(const A&add,const E&erase,const F&f) {
-    build(add,add,erase,erase,f);
+    calc(add,add,erase,erase,f);
   }
 };

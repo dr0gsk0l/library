@@ -119,7 +119,10 @@ struct SquareMatrix{
     return B;
   }
   
-  friend ostream& operator<<(ostream&os,const SquareMatrix &M){ os<<M.M; return os; }
+  friend ostream& operator<<(ostream&os,const SquareMatrix &M){ 
+    REP_(i,N)REP_(j,N)os<<M.M[i][j]<<"\n "[j+1<N];
+    return os;
+  }
   friend istream& operator>>(istream&is,SquareMatrix &M){ REP_(i,N)REP_(j,N)is>>M.M[i][j]; return is; }
 };
 #undef REP_

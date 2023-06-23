@@ -6,6 +6,7 @@ struct HLD{
   vector<int> sz,head,id,id2;
   bool prepared;
   HLD(TREE T_):T(T_),n(T_.n),sz(n),head(n),id(n),id2(n),prepared(false){}
+  HLD()=default;
 private:
   void dfs_sz(int v){
     sz[v]=1;

@@ -2,6 +2,7 @@
 #include "graph/Graph.cpp"
 struct Tree:Graph{
   using Graph::Graph;
+  Tree()=default;
   int root=-1;
   vector<int> DFS,BFS,depth;
 
