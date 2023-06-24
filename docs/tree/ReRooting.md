@@ -19,7 +19,7 @@ $\oplus$ : 可換 monoid
 ```Data``` は dp の型
 
 * ```vector<Data> build(const F1&score,const F2&merge, const Data&unit)```  
-  演算回数 $O(n)$
+  $\Theta(n)$
   * ```Data score(Data d,Edge e)```  
   $f(d,e)$ を返す
   * ```void merge(Data&d,const Data&add)```  
