@@ -26,7 +26,7 @@ data:
   timestamp: '2022-09-07 12:14:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: algebra/group_mul.cpp
+documentation_of: library/algebra/group_mul.cpp
 layout: document
 redirect_from:
 - /library/algebra/group_mul.cpp

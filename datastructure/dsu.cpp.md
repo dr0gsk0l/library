@@ -39,7 +39,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/DataStructure/unionfind.test.cpp
-documentation_of: datastructure/dsu.cpp
+documentation_of: library/datastructure/dsu.cpp
 layout: document
 redirect_from:
 - /library/datastructure/dsu.cpp

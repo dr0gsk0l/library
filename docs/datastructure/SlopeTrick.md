@@ -1,6 +1,6 @@
 ---
 title: SlopeTrick
-documentation_of: datastructure/SlopeTrick.cpp
+documentation_of: library/datastructure/SlopeTrick.cpp
 ---
 
 基本的な用語などは reference と同じ  

@@ -1,6 +1,6 @@
 ---
 title: ReRooting
-documentation_of: tree/ReRooting.cpp
+documentation_of: library/tree/ReRooting.cpp
 ---
 
 $n$ 頂点無向グラフ $T$ を入力にとる  

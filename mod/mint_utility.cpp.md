@@ -39,7 +39,7 @@ data:
   timestamp: '2022-09-06 17:15:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: mod/mint_utility.cpp
+documentation_of: library/mod/mint_utility.cpp
 layout: document
 redirect_from:
 - /library/mod/mint_utility.cpp

@@ -30,7 +30,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library-checker/DataStructure/StaticRangeSum.test.cpp
-documentation_of: datastructure/cumulativesum.cpp
+documentation_of: library/datastructure/cumulativesum.cpp
 layout: document
 redirect_from:
 - /library/datastructure/cumulativesum.cpp

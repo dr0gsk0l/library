@@ -1,6 +1,6 @@
 ---
 title: for_all_pareto
-documentation_of: //util/ForAllPareto.cpp
+documentation_of: library///util/ForAllPareto.cpp
 ---
 
 長さ $n$ の配列 $v$ と関数 $f$ を引数に取り、$0\leq a_i\leq v_i　\forall i\in[n]$ を満たす各 $a$ に対して、$f(a)$ を行う

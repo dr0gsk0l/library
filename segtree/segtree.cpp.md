@@ -98,7 +98,7 @@ data:
   timestamp: '2022-09-06 17:27:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: segtree/segtree.cpp
+documentation_of: library/segtree/segtree.cpp
 layout: document
 redirect_from:
 - /library/segtree/segtree.cpp

@@ -30,7 +30,7 @@ data:
   timestamp: '2022-09-06 21:44:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/Graph.cpp
+documentation_of: library/graph/Graph.cpp
 layout: document
 redirect_from:
 - /library/graph/Graph.cpp

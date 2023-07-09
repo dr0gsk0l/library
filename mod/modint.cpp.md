@@ -55,7 +55,7 @@ data:
   timestamp: '2022-09-06 21:25:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: mod/modint.cpp
+documentation_of: library/mod/modint.cpp
 layout: document
 redirect_from:
 - /library/mod/modint.cpp

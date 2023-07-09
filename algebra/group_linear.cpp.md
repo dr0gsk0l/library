@@ -35,7 +35,7 @@ data:
   timestamp: '2022-09-06 17:29:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: algebra/group_linear.cpp
+documentation_of: library/algebra/group_linear.cpp
 layout: document
 redirect_from:
 - /library/algebra/group_linear.cpp
